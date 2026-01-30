@@ -1,5 +1,9 @@
 # Rich table plugin for Sanity
 
+_**THIS PACKAGE IS NOT YET RELEASED! YOU CANNOT INSTALL IT YET!**_
+
+The last rich table plugin for Saniyt you will need! 
+
 <img width="1051" height="387" alt="Screenshot 2026-01-30 at 20 17 38" src="https://github.com/user-attachments/assets/447bbd97-2edd-442a-aca2-6d53c330ad91" />
 
 ## Features
@@ -25,6 +29,8 @@
 
 
 ## Installation
+
+_**THIS PACKAGE IS NOT YET RELEASED! YOU CANNOT INSTALL IT YET!**_
 
 ```sh
 npm install sanity-plugin-rich-table
