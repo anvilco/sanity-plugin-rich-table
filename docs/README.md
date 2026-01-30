@@ -102,7 +102,8 @@ When cells are created each cell will automatically receive a `content` array wi
 
 ## Render tables
 
-To render the rich table data in your frontend application, you can use some of the following example React components:
+To render the rich table data in your frontend application, you can use some of the following example React components.
+Other frameworks as well as libraries (like Tanstack Table) will be able to use a similar approach since your table data is not pesky like Mardown or locked in HTML strings or iFrames.
 
 ### Using a simple HTML table in React
 
@@ -195,8 +196,8 @@ export const RichTableGrid: React.FC<RichTableProps> = ({tableData}) => {
   );
 };
 ```
+Easy peasy!
 
-Easy peasy! 
 
 ## Merging cells
 
