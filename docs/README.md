@@ -136,7 +136,7 @@ export const RichTable: React.FC<RichTableProps> = ({tableData}) => {
             {hasRowTitles && <th>{row.title}</th>}
             {row.cells?.map((cell, cellIndex) => (
               <td key={cellIndex}>
-                <PortableText value={cell.content} />
+                <PortableText value={cell.content} components={/* your components */}/>
               </td>
             ))}
           </tr>
