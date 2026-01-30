@@ -8,13 +8,16 @@ The last rich table plugin for Saniyt you will need!
 
 ## Features
 - 100% Typescript
+- Initialise a table with intuitive table selection by click or drag 
 - Rich table schema type `richTable` with Portable Text based cells
 - Portable Text block type `richTableBlock`
-- Portable Text editor goodies like Slash commands, Markdown shortcuts and emoji picker - thanks to the amazing work of Christian Groengaard!
+- Portable Text editor goodies like Slash commands, Markdown shortcuts, LinkPlugin and emoji picker - thanks to the amazing work of Christian Groengaard!
 - Optional row and column titles
 - Expandable table dialog 
 - Advanced row and column menus (move, delete, add new inline)
 - Option to show table headers
+- Unset table data with a button & confirmation dialog
+
 
 
 | <img width="578" height="263" alt="Preview of inline slash command" src="https://github.com/user-attachments/assets/ebef6b77-15bf-4142-833b-ed6bbd462039" /> |
@@ -72,6 +75,11 @@ After installing the plugin, you can use the `richTable` object type in your sch
  })
  ```
 
+## Render tables
+
+Read more about rendering rich tables in your frontend application in the [Render tables](./docs/README.md#render-tables) guide.
+In the docs you will find even more details about the [data structure](./docs/README.md#data-structure) used by this plugin. 
+And get a suggestion on how to [merge cells when rendering](./docs/README.md#merging-cells).
 
 ## Features coming
 
