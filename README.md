@@ -8,6 +8,7 @@
 - Optional row and column titles
 - Expandable table dialog 
 - Advanced row and column menus (move, delete, add new inline)
+- Option to show table headers
 
 
 ## Installation
