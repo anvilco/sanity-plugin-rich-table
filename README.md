@@ -17,6 +17,7 @@ The last rich table plugin for Saniyt you will need!
 - Advanced row and column menus (move, delete, add new inline)
 - Option to show table headers
 - Unset table data with a button & confirmation dialog
+- Dark and light mode support 😎
 
 
 
