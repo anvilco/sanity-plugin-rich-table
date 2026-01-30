@@ -12,7 +12,14 @@
 - Advanced row and column menus (move, delete, add new inline)
 - Option to show table headers
 
-| <img width="578" height="263" alt="Screenshot 2026-01-30 at 20 17 49" src="https://github.com/user-attachments/assets/ebef6b77-15bf-4142-833b-ed6bbd462039" /> | <img width="276" height="321" alt="Screenshot 2026-01-30 at 20 18 21" src="https://github.com/user-attachments/assets/fd7618dd-f7d8-4e20-8936-17ac002266ec" /> | <img width="298" height="278" alt="Screenshot 2026-01-30 at 20 18 28" src="https://github.com/user-attachments/assets/90121b59-8d25-48e1-9226-533f4ba47ba7" /> |
+![Screenshot 2026-01-30 at 20.17.38.png](../../../Desktop/Screenshot%202026-01-30%20at%2020.17.38.png)
+
+<img width="578" height="263" alt="Preview of inline slash command" src="https://github.com/user-attachments/assets/ebef6b77-15bf-4142-833b-ed6bbd462039" />
+
+|  <img width="276" height="321" alt="Screenshot 2026-01-30 at 20 18 21" src="https://github.com/user-attachments/assets/fd7618dd-f7d8-4e20-8936-17ac002266ec" /> | <img width="298" height="278" alt="Screenshot 2026-01-30 at 20 18 28" src="https://github.com/user-attachments/assets/90121b59-8d25-48e1-9226-533f4ba47ba7" /> |
+| --- | --- |
+| Column context menu | Row context menu |
+
 
 
 
