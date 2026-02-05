@@ -1,6 +1,6 @@
-import { Box, Card, Stack } from '@sanity/ui'
-import { ComponentType, useCallback, useState } from 'react'
-import { BlockProps } from 'sanity'
+import {Box, Card, Stack} from '@sanity/ui'
+import {ComponentType, useCallback, useState} from 'react'
+import {BlockProps} from 'sanity'
 
 const RichTableBock: ComponentType<BlockProps> = (props) => {
   const [openTable, setOpenTable] = useState<boolean>(true)

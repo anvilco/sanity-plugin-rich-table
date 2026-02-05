@@ -1,11 +1,11 @@
-import { OperationsAPI, PortableTextBlock } from 'sanity'
-import { PatchOperations } from '@sanity/types'
-import { useCallback } from 'react'
+import {OperationsAPI, PortableTextBlock} from 'sanity'
+import {PatchOperations} from '@sanity/types'
+import {useCallback} from 'react'
 
-import { generateKey } from '../utils/generateKey'
-import { RichTableCellType } from '../schemas/cell.object'
-import { ColumnHeader } from '../schemas/columnHeader.object'
-import { RichTableType } from '../schemas/richTable.object'
+import {generateKey} from '../utils/generateKey'
+import {RichTableCellType} from '../schemas/cell.object'
+import {ColumnHeader} from '../schemas/columnHeader.object'
+import {RichTableType} from '../schemas/richTable.object'
 
 interface UseAddColumnParams {
   /** Patch function from Sanity document operations for optimistic changes */
@@ -16,7 +16,7 @@ interface UseAddColumnParams {
   value: RichTableType
 }
 
-export function useAddColumn({ path, value, patch }: UseAddColumnParams) {
+export function useAddColumn({path, value, patch}: UseAddColumnParams) {
   return useCallback(() => {
     const colCount = value?.columnHeaders?.length || 0
 
@@ -25,7 +25,7 @@ export function useAddColumn({ path, value, patch }: UseAddColumnParams) {
       _type: 'richTableCell',
       _key: generateKey(),
       content: [
-        { _type: 'block', markDefs: [], children: [{ _type: 'span', text: '', marks: [] }] },
+        {_type: 'block', markDefs: [], children: [{_type: 'span', text: '', marks: []}]},
       ] as unknown as PortableTextBlock[],
     }
 
@@ -33,7 +33,7 @@ export function useAddColumn({ path, value, patch }: UseAddColumnParams) {
     // const newColumnTitle = getLetterBasedOnIndex(colCount)
 
     // New column header item (title uses current header count when available)
-    const newColumnHeaderItem: ColumnHeader & { _key: string; _type: string } = {
+    const newColumnHeaderItem: ColumnHeader & {_key: string; _type: string} = {
       _type: 'columnHeader',
       _key: generateKey(),
       // title: newColumnTitle,

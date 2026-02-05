@@ -1,7 +1,7 @@
-import { Button } from '@sanity/ui'
-import { ComponentType, useEffect, useRef } from 'react'
+import {Button} from '@sanity/ui'
+import {ComponentType, useEffect, useRef} from 'react'
 
-import { CommandMatch } from './commands'
+import {CommandMatch} from './commands'
 
 export interface CommandListItemProps {
   match: CommandMatch
@@ -15,7 +15,7 @@ const CommandListItem: ComponentType<CommandListItemProps> = (props) => {
 
   useEffect(() => {
     if (props.selected && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      ref.current.scrollIntoView({behavior: 'smooth', block: 'nearest'})
     }
   }, [props.selected])
 

@@ -1,6 +1,6 @@
-import { EmojiMatch } from '@portabletext/plugin-emoji-picker'
-import { Button } from '@sanity/ui'
-import { ComponentType, useEffect, useRef } from 'react'
+import {EmojiMatch} from '@portabletext/plugin-emoji-picker'
+import {Button} from '@sanity/ui'
+import {ComponentType, useEffect, useRef} from 'react'
 
 interface EmojiListItemProps {
   match: EmojiMatch
@@ -10,12 +10,12 @@ interface EmojiListItemProps {
 }
 
 const EmojiListItem: ComponentType<EmojiListItemProps> = (props) => {
-  const { match, selected, onMouseEnter, onSelect } = props
+  const {match, selected, onMouseEnter, onSelect} = props
   const ref = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (selected && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      ref.current.scrollIntoView({behavior: 'smooth', block: 'nearest'})
     }
   }, [selected])
   return (

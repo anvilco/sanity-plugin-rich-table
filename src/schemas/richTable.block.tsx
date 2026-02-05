@@ -1,4 +1,4 @@
-import { defineType, ObjectInputProps } from 'sanity'
+import {defineType, ObjectInputProps} from 'sanity'
 
 import RichTableBock from '../components/RichTableBock'
 import RichTableInput from '../components/RichTableInput'

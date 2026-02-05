@@ -1,9 +1,9 @@
-import { RichTableType } from '../schemas/richTable.object'
-import { OperationsAPI, PortableTextBlock } from 'sanity'
-import { useCallback } from 'react'
-import { RichTableCellType } from '../schemas/cell.object'
-import { RichTableRowType } from '../schemas/row.object'
-import { generateKey } from '../utils/generateKey'
+import {RichTableType} from '../schemas/richTable.object'
+import {OperationsAPI, PortableTextBlock} from 'sanity'
+import {useCallback} from 'react'
+import {RichTableCellType} from '../schemas/cell.object'
+import {RichTableRowType} from '../schemas/row.object'
+import {generateKey} from '../utils/generateKey'
 
 interface UseAddRowProps {
   /** Patch function from Sanity document operations for optimistic changes */
@@ -14,11 +14,11 @@ interface UseAddRowProps {
   value: RichTableType
 }
 
-export default function useAddRow({ path, value, patch }: UseAddRowProps) {
+export default function useAddRow({path, value, patch}: UseAddRowProps) {
   return useCallback(() => {
     const colCount = value?.columnHeaders?.length || 0
     // Create an array of empty cells for the new row.
-    const cells: RichTableCellType[] = Array.from({ length: colCount ?? 1 }, () => {
+    const cells: RichTableCellType[] = Array.from({length: colCount ?? 1}, () => {
       return {
         _type: 'richTableCell',
         _key: generateKey(),
@@ -27,7 +27,7 @@ export default function useAddRow({ path, value, patch }: UseAddRowProps) {
             _type: 'block',
             _key: generateKey(),
             markDefs: [],
-            children: [{ _type: 'span', text: '', marks: [] }],
+            children: [{_type: 'span', text: '', marks: []}],
           },
         ] as unknown as PortableTextBlock[],
       }

@@ -1,16 +1,16 @@
 // typescript
-import { EditorConfig } from '@portabletext/editor'
-import { useToolbarSchema } from '@portabletext/toolbar'
-import { BlockContentIcon } from '@sanity/icons'
-import { Box, Card, Flex, Popover, Text } from '@sanity/ui'
-import { ComponentType, RefObject, useCallback, useEffect, useRef, useState } from 'react'
+import {EditorConfig} from '@portabletext/editor'
+import {useToolbarSchema} from '@portabletext/toolbar'
+import {BlockContentIcon} from '@sanity/icons'
+import {Box, Card, Flex, Popover, Text} from '@sanity/ui'
+import {ComponentType, RefObject, useCallback, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 
-import { extendAnnotation } from '../../configs/extendAnnotation'
-import { extendBlockObject } from '../../configs/extendBlockObject'
+import {extendAnnotation} from '../../configs/extendAnnotation'
+import {extendBlockObject} from '../../configs/extendBlockObject'
 import extendDecorator from '../../configs/extendDecorators'
-import { extendInlineObject } from '../../configs/extendInlineObject'
-import { extendList } from '../../configs/extendList'
+import {extendInlineObject} from '../../configs/extendInlineObject'
+import {extendList} from '../../configs/extendList'
 import extendStyle from '../../configs/extendStyles'
 import AnnotationPopover from '../annotation/AnnotationPopover'
 import StyleSelector from '../StyleSelector'
@@ -19,7 +19,7 @@ import DecoratorButton from './DecoratorButton'
 import FloatingButton from './FloatingButton'
 import ListButton from './ListButton'
 
-const ButtonToolbar: ComponentType<{ focused: boolean; editorRef: RefObject<EditorConfig> }> = ({
+const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<EditorConfig>}> = ({
   focused,
   editorRef,
 }) => {
@@ -262,7 +262,7 @@ const ButtonToolbar: ComponentType<{ focused: boolean; editorRef: RefObject<Edit
             onClick={handlePopoverClick}
           >
             <Box padding={4} paddingBottom={2}>
-              <Text size={0} muted style={{ fontStyle: 'italic' }}>
+              <Text size={0} muted style={{fontStyle: 'italic'}}>
                 Select your style, list or custom block (navigate with ← → and Enter)
               </Text>
             </Box>

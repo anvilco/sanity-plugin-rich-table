@@ -1,6 +1,6 @@
-import { ToolbarListSchemaType, useListButton } from '@portabletext/toolbar'
-import { Button } from '@sanity/ui'
-import { ComponentType } from 'react'
+import {ToolbarListSchemaType, useListButton} from '@portabletext/toolbar'
+import {Button} from '@sanity/ui'
+import {ComponentType} from 'react'
 
 /** Button component for toggling list styles in a rich text editor.
  *
@@ -14,19 +14,19 @@ import { ComponentType } from 'react'
  *  ))}
  * ```
  */
-const ListButton: ComponentType<{ list: ToolbarListSchemaType }> = ({ list }) => {
-  const listButton = useListButton({ schemaType: list })
+const ListButton: ComponentType<{list: ToolbarListSchemaType}> = ({list}) => {
+  const listButton = useListButton({schemaType: list})
 
   return (
     <Button
       key={list.name}
-      onClick={() => listButton.send({ type: 'toggle' })}
-      selected={listButton.snapshot.matches({ enabled: 'active' })}
+      onClick={() => listButton.send({type: 'toggle'})}
+      selected={listButton.snapshot.matches({enabled: 'active'})}
       icon={list.icon}
       padding={2}
       tone={'default'}
       mode={'bleed'}
-      aria-selected={listButton.snapshot.matches({ enabled: 'active' })}
+      aria-selected={listButton.snapshot.matches({enabled: 'active'})}
       title={list.title}
     />
   )

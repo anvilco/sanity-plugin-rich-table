@@ -1,7 +1,7 @@
-import { useCallback } from 'react'
-import { OperationsAPI } from 'sanity'
+import {useCallback} from 'react'
+import {OperationsAPI} from 'sanity'
 
-import { RichTableType } from '../schemas/richTable.object'
+import {RichTableType} from '../schemas/richTable.object'
 
 /** Hook to toggle the presence of column and row titles in a rich table. */
 export const useToggleTitles = (
@@ -14,7 +14,7 @@ export const useToggleTitles = (
     (newValue: boolean) => {
       const hasColumnTitlePath = `${path}.hasColumnTitles`
       const setPatch = {
-        set: { [hasColumnTitlePath]: true },
+        set: {[hasColumnTitlePath]: true},
       }
       const unsetPatch = {
         unset: [hasColumnTitlePath],
@@ -28,7 +28,7 @@ export const useToggleTitles = (
     (newValue: boolean) => {
       const hasRowTitlePath = `${path}.hasRowTitles`
       const setPatch = {
-        set: { [hasRowTitlePath]: true },
+        set: {[hasRowTitlePath]: true},
       }
       const unsetPatch = {
         unset: [hasRowTitlePath],

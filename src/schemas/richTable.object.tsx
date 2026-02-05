@@ -1,11 +1,11 @@
-import { ComponentType } from 'react'
-import { TbTable } from 'react-icons/tb'
-import { defineArrayMember, defineField, defineType, ObjectInputProps, ObjectItem } from 'sanity'
+import {ComponentType} from 'react'
+import {TbTable} from 'react-icons/tb'
+import {defineArrayMember, defineField, defineType, ObjectInputProps, ObjectItem} from 'sanity'
 
 import RichTableBock from '../components/RichTableBock'
 import RichTableInput from '../components/RichTableInput'
-import { ColumnHeader } from './columnHeader.object'
-import { RichTableRowType } from './row.object'
+import {ColumnHeader} from './columnHeader.object'
+import {RichTableRowType} from './row.object'
 
 export interface RichTableType {
   rows: Array<RichTableRowType> | undefined

@@ -4,7 +4,7 @@ This document describes the data model used by the Rich Table plugin as defined 
 
 ## Important background
 
-When cells are created each cell will automatically receive a `content` array with one child. This child (type `PortableTextTextBlock`) has an empty `text` node. Unfortunately this is needed for the UI to play nice. 
+When cells are created each cell will automatically receive a `content` array with one child. This child (type `PortableTextTextBlock`) has an empty `text` node. Unfortunately this is needed for the UI to play nice.
 
 _**DO NOT REMOVE CELLS WITH EMPTY `CONTENT` FROM THE ARRAYS MANUALLY!**_
 
@@ -74,7 +74,6 @@ This means that an "empty" cell will still have a `content` field with an empty 
 
 (These interfaces mirror the shape of the stored documents and help TypeScript consumers.)
 
-
 ## Constraints & Notes
 
 - `rows` is required and must contain at least one row; individual rows may have differing `cells` lengths — the schema does not enforce a uniform column count.
@@ -85,27 +84,28 @@ This means that an "empty" cell will still have a `content` field with an empty 
 ## JSON example
 
 If you use the rich table as a field, the stored data might look like this (removed `_key` and most portable text fields for brevity):
+
 ```json
 {
   "rows": [
     {
       "title": "Row 1",
       "cells": [
-        { "content": [{ "_type": "block", "children": [{ "_type": "span", "text": "Cell 1-1" }] }] },
-        { "content": [{ "_type": "block", "children": [{ "_type": "span", "text": "Cell 1-2" }] }] }
+        {"content": [{"_type": "block", "children": [{"_type": "span", "text": "Cell 1-1"}]}]},
+        {"content": [{"_type": "block", "children": [{"_type": "span", "text": "Cell 1-2"}]}]}
       ]
     },
     {
       "title": "Row 2",
       "cells": [
-        { "content": [{ "_type": "block", "children": [{ "_type": "span", "text": "Cell 2-1" }] }] },
-        { "content": [{ "_type": "block", "children": [{ "_type": "span", "text": "Cell 2-2" }] }] }
+        {"content": [{"_type": "block", "children": [{"_type": "span", "text": "Cell 2-1"}]}]},
+        {"content": [{"_type": "block", "children": [{"_type": "span", "text": "Cell 2-2"}]}]}
       ]
     }
   ],
   "columnHeaders": [
-    { "title": "First", "cellIndex": 0 },
-    { "title": "Second", "cellIndex": 1 }
+    {"title": "First", "cellIndex": 0},
+    {"title": "Second", "cellIndex": 1}
   ],
   "hasColumnTitles": true,
   "hasRowTitles": true

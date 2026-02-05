@@ -1,16 +1,16 @@
-import { type EditorSelection, useEditor } from '@portabletext/editor'
-import { defineBehavior, effect, raise } from '@portabletext/editor/behaviors'
-import { defineTypeaheadPicker, useTypeaheadPicker } from '@portabletext/plugin-typeahead-picker'
-import type { ToolbarBlockObjectSchemaType } from '@portabletext/toolbar'
-import { Box, Dialog, Text } from '@sanity/ui'
+import {type EditorSelection, useEditor} from '@portabletext/editor'
+import {defineBehavior, effect, raise} from '@portabletext/editor/behaviors'
+import {defineTypeaheadPicker, useTypeaheadPicker} from '@portabletext/plugin-typeahead-picker'
+import type {ToolbarBlockObjectSchemaType} from '@portabletext/toolbar'
+import {Box, Dialog, Text} from '@sanity/ui'
 import Fuse from 'fuse.js'
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 
-import { FloatingPanel } from '../components/FloatingPanel'
+import {FloatingPanel} from '../components/FloatingPanel'
 //import { InsertBlockObjectForm } from './toolbar/form.insert-block-object'
-import { extendBlockObject } from '../configs/extendBlockObject'
+import {extendBlockObject} from '../configs/extendBlockObject'
 import CommandListBox from './CommandListBox'
-import { CommandMatch, slashCommands } from './commands'
+import {CommandMatch, slashCommands} from './commands'
 
 type BlockObjectDialogState = {
   patternSelection: NonNullable<EditorSelection>
@@ -23,14 +23,14 @@ type OpenBlockObjectDialogEvent = {
 
 const commandsFuse = new Fuse(slashCommands, {
   keys: [
-    { name: 'label', weight: 1.0 },
-    { name: 'keywords', weight: 0.8 },
+    {name: 'label', weight: 1.0},
+    {name: 'keywords', weight: 0.8},
   ],
   threshold: 0.4,
   ignoreLocation: true,
 })
 
-function matchCommands({ keyword }: { keyword: string }): CommandMatch[] {
+function matchCommands({keyword}: {keyword: string}): CommandMatch[] {
   if (keyword === '') {
     return slashCommands
   }
@@ -43,8 +43,8 @@ const slashCommandPicker = defineTypeaheadPicker<CommandMatch>({
   keyword: /\w*/,
   getMatches: matchCommands,
   actions: [
-    ({ event, snapshot }) => {
-      const deletePattern = [raise({ type: 'delete', at: event.patternSelection })]
+    ({event, snapshot}) => {
+      const deletePattern = [raise({type: 'delete', at: event.patternSelection})]
 
       if (event.match.action.type === 'insert.block') {
         const blockType = event.match.action.block._type
@@ -56,7 +56,7 @@ const slashCommandPicker = defineTypeaheadPicker<CommandMatch>({
           const extendedSchema = extendBlockObject(blockObjectSchema)
 
           return [
-            effect(({ send }) => {
+            effect(({send}) => {
               send({
                 type: 'custom.slash-command.open-block-object-dialog',
                 patternSelection: event.patternSelection,
@@ -80,7 +80,7 @@ const slashCommandPicker = defineTypeaheadPicker<CommandMatch>({
       }
 
       if (event.match.action.type === 'style.toggle') {
-        return [...deletePattern, raise({ type: 'style.toggle', style: event.match.action.style })]
+        return [...deletePattern, raise({type: 'style.toggle', style: event.match.action.style})]
       }
 
       if (event.match.action.type === 'list item.toggle') {
@@ -96,8 +96,8 @@ const slashCommandPicker = defineTypeaheadPicker<CommandMatch>({
       return deletePattern
     },
     () => [
-      effect(({ send }) => {
-        send({ type: 'focus' })
+      effect(({send}) => {
+        send({type: 'focus'})
       }),
     ],
   ],
@@ -106,7 +106,7 @@ const slashCommandPicker = defineTypeaheadPicker<CommandMatch>({
 export function SlashCommandPickerPlugin() {
   const editor = useEditor()
   const picker = useTypeaheadPicker(slashCommandPicker)
-  const { keyword, matches, selectedIndex } = picker.snapshot.context
+  const {keyword, matches, selectedIndex} = picker.snapshot.context
 
   const [blockObjectDialogState, setBlockObjectDialogState] =
     useState<BlockObjectDialogState | null>(null)
@@ -117,7 +117,7 @@ export function SlashCommandPickerPlugin() {
       behavior: defineBehavior<OpenBlockObjectDialogEvent, OpenBlockObjectDialogEvent['type']>({
         on: 'custom.slash-command.open-block-object-dialog',
         actions: [
-          ({ event }) => [
+          ({event}) => [
             effect(() => {
               setBlockObjectDialogState({
                 patternSelection: event.patternSelection,
@@ -130,9 +130,9 @@ export function SlashCommandPickerPlugin() {
     })
   }, [editor])
 
-  const onDismiss = () => picker.send({ type: 'dismiss' })
-  const onNavigateTo = (index: number) => picker.send({ type: 'navigate to', index })
-  const onSelect = () => picker.send({ type: 'select' })
+  const onDismiss = () => picker.send({type: 'dismiss'})
+  const onNavigateTo = (index: number) => picker.send({type: 'navigate to', index})
+  const onSelect = () => picker.send({type: 'select'})
 
   const isActive = picker.snapshot.matches('active')
 
@@ -141,9 +141,9 @@ export function SlashCommandPickerPlugin() {
   const handleDialogCancel = () => {
     setOpen(false)
     if (blockObjectDialogState) {
-      const { focus } = blockObjectDialogState.patternSelection
-      editor.send({ type: 'select', at: { anchor: focus, focus } })
-      editor.send({ type: 'focus' })
+      const {focus} = blockObjectDialogState.patternSelection
+      editor.send({type: 'select', at: {anchor: focus, focus}})
+      editor.send({type: 'focus'})
       setBlockObjectDialogState(null)
     }
   }
@@ -201,7 +201,7 @@ export function SlashCommandPickerPlugin() {
       {isActive && (
         <FloatingPanel getAnchorRect={getAnchorRect} offset={4}>
           <Box paddingBottom={2}>
-            <Text size={0} muted style={{ fontStyle: 'italic' }}>
+            <Text size={0} muted style={{fontStyle: 'italic'}}>
               Select your style, list or custom block (navigate with ↑ ↓ and Enter)
             </Text>
           </Box>

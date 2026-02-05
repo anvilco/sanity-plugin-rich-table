@@ -1,6 +1,6 @@
-import { ToolbarDecoratorSchemaType, useDecoratorButton } from '@portabletext/toolbar'
-import { Box, Button, Text, Tooltip } from '@sanity/ui'
-import { ComponentType } from 'react'
+import {ToolbarDecoratorSchemaType, useDecoratorButton} from '@portabletext/toolbar'
+import {Box, Button, Text, Tooltip} from '@sanity/ui'
+import {ComponentType} from 'react'
 
 /** Button component for toggling a text decorator (like bold or italic) in the Portable Text editor toolbar.
  *
@@ -16,10 +16,8 @@ import { ComponentType } from 'react'
  * ```
  *
  */
-const DecoratorButton: ComponentType<{ decorator: ToolbarDecoratorSchemaType }> = ({
-  decorator,
-}) => {
-  const decoratorButton = useDecoratorButton({ schemaType: decorator })
+const DecoratorButton: ComponentType<{decorator: ToolbarDecoratorSchemaType}> = ({decorator}) => {
+  const decoratorButton = useDecoratorButton({schemaType: decorator})
   return (
     <Tooltip
       content={
@@ -30,9 +28,9 @@ const DecoratorButton: ComponentType<{ decorator: ToolbarDecoratorSchemaType }> 
     >
       <Button
         key={decorator.name}
-        onClick={() => decoratorButton.send({ type: 'toggle' })}
-        selected={decoratorButton.snapshot.matches({ enabled: 'active' })}
-        aria-selected={decoratorButton.snapshot.matches({ enabled: 'active' })}
+        onClick={() => decoratorButton.send({type: 'toggle'})}
+        selected={decoratorButton.snapshot.matches({enabled: 'active'})}
+        aria-selected={decoratorButton.snapshot.matches({enabled: 'active'})}
         icon={decorator.icon}
         as={'button'}
         padding={2}

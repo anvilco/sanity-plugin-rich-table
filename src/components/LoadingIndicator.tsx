@@ -1,5 +1,5 @@
-import { Flex, Spinner } from '@sanity/ui'
-import { ComponentType } from 'react'
+import {Flex, Spinner} from '@sanity/ui'
+import {ComponentType} from 'react'
 
 const LoadingIndicator: ComponentType = () => {
   return (

@@ -1,8 +1,8 @@
-import { Box, Button, Flex, Text } from '@sanity/ui'
-import { ComponentType } from 'react'
+import {Box, Button, Flex, Text} from '@sanity/ui'
+import {ComponentType} from 'react'
 
 import CommandListItem from './CommandListItem'
-import { CommandMatch } from './commands'
+import {CommandMatch} from './commands'
 
 export interface CommandListBoxProps {
   keyword: string
@@ -30,7 +30,7 @@ const CommandListBox: ComponentType<CommandListBoxProps> = (props) => {
       gap={1}
       as={'ol'}
       padding={1}
-      style={{ maxHeight: 300, overflowY: 'auto', listStyle: 'none' }}
+      style={{maxHeight: 300, overflowY: 'auto', listStyle: 'none'}}
       aria-orientation={'horizontal'}
     >
       {props.matches.map((match, index) => (

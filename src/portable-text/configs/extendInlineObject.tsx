@@ -1,4 +1,4 @@
-import { ExtendInlineObjectSchemaType } from '@portabletext/toolbar'
+import {ExtendInlineObjectSchemaType} from '@portabletext/toolbar'
 
 export const extendInlineObject: ExtendInlineObjectSchemaType = (inlineObject) => {
   // YOU CAN ADD CUSTOM INLINE OBJECT TYPES HERE AND EXTEND THEIR SCHEMA

@@ -1,5 +1,5 @@
-import { Box, Button, Card, Flex, Text } from '@sanity/ui'
-import React, { ComponentType, useCallback, useEffect, useState } from 'react'
+import {Box, Button, Card, Flex, Text} from '@sanity/ui'
+import React, {ComponentType, useCallback, useEffect, useState} from 'react'
 import {
   FormPatch,
   OperationsAPI,
@@ -9,14 +9,14 @@ import {
   stringToPath,
 } from 'sanity'
 
-import { RichTableCellType } from '../schemas/cell.object'
-import { ColumnHeader } from '../schemas/columnHeader.object'
-import { RichTableRowType } from '../schemas/row.object'
-import { generateKey } from '../utils/generateKey'
-import { onKeyDownSelectCells } from '../utils/onKeyDownSelect'
+import {RichTableCellType} from '../schemas/cell.object'
+import {ColumnHeader} from '../schemas/columnHeader.object'
+import {RichTableRowType} from '../schemas/row.object'
+import {generateKey} from '../utils/generateKey'
+import {onKeyDownSelectCells} from '../utils/onKeyDownSelect'
 import InitialiseGrid from './InitialiseGrid'
 
-type TableSize = { rows: number; cols: number }
+type TableSize = {rows: number; cols: number}
 
 interface InitialiseTableProps {
   /** Maximum number of rows to display in the size picker */
@@ -50,7 +50,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
     cols: 0,
   })
   // Hovered states for mouseover selection
-  const [hover, setHover] = useState<TableSize>({ rows: 0, cols: 0 })
+  const [hover, setHover] = useState<TableSize>({rows: 0, cols: 0})
 
   // Dragging states for click-and-drag selection
   const [dragging, setDragging] = useState<boolean>(false)
@@ -60,11 +60,11 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
   const computeRect = (a: TableSize, b: TableSize) => {
     const rows = Math.abs(b.rows - a.rows) + 1
     const cols = Math.abs(b.cols - a.cols) + 1
-    return { rows, cols }
+    return {rows, cols}
   }
   const handleCommit = useCallback(
     (rowCount: number, cols: number) => {
-      setSelected({ rows: rowCount, cols: cols })
+      setSelected({rows: rowCount, cols: cols})
 
       // use onChange to create new document by setting the object value to an empty object
       onChange(
@@ -80,17 +80,17 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
 
       // Prepare the initial table value
       // Cells per row
-      const cells: RichTableCellType[] = Array.from({ length: cols ?? 1 }, () => {
+      const cells: RichTableCellType[] = Array.from({length: cols ?? 1}, () => {
         return {
           _type: 'richTableCell',
           _key: generateKey(),
           content: [
-            { _type: 'block', markDefs: [], children: [{ _type: 'span', text: '', marks: [] }] },
+            {_type: 'block', markDefs: [], children: [{_type: 'span', text: '', marks: []}]},
           ] as unknown as PortableTextBlock[],
         }
       })
       // New rows
-      const rows: RichTableRowType[] = Array.from({ length: rowCount ?? 1 }, (_, i) => ({
+      const rows: RichTableRowType[] = Array.from({length: rowCount ?? 1}, (_, i) => ({
         _type: 'row',
         cells: cells,
         _key: generateKey(),
@@ -98,8 +98,8 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
       }))
 
       // New column header item (title uses current header count when available)
-      const columnHeaders: Array<ColumnHeader & { _type: string }> = Array.from(
-        { length: cols ?? 1 },
+      const columnHeaders: Array<ColumnHeader & {_type: string}> = Array.from(
+        {length: cols ?? 1},
         (_, index) => ({
           _type: 'columnHeader',
           _key: generateKey(),
@@ -173,7 +173,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
       border
       radius={4}
       tabIndex={0}
-      onMouseLeave={() => setHover({ rows: 0, cols: 0 })}
+      onMouseLeave={() => setHover({rows: 0, cols: 0})}
       onKeyDown={(e) =>
         !readOnly &&
         onKeyDownSelectCells({
@@ -208,8 +208,8 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
           $maxRows={maxRows}
           $maxCols={maxCols}
         >
-          {Array.from({ length: maxRows }).map((_, rIdx) =>
-            Array.from({ length: maxCols }).map((__, cIdx) => {
+          {Array.from({length: maxRows}).map((_, rIdx) =>
+            Array.from({length: maxCols}).map((__, cIdx) => {
               const rowCount = rIdx + 1
               const colCount = cIdx + 1
               const highlighted = rowCount <= effectiveRows && colCount <= effectiveCols
@@ -219,10 +219,10 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
                   key={`${rowCount}-${colCount}`}
                   onMouseEnter={() => {
                     if (dragging && dragStart) {
-                      const rect = computeRect(dragStart, { rows: rowCount, cols: colCount })
+                      const rect = computeRect(dragStart, {rows: rowCount, cols: colCount})
                       setHover(rect)
                     } else {
-                      setHover({ rows: rowCount, cols: colCount })
+                      setHover({rows: rowCount, cols: colCount})
                     }
                   }}
                   onMouseDown={(e) => {
@@ -232,7 +232,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
                     e.preventDefault()
                     e.stopPropagation()
                     setDragging(true)
-                    const start = { rows: rowCount, cols: colCount }
+                    const start = {rows: rowCount, cols: colCount}
                     setDragStart(start)
                     setHover(start)
                   }}
@@ -263,8 +263,8 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
 
         <Button
           onClick={() => {
-            setSelected({ rows: 0, cols: 0 })
-            setHover({ rows: 0, cols: 0 })
+            setSelected({rows: 0, cols: 0})
+            setHover({rows: 0, cols: 0})
           }}
           mode={'bleed'}
           aria-label="Clear selection"

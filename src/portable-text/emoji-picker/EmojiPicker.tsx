@@ -1,9 +1,9 @@
-import { useEditor } from '@portabletext/editor'
-import { useEmojiPicker } from '@portabletext/plugin-emoji-picker'
+import {useEditor} from '@portabletext/editor'
+import {useEmojiPicker} from '@portabletext/plugin-emoji-picker'
 
-import { FloatingPanel } from '../components/FloatingPanel'
+import {FloatingPanel} from '../components/FloatingPanel'
 import EmojiListBox from './EmojiListBox'
-import { matchEmojis } from './matchEmojis'
+import {matchEmojis} from './matchEmojis'
 
 export type EmojiEntry = {
   emoji: string
@@ -12,7 +12,7 @@ export type EmojiEntry = {
 
 export function EmojiPickerPlugin() {
   const editor = useEditor()
-  const { keyword, matches, selectedIndex, onDismiss, onNavigateTo, onSelect } = useEmojiPicker({
+  const {keyword, matches, selectedIndex, onDismiss, onNavigateTo, onSelect} = useEmojiPicker({
     matchEmojis,
   })
 

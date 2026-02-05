@@ -1,5 +1,5 @@
-import type { Dispatch, KeyboardEvent, SetStateAction } from 'react'
-import { TableSize } from '../../../components/input/rich-table/InitialiseTable'
+import type {Dispatch, KeyboardEvent, SetStateAction} from 'react'
+import {TableSize} from '../../../components/input/rich-table/InitialiseTable'
 
 /** Handle keyboard navigation for table size selection */
 export const onKeyDownSelectCells = ({
@@ -18,22 +18,22 @@ export const onKeyDownSelectCells = ({
   onChange: () => void
 }) => {
   // change selection with arrow keys, commit with Enter
-  let { rows, cols } = selected
+  let {rows, cols} = selected
   if (e.key === 'ArrowUp') {
     rows = Math.max(0, rows - 1)
-    setSelected({ rows, cols })
+    setSelected({rows, cols})
     e.preventDefault()
   } else if (e.key === 'ArrowDown') {
     rows = Math.min(maxRows, rows + 1)
-    setSelected({ rows, cols })
+    setSelected({rows, cols})
     e.preventDefault()
   } else if (e.key === 'ArrowLeft') {
     cols = Math.max(0, cols - 1)
-    setSelected({ rows, cols })
+    setSelected({rows, cols})
     e.preventDefault()
   } else if (e.key === 'ArrowRight') {
     cols = Math.min(maxCols, cols + 1)
-    setSelected({ rows, cols })
+    setSelected({rows, cols})
     e.preventDefault()
   } else if (e.key === 'Enter') {
     // onChange(rows, cols)

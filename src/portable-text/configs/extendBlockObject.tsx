@@ -1,4 +1,4 @@
-import { ExtendBlockObjectSchemaType } from '@portabletext/toolbar'
+import {ExtendBlockObjectSchemaType} from '@portabletext/toolbar'
 
 export const extendBlockObject: ExtendBlockObjectSchemaType = (blockObject) => {
   // * YOU CAN ADD CUSTOM BLOCK OBJECT TYPES HERE AND EXTEND THEIR SCHEMA

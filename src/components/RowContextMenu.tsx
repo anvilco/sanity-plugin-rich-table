@@ -1,11 +1,11 @@
-import { ComponentType, useCallback } from 'react'
-import { Button, Menu, MenuButton, MenuDivider, MenuItem } from '@sanity/ui'
-import { EllipsisVerticalIcon } from '@sanity/icons'
-import { OperationsAPI, PortableTextBlock } from 'sanity'
-import { RichTableRowType } from '../schemas/row.object'
-import { generateKey } from '../utils/generateKey'
-import { PatchOperations } from '@sanity/types'
-import { RichTableCellType } from '../schemas/cell.object'
+import {ComponentType, useCallback} from 'react'
+import {Button, Menu, MenuButton, MenuDivider, MenuItem} from '@sanity/ui'
+import {EllipsisVerticalIcon} from '@sanity/icons'
+import {OperationsAPI, PortableTextBlock} from 'sanity'
+import {RichTableRowType} from '../schemas/row.object'
+import {generateKey} from '../utils/generateKey'
+import {PatchOperations} from '@sanity/types'
+import {RichTableCellType} from '../schemas/cell.object'
 import {
   TbArrowBarDown,
   TbArrowBarUp,
@@ -64,7 +64,7 @@ const RowContextMenu: ComponentType<RowContextMenuProps> = ({
               _type: 'block',
               _key: generateKey(),
               markDefs: [],
-              children: [{ _type: 'span', text: '', marks: [] }],
+              children: [{_type: 'span', text: '', marks: []}],
             },
           ] as unknown as PortableTextBlock[],
         }
@@ -167,7 +167,7 @@ const RowContextMenu: ComponentType<RowContextMenuProps> = ({
           />
         </Menu>
       }
-      popover={{ placement: 'right', portal: true }}
+      popover={{placement: 'right', portal: true}}
     />
   )
 }

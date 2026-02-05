@@ -1,7 +1,7 @@
-import { ComponentType, useState } from 'react'
-import { ToolbarAnnotationSchemaType } from '@portabletext/toolbar'
-import { Button, Card, Dialog, Flex, Stack, Text, TextInput } from '@sanity/ui'
-import { AnnotationPath, PortableTextObject } from '@portabletext/editor'
+import {ComponentType, useState} from 'react'
+import {ToolbarAnnotationSchemaType} from '@portabletext/toolbar'
+import {Button, Card, Dialog, Flex, Stack, Text, TextInput} from '@sanity/ui'
+import {AnnotationPath, PortableTextObject} from '@portabletext/editor'
 
 // TODO: Ask Bjørge for his input on rendering out the annotation inputs here
 /** Dialog component for editing an annotation's properties.
@@ -25,7 +25,7 @@ const AnnotationDialog: ComponentType<{
     schemaType: ToolbarAnnotationSchemaType
     at: AnnotationPath
   }
-  onSubmit: ({ value }: { value: { [key: string]: unknown } }) => void
+  onSubmit: ({value}: {value: {[key: string]: unknown}}) => void
   onClose: () => void
 }> = (props) => {
   const [value, setValue] = useState(
@@ -48,7 +48,7 @@ const AnnotationDialog: ComponentType<{
                 <TextInput
                   autoFocus={index === 0}
                   value={value[field.name] as string}
-                  onChange={(e) => setValue({ ...value, [field.name]: e.currentTarget.value })}
+                  onChange={(e) => setValue({...value, [field.name]: e.currentTarget.value})}
                   id={field.name}
                   // TODO: add validation based on field definition
                 />
@@ -62,7 +62,7 @@ const AnnotationDialog: ComponentType<{
           )
         })}
         <Flex justify={'flex-end'} align={'center'} padding={3}>
-          <Button mode={'ghost'} onClick={() => props.onSubmit({ value })} text={'Done!'} />
+          <Button mode={'ghost'} onClick={() => props.onSubmit({value})} text={'Done!'} />
         </Flex>
       </Stack>
     </Dialog>

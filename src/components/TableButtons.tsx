@@ -1,11 +1,11 @@
-import { AddIcon } from '@sanity/icons'
-import { Box, Button, Flex, Stack, Text, Tooltip } from '@sanity/ui'
-import { ComponentType, ReactNode } from 'react'
-import { OperationsAPI } from 'sanity'
+import {AddIcon} from '@sanity/icons'
+import {Box, Button, Flex, Stack, Text, Tooltip} from '@sanity/ui'
+import {ComponentType, ReactNode} from 'react'
+import {OperationsAPI} from 'sanity'
 
-import { useAddColumn } from '../hooks/useAddColumn'
+import {useAddColumn} from '../hooks/useAddColumn'
 import useAddRow from '../hooks/useAddRow'
-import { RichTableType } from '../schemas/richTable.object'
+import {RichTableType} from '../schemas/richTable.object'
 
 interface TableButtonsProps {
   path: string
@@ -20,7 +20,7 @@ interface TableButtonsProps {
  *  Adds a button to add columns and rows to the table.
  */
 const TableButtons: ComponentType<TableButtonsProps> = (props) => {
-  const { value, path, patch, readOnly } = props
+  const {value, path, patch, readOnly} = props
   if (readOnly) return props.children
   return (
     <Stack space={4}>

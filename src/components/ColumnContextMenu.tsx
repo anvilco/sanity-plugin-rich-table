@@ -1,19 +1,19 @@
-import { ComponentType, useCallback } from 'react'
-import { Button, Menu, MenuButton, MenuDivider, MenuItem } from '@sanity/ui'
-import { EllipsisHorizontalIcon, EllipsisVerticalIcon } from '@sanity/icons'
-import { ObjectItem, OperationsAPI, PortableTextBlock } from 'sanity'
+import {ComponentType, useCallback} from 'react'
+import {Button, Menu, MenuButton, MenuDivider, MenuItem} from '@sanity/ui'
+import {EllipsisHorizontalIcon, EllipsisVerticalIcon} from '@sanity/icons'
+import {ObjectItem, OperationsAPI, PortableTextBlock} from 'sanity'
 
-import { generateKey } from '../utils/generateKey'
-import { PatchOperations } from '@sanity/types'
-import { RichTableType } from '../schemas/richTable.object'
-import { ColumnHeader } from '../schemas/columnHeader.object'
-import { RichTableCellType } from '../schemas/cell.object'
+import {generateKey} from '../utils/generateKey'
+import {PatchOperations} from '@sanity/types'
+import {RichTableType} from '../schemas/richTable.object'
+import {ColumnHeader} from '../schemas/columnHeader.object'
+import {RichTableCellType} from '../schemas/cell.object'
 import {
   TbArrowBarLeft,
   TbArrowBarRight,
   TbColumnInsertLeft,
   TbColumnInsertRight,
-  TbColumnRemove
+  TbColumnRemove,
 } from 'react-icons/tb'
 
 interface ColumnMenuButtonProps {
@@ -46,7 +46,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
     const headerUnsetPatch: PatchOperations = {
       unset: [columnHeaderPathString],
     }
-    const cellPathsToUnset = Array.from({ length: rowCount || 0 }, (_, i) => i).map(
+    const cellPathsToUnset = Array.from({length: rowCount || 0}, (_, i) => i).map(
       (rowIndex) => `${path}.rows[${rowIndex}].cells[${columnIndex}]`,
     )
     const cellUnsetPatches: PatchOperations = {
@@ -81,7 +81,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
               },
             }
 
-      const newCellsPaths = Array.from({ length: rowCount || 0 }, (_, i) => i).map((rowIndex) => {
+      const newCellsPaths = Array.from({length: rowCount || 0}, (_, i) => i).map((rowIndex) => {
         // Path to insert the new cell > before and after in patch will handle the rest
         return `${path}.rows[${rowIndex}].cells[${columnIndex}]`
       })
@@ -98,7 +98,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
               _type: 'block',
               _key: generateKey(),
               markDefs: [],
-              children: [{ _type: 'span', text: '', marks: [] }],
+              children: [{_type: 'span', text: '', marks: []}],
             },
           ] as unknown as PortableTextBlock[],
         }
@@ -114,9 +114,9 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
       const columnHeaderIndexesToUpdate =
         side === 'right'
           ? // if col has been added after, we need to update all columns with index greater than the current one
-            Array.from({ length: columnCount - (columnIndex + 1) }, (_, i) => i + columnIndex + 1)
+            Array.from({length: columnCount - (columnIndex + 1)}, (_, i) => i + columnIndex + 1)
           : // if col has been added before, we need to update all columns with index greater than or equal to the current one
-            Array.from({ length: columnCount - columnIndex }, (_, i) => i + columnIndex)
+            Array.from({length: columnCount - columnIndex}, (_, i) => i + columnIndex)
 
       const cellIndexPatches = columnHeaderIndexesToUpdate.map((colHeaderIndex) => {
         const colHeaderPath = `${path}.columnHeaders[${colHeaderIndex}]`
@@ -283,7 +283,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
           />
         </Menu>
       }
-      popover={{ placement: 'right', portal: true }}
+      popover={{placement: 'right', portal: true}}
     />
   )
 }
