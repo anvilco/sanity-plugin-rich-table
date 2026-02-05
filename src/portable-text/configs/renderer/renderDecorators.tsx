@@ -1,5 +1,4 @@
-
-import { RenderDecoratorFunction } from '@portabletext/editor'
+import {RenderDecoratorFunction} from '@portabletext/editor'
 
 const renderDecorator: RenderDecoratorFunction = (props) => {
   if (props.value === 'strong') {

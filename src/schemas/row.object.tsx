@@ -1,6 +1,6 @@
-import { defineField, defineType, ObjectItem } from 'sanity'
+import {defineField, defineType, ObjectItem} from 'sanity'
 
-import { RichTableCellType } from './cell.object'
+import {RichTableCellType} from './cell.object'
 
 export type RichTableRowType = ObjectItem & {
   title?: string
@@ -37,7 +37,7 @@ export default defineType({
       cells: 'cells',
     },
     prepare(selection) {
-      const { title, cells } = selection
+      const {title, cells} = selection
       if (!title) {
         return {
           title: 'Row',

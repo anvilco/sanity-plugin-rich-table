@@ -1,4 +1,4 @@
-import { defineField, defineType, ObjectItem, PortableTextBlock } from 'sanity'
+import {defineField, defineType, ObjectItem, PortableTextBlock} from 'sanity'
 
 export interface RichTableCellType extends ObjectItem {
   content: Array<PortableTextBlock>

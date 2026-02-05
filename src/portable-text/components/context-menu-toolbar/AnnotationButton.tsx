@@ -1,6 +1,6 @@
-import { ToolbarAnnotationSchemaType, useAnnotationButton } from '@portabletext/toolbar'
-import { Button } from '@sanity/ui'
-import { ComponentType } from 'react'
+import {ToolbarAnnotationSchemaType, useAnnotationButton} from '@portabletext/toolbar'
+import {Button} from '@sanity/ui'
+import {ComponentType} from 'react'
 
 /** Button component for toggling annotations in a rich text editor.
  *
@@ -15,25 +15,25 @@ import { ComponentType } from 'react'
  * ```
  *
  */
-const AnnotationButton: ComponentType<{ annotation: ToolbarAnnotationSchemaType }> = ({
+const AnnotationButton: ComponentType<{annotation: ToolbarAnnotationSchemaType}> = ({
   annotation,
 }) => {
-  const annotationButton = useAnnotationButton({ schemaType: annotation })
+  const annotationButton = useAnnotationButton({schemaType: annotation})
   return (
     <Button
       key={annotation.name}
       onClick={() =>
-        annotationButton.snapshot.matches({ enabled: 'active' })
-          ? annotationButton.send({ type: 'remove' })
+        annotationButton.snapshot.matches({enabled: 'active'})
+          ? annotationButton.send({type: 'remove'})
           : annotationButton.send({
               type: 'add',
               annotation: {
-                value: annotation.name === 'link' ? { href: '' } : {},
+                value: annotation.name === 'link' ? {href: ''} : {},
               },
             })
       }
-      selected={annotationButton.snapshot.matches({ enabled: 'active' })}
-      aria-selected={annotationButton.snapshot.matches({ enabled: 'active' })}
+      selected={annotationButton.snapshot.matches({enabled: 'active'})}
+      aria-selected={annotationButton.snapshot.matches({enabled: 'active'})}
       icon={annotation.icon}
       padding={2}
       mode={'bleed'}

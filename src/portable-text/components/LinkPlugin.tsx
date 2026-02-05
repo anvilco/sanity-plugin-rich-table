@@ -1,20 +1,20 @@
-import { useEditor } from '@portabletext/editor'
-import { useEffect } from 'react'
+import {useEditor} from '@portabletext/editor'
+import {useEffect} from 'react'
 
-import { createLinkBehaviors } from '../behaviors/linkBehavior'
+import {createLinkBehaviors} from '../behaviors/linkBehavior'
 
 export function LinkPlugin() {
   const editor = useEditor()
 
   useEffect(() => {
     const behaviors = createLinkBehaviors({
-      linkAnnotation: ({ schema, url }) => {
+      linkAnnotation: ({schema, url}) => {
         const name = schema.annotations.find((annotation) => annotation.name === 'link')?.name
-        return name ? { name, value: { href: url } } : undefined
+        return name ? {name, value: {href: url}} : undefined
       },
     })
 
-    const unregisterBehaviors = behaviors.map((behavior) => editor.registerBehavior({ behavior }))
+    const unregisterBehaviors = behaviors.map((behavior) => editor.registerBehavior({behavior}))
 
     return () => {
       for (const unregisterBehavior of unregisterBehaviors) {

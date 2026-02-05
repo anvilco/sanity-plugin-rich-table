@@ -1,4 +1,4 @@
-import { PortableTextEditable } from '@portabletext/editor'
+import {PortableTextEditable} from '@portabletext/editor'
 import styled from 'styled-components'
 
 export const StyledPortableTextEditable = styled(PortableTextEditable)`

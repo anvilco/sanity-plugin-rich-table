@@ -1,8 +1,8 @@
-import { EmojiMatch } from '@portabletext/plugin-emoji-picker'
+import {EmojiMatch} from '@portabletext/plugin-emoji-picker'
 import emojis from 'emojilib'
 import Fuse from 'fuse.js'
 
-import { EmojiEntry } from './EmojiPicker'
+import {EmojiEntry} from './EmojiPicker'
 
 const emojiList: EmojiEntry[] = Object.entries(emojis).map(([emoji, keywords]) => ({
   emoji,
@@ -15,7 +15,7 @@ const fuse = new Fuse(emojiList, {
   ignoreLocation: true,
 })
 
-export function matchEmojis({ keyword }: { keyword: string }): EmojiMatch[] {
+export function matchEmojis({keyword}: {keyword: string}): EmojiMatch[] {
   if (!keyword) {
     return []
   }

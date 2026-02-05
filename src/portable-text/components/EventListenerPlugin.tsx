@@ -1,6 +1,6 @@
-import { EventListenerPlugin } from '@portabletext/editor/plugins'
-import { ComponentType } from 'react'
-import { getPublishedId, Path, pathToString, useDocumentOperation } from 'sanity'
+import {EventListenerPlugin} from '@portabletext/editor/plugins'
+import {ComponentType} from 'react'
+import {getPublishedId, Path, pathToString, useDocumentOperation} from 'sanity'
 
 const CustomListenerPlugin: ComponentType<{
   path: Path
@@ -9,8 +9,8 @@ const CustomListenerPlugin: ComponentType<{
   handleFocus: (state: boolean) => void
   // on: (event: EditorEmittedEvent) => void
 }> = (props) => {
-  const { _id, _type, handleFocus } = props
-  const { patch } = useDocumentOperation(getPublishedId(_id), _type)
+  const {_id, _type, handleFocus} = props
+  const {patch} = useDocumentOperation(getPublishedId(_id), _type)
   return (
     <EventListenerPlugin
       on={(event) => {

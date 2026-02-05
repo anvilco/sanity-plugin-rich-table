@@ -1,4 +1,4 @@
-import { Card } from '@sanity/ui'
+import {Card} from '@sanity/ui'
 import styled from 'styled-components'
 
 const MINMAX_HEADER_ROW_HEIGHT = 30 // in px

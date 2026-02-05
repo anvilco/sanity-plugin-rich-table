@@ -1,6 +1,6 @@
-import { Box, Button, Dialog, Flex, Stack, Text } from '@sanity/ui'
-import { ComponentType, useCallback } from 'react'
-import { OperationsAPI } from 'sanity'
+import {Box, Button, Dialog, Flex, Stack, Text} from '@sanity/ui'
+import {ComponentType, useCallback} from 'react'
+import {OperationsAPI} from 'sanity'
 
 interface ConfirmClearTableDialogProps {
   /** Patch function from Sanity document operations for optimistic changes */
@@ -16,7 +16,7 @@ const ConfirmClearTableDialog: ComponentType<ConfirmClearTableDialogProps> = ({
   open,
 }) => {
   const handleConfirm = useCallback(() => {
-    patch.execute([{ unset: [path] }])
+    patch.execute([{unset: [path]}])
     return onClose()
   }, [patch, path, onClose])
   return (

@@ -1,6 +1,6 @@
-import { ExpandIcon, ResetIcon } from '@sanity/icons'
-import { Box, Button, Flex, Inline, Stack, Switch, Text, Tooltip } from '@sanity/ui'
-import { ChangeEvent, ComponentType, Suspense, useCallback, useState } from 'react'
+import {ExpandIcon, ResetIcon} from '@sanity/icons'
+import {Box, Button, Flex, Inline, Stack, Switch, Text, Tooltip} from '@sanity/ui'
+import {ChangeEvent, ComponentType, Suspense, useCallback, useState} from 'react'
 import {
   getPublishedId,
   ObjectInputProps,
@@ -9,8 +9,8 @@ import {
   useFormValue,
 } from 'sanity'
 
-import { useToggleTitles } from '../hooks/useToggleTitles'
-import { RichTableType } from '../schemas/richTable.object'
+import {useToggleTitles} from '../hooks/useToggleTitles'
+import {RichTableType} from '../schemas/richTable.object'
 import ConfirmClearTableDialog from './ConfirmClearTableDialog'
 import ExpandedTableDialog from './ExpandedTableDialog'
 import InitialiseTable from './InitialiseTable'
@@ -18,13 +18,13 @@ import LoadingIndicator from './LoadingIndicator'
 import Table from './Table'
 
 const RichTableInput: ComponentType<
-  ObjectInputProps<RichTableType> & { isInPortableText?: boolean }
+  ObjectInputProps<RichTableType> & {isInPortableText?: boolean}
 > = (props) => {
   const _id = useFormValue(['_id']) as string
   const _type = useFormValue(['_type']) as string
 
   // Document operations -> with optimistic changes
-  const { patch } = useDocumentOperation(getPublishedId(_id), _type)
+  const {patch} = useDocumentOperation(getPublishedId(_id), _type)
 
   const pathString = pathToString(props.path)
 
@@ -40,8 +40,8 @@ const RichTableInput: ComponentType<
   const handleOpenConfirmClearDialog = useCallback(() => setOpenConfirmClearDialog(true), [])
   const handleCloseConfirmClearDialog = useCallback(() => setOpenConfirmClearDialog(false), [])
 
-  const { hasColumnTitles, hasRowTitles } = props.value || {}
-  const { toggleColumnTitles, toggleRowTitles } = useToggleTitles(
+  const {hasColumnTitles, hasRowTitles} = props.value || {}
+  const {toggleColumnTitles, toggleRowTitles} = useToggleTitles(
     hasColumnTitles,
     hasRowTitles,
     patch,

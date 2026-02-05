@@ -1,6 +1,6 @@
-import { EmojiMatch } from '@portabletext/plugin-emoji-picker'
-import { Button, Flex, Stack, Text } from '@sanity/ui'
-import { ComponentType } from 'react'
+import {EmojiMatch} from '@portabletext/plugin-emoji-picker'
+import {Button, Flex, Stack, Text} from '@sanity/ui'
+import {ComponentType} from 'react'
 
 import EmojiListItem from './EmojiListItem'
 
@@ -34,7 +34,7 @@ const EmojiListBox: ComponentType<EmojiListBoxProps> = (props) => {
       gap={1}
       as={'ol'}
       padding={1}
-      style={{ maxWidth: '400px', overflowY: 'auto', listStyle: 'none' }}
+      style={{maxWidth: '400px', overflowY: 'auto', listStyle: 'none'}}
       wrap={'wrap'}
     >
       {visibleMatches.map((match, index) => (

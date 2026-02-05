@@ -1,4 +1,4 @@
-import { RenderListItemFunction } from '@portabletext/editor'
+import {RenderListItemFunction} from '@portabletext/editor'
 import styled from 'styled-components'
 
 // TODO: reduce space between list items and levels
@@ -12,7 +12,7 @@ export const renderListItem: RenderListItemFunction = (props) => {
   )
 }
 
-const StyledLi = styled.li<{ $level: number; $listType: 'bullet' | 'number' }>`
+const StyledLi = styled.li<{$level: number; $listType: 'bullet' | 'number'}>`
   display: list-item;
   list-style-type: ${(props) => (props.$listType === 'number' ? 'decimal' : 'disc')};
 

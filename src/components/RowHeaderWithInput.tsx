@@ -1,8 +1,8 @@
-import { ChangeEvent, ComponentType, useCallback, useState } from 'react'
-import { OperationsAPI } from 'sanity'
-import { RichTableRowType } from '../schemas/row.object'
-import { PatchOperations } from '@sanity/types'
-import { Card, Flex, TextInput } from '@sanity/ui'
+import {ChangeEvent, ComponentType, useCallback, useState} from 'react'
+import {OperationsAPI} from 'sanity'
+import {RichTableRowType} from '../schemas/row.object'
+import {PatchOperations} from '@sanity/types'
+import {Card, Flex, TextInput} from '@sanity/ui'
 import styled from 'styled-components'
 import RowContextMenu from './RowContextMenu'
 
@@ -87,7 +87,7 @@ const RowHeaderWithInput: ComponentType<RowHeaderWithInputProps> = ({
   )
 }
 
-const StyledCard = styled(Card)<{ $isFocused?: boolean }>`
+const StyledCard = styled(Card)<{$isFocused?: boolean}>`
   max-height: 50px;
   border: unset;
 

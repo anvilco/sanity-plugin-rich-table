@@ -1,5 +1,5 @@
-import { Card, Flex, Inline, Switch, Text } from '@sanity/ui'
-import { ChangeEvent, ComponentType, Fragment } from 'react'
+import {Card, Flex, Inline, Switch, Text} from '@sanity/ui'
+import {ChangeEvent, ComponentType, Fragment} from 'react'
 import {
   ArrayOfObjectsFormNode,
   ArrayOfObjectsItemMember,
@@ -9,15 +9,15 @@ import {
   ObjectInputProps,
   ObjectItem,
   OperationsAPI,
-  pathToString
+  pathToString,
 } from 'sanity'
 
-import { useToggleTitles } from '../hooks/useToggleTitles'
+import {useToggleTitles} from '../hooks/useToggleTitles'
 import ContentPortableTextInput from '../portable-text/ContentPortableTextEditor'
-import { RichTableCellType } from '../schemas/cell.object'
-import { ColumnHeader } from '../schemas/columnHeader.object'
-import { RichTableType } from '../schemas/richTable.object'
-import { RichTableRowType } from '../schemas/row.object'
+import {RichTableCellType} from '../schemas/cell.object'
+import {ColumnHeader} from '../schemas/columnHeader.object'
+import {RichTableType} from '../schemas/richTable.object'
+import {RichTableRowType} from '../schemas/row.object'
 import ColumnContextMenu from './ColumnContextMenu'
 import ColumnHeaderWithInput from './ColumnHeaderWithInput'
 import RowContextMenu from './RowContextMenu'
@@ -35,7 +35,7 @@ const Table: ComponentType<
     /** Patch function from Sanity document operations for optimistic changes */
     patch: OperationsAPI['patch']
   }
-> = ({ isInDialog = false, handleOpen, value, onChange, patch, isInPortableText, ...props }) => {
+> = ({isInDialog = false, handleOpen, value, onChange, patch, isInPortableText, ...props}) => {
   // * Prepare the path
   const path = pathToString(props.path)
   // * Prepare members
@@ -68,8 +68,8 @@ const Table: ComponentType<
     ObjectArrayFormNode<ColumnHeader & ObjectItem>
   >[]
 
-  const { hasColumnTitles, hasRowTitles } = value!
-  const { toggleColumnTitles, toggleRowTitles } = useToggleTitles(
+  const {hasColumnTitles, hasRowTitles} = value!
+  const {toggleColumnTitles, toggleRowTitles} = useToggleTitles(
     hasColumnTitles,
     hasRowTitles,
     patch,
@@ -133,7 +133,7 @@ const Table: ComponentType<
             })}
 
             {/* CONTENT ROWS AND CELLS */}
-            {rowMembersWithCellMembers?.map(({ rowMember, cellMembers }, rowIndex) =>
+            {rowMembersWithCellMembers?.map(({rowMember, cellMembers}, rowIndex) =>
               cellMembers?.map((cellMember, cellIndex) => {
                 const cellItem = cellMember.item
                 const cellPTEPath = cellItem.path.concat('content')

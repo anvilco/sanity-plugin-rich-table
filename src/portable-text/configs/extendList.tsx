@@ -1,5 +1,5 @@
-import { ExtendListSchemaType } from '@portabletext/toolbar'
-import { ListIcon, ListOrderedIcon } from '../icons'
+import {ExtendListSchemaType} from '@portabletext/toolbar'
+import {ListIcon, ListOrderedIcon} from '../icons'
 
 export const extendList: ExtendListSchemaType = (list) => {
   if (list.name === 'bullet') {

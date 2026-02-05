@@ -1,6 +1,6 @@
 /* * * * * * RENDER FUNCTIONS */
-import { RenderStyleFunction } from '@portabletext/editor'
-import { Box, Heading, Text } from '@sanity/ui'
+import {RenderStyleFunction} from '@portabletext/editor'
+import {Box, Heading, Text} from '@sanity/ui'
 
 const renderStyle: RenderStyleFunction = (props) => {
   if (props.schemaType.value === 'normal') {
@@ -12,35 +12,35 @@ const renderStyle: RenderStyleFunction = (props) => {
   }
   if (props.schemaType.value === 'h1') {
     return (
-      <Heading as={'h1'} size={2} weight={'bold'} style={{ margin: '1rem 0' }}>
+      <Heading as={'h1'} size={2} weight={'bold'} style={{margin: '1rem 0'}}>
         {props.children}
       </Heading>
     )
   }
   if (props.schemaType.value === 'h2') {
     return (
-      <Heading as={'h2'} size={2} weight={'bold'} style={{ margin: '1rem 0' }}>
+      <Heading as={'h2'} size={2} weight={'bold'} style={{margin: '1rem 0'}}>
         {props.children}
       </Heading>
     )
   }
   if (props.schemaType.value === 'h3') {
     return (
-      <Heading as={'h3'} size={1} weight={'bold'} style={{ margin: '1rem 0' }}>
+      <Heading as={'h3'} size={1} weight={'bold'} style={{margin: '1rem 0'}}>
         {props.children}
       </Heading>
     )
   }
   if (props.schemaType.value === 'h4') {
     return (
-      <Heading as={'h4'} size={1} weight={'semibold'} style={{ margin: '1rem 0' }}>
+      <Heading as={'h4'} size={1} weight={'semibold'} style={{margin: '1rem 0'}}>
         {props.children}
       </Heading>
     )
   }
   if (props.schemaType.value === 'h5') {
     return (
-      <Heading as={'h5'} size={1} weight={'semibold'} style={{ margin: '1rem 0' }}>
+      <Heading as={'h5'} size={1} weight={'semibold'} style={{margin: '1rem 0'}}>
         {props.children}
       </Heading>
     )
@@ -50,7 +50,7 @@ const renderStyle: RenderStyleFunction = (props) => {
     return (
       <blockquote>
         <Box>
-          <Text size={1} muted style={{ fontStyle: 'italic' }}>
+          <Text size={1} muted style={{fontStyle: 'italic'}}>
             {props.children}
           </Text>
         </Box>

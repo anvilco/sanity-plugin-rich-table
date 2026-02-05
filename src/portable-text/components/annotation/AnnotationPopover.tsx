@@ -1,9 +1,9 @@
-import { ComponentType, useState } from 'react'
-import { ToolbarAnnotationSchemaType, useAnnotationPopover } from '@portabletext/toolbar'
-import { Box, Button, Flex, Popover, Stack, Text } from '@sanity/ui'
-import { EditIcon, TrashIcon } from '@sanity/icons'
+import {ComponentType, useState} from 'react'
+import {ToolbarAnnotationSchemaType, useAnnotationPopover} from '@portabletext/toolbar'
+import {Box, Button, Flex, Popover, Stack, Text} from '@sanity/ui'
+import {EditIcon, TrashIcon} from '@sanity/icons'
 import AnnotationDialog from './AnnotationDialog'
-import { AnnotationPath, PortableTextObject } from '@portabletext/editor'
+import {AnnotationPath, PortableTextObject} from '@portabletext/editor'
 
 /** Popover component that shows the list of active annotations for the current selection.
  *
@@ -30,7 +30,7 @@ const AnnotationPopover: ComponentType<{
 
   if (
     annotationPopover.snapshot.matches('disabled') ||
-    annotationPopover.snapshot.matches({ enabled: 'inactive' })
+    annotationPopover.snapshot.matches({enabled: 'inactive'})
   ) {
     return null
   }
@@ -76,7 +76,7 @@ const AnnotationPopover: ComponentType<{
             <AnnotationDialog
               annotation={openAnnotation}
               key={openAnnotation.value._key}
-              onSubmit={({ value }) => {
+              onSubmit={({value}) => {
                 annotationPopover.send({
                   type: 'edit',
                   at: openAnnotation.at,
@@ -86,7 +86,7 @@ const AnnotationPopover: ComponentType<{
               }}
               onClose={() => {
                 setOpen(false)
-                return annotationPopover.send({ type: 'close' })
+                return annotationPopover.send({type: 'close'})
               }}
             />
           )}

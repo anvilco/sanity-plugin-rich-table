@@ -1,4 +1,4 @@
-import { definePlugin } from 'sanity'
+import {definePlugin} from 'sanity'
 
 import cellObject from './schemas/cell.object'
 import columnHeaderObject from './schemas/columnHeader.object'

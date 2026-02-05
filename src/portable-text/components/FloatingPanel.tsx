@@ -6,10 +6,10 @@ import {
   shift,
   useFloating,
 } from '@floating-ui/react-dom'
-import type { ReactNode } from 'react'
-import { createPortal } from 'react-dom'
+import type {ReactNode} from 'react'
+import {createPortal} from 'react-dom'
 import styled from 'styled-components'
-import { Card } from '@sanity/ui'
+import {Card} from '@sanity/ui'
 
 interface FloatingPanelProps {
   getAnchorRect: () => DOMRect | null
@@ -27,19 +27,19 @@ export function FloatingPanel({
   children,
   offset: offsetValue = 4,
 }: FloatingPanelProps) {
-  const { floatingStyles, refs } = useFloating({
+  const {floatingStyles, refs} = useFloating({
     placement: 'bottom-start',
     middleware: [
       offset(offsetValue),
-      flip({ fallbackPlacements: ['top-start'] }),
-      shift({ padding: 8 }),
+      flip({fallbackPlacements: ['top-start']}),
+      shift({padding: 8}),
     ],
     whileElementsMounted: autoUpdate,
     elements: {
       reference: createVirtualElement(getAnchorRect),
     },
   })
-  const { setFloating } = refs
+  const {setFloating} = refs
 
   return createPortal(
     <Panel ref={setFloating} style={floatingStyles} padding={3} border radius={3}>
