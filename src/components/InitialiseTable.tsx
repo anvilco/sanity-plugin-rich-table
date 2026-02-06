@@ -96,7 +96,6 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
         _type: 'row',
         cells: cells,
         _key: generateKey(),
-        // title: `${i ? i + 1 : 1}`,
       }))
 
       // New column header item (title uses current header count when available)
@@ -105,8 +104,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
         (_, index) => ({
           _type: 'columnHeader',
           _key: generateKey(),
-          // title: getLetterBasedOnIndex(index),
-          cellIndex: cols ? cols - 1 : 0,
+          cellIndex: index,
         }),
       )
       const initialTableValue = {

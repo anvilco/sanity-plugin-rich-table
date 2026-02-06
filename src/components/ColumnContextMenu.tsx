@@ -49,11 +49,25 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
     const cellPathsToUnset = Array.from({length: rowCount || 0}, (_, i) => i).map(
       (rowIndex) => `${path}.rows[${rowIndex}].cells[${columnIndex}]`,
     )
-    const cellUnsetPatches: PatchOperations = {
+    const cellUnsetPatch: PatchOperations = {
       unset: cellPathsToUnset,
     }
+    // compare columnCount with columnIndex to check if the deleted column is the last one, if not we need to decrease the cellIndex of the subsequent columns
+    const columnHeaderIndexesToUpdate =
+      columnIndex === columnCount - 1
+        ? []
+        : Array.from({length: columnCount - columnIndex - 1}, (_, i) => i + columnIndex + 1)
 
-    return patch.execute([headerUnsetPatch, cellUnsetPatches])
+    const cellIndexPatches = columnHeaderIndexesToUpdate.map((colHeaderIndex) => {
+      const colHeaderPath = `${path}.columnHeaders[${colHeaderIndex-1}]`
+      return {
+        dec: {
+          [`${colHeaderPath}.cellIndex`]: 1,
+        },
+      }
+    })
+
+    return patch.execute([headerUnsetPatch, cellUnsetPatch, ...cellIndexPatches ])
   }, [rowCount, columnIndex, path, columnHeaderPathString, patch])
 
   const handleAddColumn = useCallback(
