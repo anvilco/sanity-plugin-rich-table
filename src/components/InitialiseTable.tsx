@@ -29,6 +29,7 @@ interface InitialiseTableProps {
   isInPortableText?: boolean
   readOnly: boolean | undefined
   onChange: (patch: FormPatch | FormPatch[] | PatchEvent) => void
+  schemaTypeName: string
 }
 
 const CELL_SIZE = 28
@@ -42,6 +43,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
   isInPortableText,
   readOnly,
   onChange,
+  schemaTypeName,
 }) => {
   // * STATES
   // Selected states for selection to commit
@@ -115,7 +117,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
       }
       const portableBlockInitialValue = {
         ...initialTableValue,
-        _type: 'richTable',
+        _type: schemaTypeName,
         _key: generateKey(),
       }
 

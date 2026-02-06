@@ -20,6 +20,11 @@ export default defineConfig({
         title: 'My Rich Table Document',
         fields: [
           defineField({
+            name: 'title',
+            title: 'Title',
+            type: 'string',
+          }),
+          defineField({
             name: 'myRichTable',
             title: 'My Rich Table',
             type: 'richTable',
@@ -33,11 +38,6 @@ export default defineConfig({
                 name: 'richTableBlock',
                 title: 'Rich Table Block',
                 type: 'richTableBlock',
-              }),
-              defineArrayMember({
-                name: 'richTable',
-                title: 'Rich Table',
-                type: 'richTable',
               }),
             ],
           }),

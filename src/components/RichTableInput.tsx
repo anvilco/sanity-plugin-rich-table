@@ -58,6 +58,7 @@ const RichTableInput: ComponentType<
             isInPortableText={props.isInPortableText}
             readOnly={props.readOnly}
             onChange={props.onChange}
+            schemaTypeName={props.schemaType.name}
           />
         )}
         {props.value && props.value.rows && (
