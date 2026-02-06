@@ -16,7 +16,7 @@ import {generateKey} from '../utils/generateKey'
 import {onKeyDownSelectCells} from '../utils/onKeyDownSelect'
 import InitialiseGrid from './InitialiseGrid'
 
-type TableSize = {rows: number; cols: number}
+export type TableSize = {rows: number; cols: number}
 
 interface InitialiseTableProps {
   /** Maximum number of rows to display in the size picker */

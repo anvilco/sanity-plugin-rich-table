@@ -1,6 +1,7 @@
 import type {Dispatch, KeyboardEvent, SetStateAction} from 'react'
+import {TableSize} from '../components/InitialiseTable'
 
-type TableSize = any // todo: fix
+
 /** Handle keyboard navigation for table size selection */
 export const onKeyDownSelectCells = ({
   e,
@@ -37,7 +38,6 @@ export const onKeyDownSelectCells = ({
     e.preventDefault()
   } else if (e.key === 'Enter') {
     // onChange(rows, cols)
-    // TODO: add onChange for mutation
     e.preventDefault()
   }
 }
