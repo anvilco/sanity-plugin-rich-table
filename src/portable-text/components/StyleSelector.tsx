@@ -25,9 +25,13 @@ const StyleSelector: ComponentType<{toolbarSchema: ToolbarSchema}> = ({toolbarSc
             iconRight={<ChevronDownIcon />}
             tone={'default'}
             tabIndex={-1}
+            aria-label={`Text style, current style: ${styleDropdownTitle}`}
+            aria-haspopup="menu"
+            aria-controls={'style-selection'}
           />
         }
         id="style-selection"
+        popover={{portal: true}}
         menu={
           <Menu>
             {toolbarSchema.styles?.map((style) => {
@@ -38,17 +42,19 @@ const StyleSelector: ComponentType<{toolbarSchema: ToolbarSchema}> = ({toolbarSc
                   key={style.name}
                   onClick={() => styleButton.send({type: 'toggle', style: style.name})}
                   selected={currentStyle == style.name}
-                  // text={style.title}
                   icon={style.icon}
                   as={'button'}
                   padding={2}
                   tone={'default'}
+                  title={style.title}
+                  role="menuitemradio"
+                  aria-checked={currentStyle == style.name}
+                  aria-label={style.title}
                 />
               )
             })}
           </Menu>
         }
-        popover={{portal: true}}
       />
     </Card>
   )

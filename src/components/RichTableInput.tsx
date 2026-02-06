@@ -27,6 +27,8 @@ const RichTableInput: ComponentType<
   const {patch} = useDocumentOperation(getPublishedId(_id), _type)
 
   const pathString = pathToString(props.path)
+  // table ID
+  const tableId = 'table-' + props.id
 
   // * Debug mode
   const [debug, setDebug] = useState(false)
@@ -49,7 +51,7 @@ const RichTableInput: ComponentType<
   )
 
   return (
-    <Stack space={4}>
+    <Stack space={4} as={'section'} aria-label={'Rich table input'}>
       <Suspense fallback={<LoadingIndicator />} name={'RichTableInput Suspense'}>
         {!props.value?.rows && (
           <InitialiseTable
@@ -82,6 +84,9 @@ const RichTableInput: ComponentType<
                     text={'Clear table'}
                     muted
                     disabled={props.readOnly}
+                    aria-label={'Clear table'}
+                    aria-controls={tableId}
+                    type="button"
                   />
                 </Tooltip>
                 <Tooltip
@@ -104,6 +109,15 @@ const RichTableInput: ComponentType<
                     }
                     muted
                     disabled={props.readOnly}
+                    aria-label={
+                      props.isInPortableText && !props.readOnly
+                        ? 'Open table to edit'
+                        : 'Expand table'
+                    }
+                    aria-haspopup="dialog"
+                    aria-expanded={openDialog}
+                    aria-controls={tableId}
+                    type="button"
                   />
                 </Tooltip>
               </Flex>
@@ -117,6 +131,7 @@ const RichTableInput: ComponentType<
                 // We need this key to force remounting the table when opening/closing the dialog
                 key={openDialog ? 'table-in-dialog-open' : 'table-in-dialog-closed'}
                 readOnly={props.isInPortableText ? true : props.readOnly}
+                id={tableId}
               />
             </Box>
             {openDialog && (
@@ -136,6 +151,7 @@ const RichTableInput: ComponentType<
           onClose={handleCloseConfirmClearDialog}
           patch={patch}
           path={pathString}
+          readOnly={props.readOnly}
         />
       )}
       {/* DEBUG SWITCH*/}

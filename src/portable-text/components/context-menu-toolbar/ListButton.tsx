@@ -26,7 +26,8 @@ const ListButton: ComponentType<{list: ToolbarListSchemaType}> = ({list}) => {
       padding={2}
       tone={'default'}
       mode={'bleed'}
-      aria-selected={listButton.snapshot.matches({enabled: 'active'})}
+      aria-pressed={listButton.snapshot.matches({enabled: 'active'})}
+      aria-label={list.title}
       title={list.title}
     />
   )

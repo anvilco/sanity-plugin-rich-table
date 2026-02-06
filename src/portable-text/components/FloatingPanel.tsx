@@ -42,7 +42,14 @@ export function FloatingPanel({
   const {setFloating} = refs
 
   return createPortal(
-    <Panel ref={setFloating} style={floatingStyles} padding={3} border radius={3}>
+    <Panel
+      ref={setFloating}
+      style={floatingStyles}
+      padding={3}
+      border
+      radius={3}
+      aria-label={'Floating panel'}
+    >
       {children}
     </Panel>,
     document.body,

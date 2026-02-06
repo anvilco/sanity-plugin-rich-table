@@ -26,7 +26,7 @@ import TableButtons from './TableButtons'
 import TableGrid from './TableGrid'
 import TableScrollWrapper from './TableScrollWrapper'
 
-// TODO: make row title / context menu sticky to the left side when scrolling horizontally
+// TODO: make row title / context menu sticky to the left side when scrolling horizontally?
 const Table: ComponentType<
   ObjectInputProps<RichTableType> & {
     handleOpen?: () => void
@@ -34,10 +34,12 @@ const Table: ComponentType<
     isInPortableText?: boolean
     /** Patch function from Sanity document operations for optimistic changes */
     patch: OperationsAPI['patch']
+    id?: string
   }
-> = ({isInDialog = false, handleOpen, value, onChange, patch, isInPortableText, ...props}) => {
+> = ({isInDialog = false, handleOpen, value, onChange, patch, isInPortableText, id, ...props}) => {
   // * Prepare the path
   const path = pathToString(props.path)
+  const tableId = id ?? `rich-table-${path}`
   // * Prepare members
   const tableObjectMembers = props.members as FieldMember[]
 
@@ -82,15 +84,19 @@ const Table: ComponentType<
       border
       radius={2}
       onDoubleClick={() => (isInPortableText && handleOpen?.() ? handleOpen() : undefined)}
+      as="section"
+      aria-label="Rich table"
     >
-      <TableButtons path={path} value={value!} patch={patch} readOnly={props.readOnly}>
+      <TableButtons path={path} value={value!} patch={patch} readOnly={props.readOnly} tableId={tableId}>
         <TableScrollWrapper>
           <TableGrid
+            id={tableId}
             $rowCount={value?.rows?.length || 0}
             // we need to add one extra column for the row titles / context menu
             $columnCount={value?.columnHeaders?.length ? value?.columnHeaders?.length + 1 : 0}
             $isInDialog={false}
             $hasRowTitles={hasRowTitles}
+            role="table"
           >
             {/* Placeholder for row title column */}
             <div className={'placeholder-cell'} />
@@ -191,6 +197,7 @@ const Table: ComponentType<
               }
               label={'Show row titles'}
               id={'row-title-toggle'}
+              aria-controls={tableId}
             />
           </Inline>
           <Inline space={2}>
@@ -204,6 +211,7 @@ const Table: ComponentType<
               }
               label={'Show column titles'}
               id={'column-title-toggle'}
+              aria-controls={tableId}
             />
           </Inline>
         </Flex>

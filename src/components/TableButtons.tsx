@@ -14,16 +14,17 @@ interface TableButtonsProps {
   patch: OperationsAPI['patch']
   value: RichTableType
   readOnly: boolean | undefined
+  tableId?: string
 }
 
 /** # Table Buttons Component
  *  Adds a button to add columns and rows to the table.
  */
 const TableButtons: ComponentType<TableButtonsProps> = (props) => {
-  const {value, path, patch, readOnly} = props
+  const {value, path, patch, readOnly, tableId} = props
   if (readOnly) return props.children
   return (
-    <Stack space={4}>
+    <Stack space={4} aria-label="Table controls">
       <Flex gap={4}>
         {props.children}
         <Tooltip
@@ -45,6 +46,8 @@ const TableButtons: ComponentType<TableButtonsProps> = (props) => {
             })}
             mode={'ghost'}
             disabled={readOnly}
+            aria-label={'Add column'}
+            aria-controls={tableId}
           />
         </Tooltip>
       </Flex>
@@ -66,6 +69,8 @@ const TableButtons: ComponentType<TableButtonsProps> = (props) => {
           })}
           mode={'ghost'}
           disabled={readOnly}
+          aria-label={'Add row'}
+          aria-controls={tableId}
         />
       </Tooltip>
     </Stack>

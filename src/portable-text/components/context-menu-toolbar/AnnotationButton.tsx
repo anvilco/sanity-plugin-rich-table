@@ -21,7 +21,6 @@ const AnnotationButton: ComponentType<{annotation: ToolbarAnnotationSchemaType}>
   const annotationButton = useAnnotationButton({schemaType: annotation})
   return (
     <Button
-      key={annotation.name}
       onClick={() =>
         annotationButton.snapshot.matches({enabled: 'active'})
           ? annotationButton.send({type: 'remove'})
@@ -33,7 +32,9 @@ const AnnotationButton: ComponentType<{annotation: ToolbarAnnotationSchemaType}>
             })
       }
       selected={annotationButton.snapshot.matches({enabled: 'active'})}
-      aria-selected={annotationButton.snapshot.matches({enabled: 'active'})}
+      aria-pressed={annotationButton.snapshot.matches({enabled: 'active'})}
+      aria-label={annotation.title}
+      aria-keyshortcuts={annotation.shortcut?.keys.join('+')}
       icon={annotation.icon}
       padding={2}
       mode={'bleed'}

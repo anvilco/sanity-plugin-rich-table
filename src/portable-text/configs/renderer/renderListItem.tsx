@@ -6,7 +6,7 @@ export const renderListItem: RenderListItemFunction = (props) => {
   const listType = props.schemaType.value
 
   return (
-    <StyledLi $level={props.level} $listType={listType === 'number' ? 'number' : 'bullet'}>
+    <StyledLi $level={props.level} $listType={listType === 'number' ? 'number' : 'bullet'} role={'listitem'}>
       {props.children}
     </StyledLi>
   )
@@ -19,9 +19,10 @@ const StyledLi = styled.li<{$level: number; $listType: 'bullet' | 'number'}>`
   margin-left: ${(props) => (props.$level ? `${props.$level}rem` : '0rem')};
   list-style-position: outside;
   // no padding top, small padding bottom
-  padding: 0.1rem 0rem 0.25rem 0rem;
+  padding: 0.1rem 0 0.25rem 0;
 
   // This is needed, so that the text and marker are aligned
+
   > div > div {
     transform: none !important;
   }

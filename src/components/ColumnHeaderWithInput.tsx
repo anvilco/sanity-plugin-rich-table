@@ -35,6 +35,12 @@ export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = 
   const [title, setTitle] = useState(columnHeader.title || '')
   const [isFocused, setIsFocused] = useState(false)
 
+  const newColumnTitle = getLetterBasedOnIndex(columnIndex)
+  const id = `column-header-input-${path}-${columnHeader._key}`
+  // key that includes the external title will force remount when that title changes elsewhere
+  const remountKey = `${columnHeader._key}-${(columnHeader.title ?? '').replace(/[^a-zA-Z0-9-_:.]/g, '-')}`
+
+
   const handleChange = useCallback(async (event: ChangeEvent<HTMLInputElement>) => {
     const newTitle = event.target.value
     setTitle(newTitle)
@@ -42,15 +48,18 @@ export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = 
 
   const handleBlur = useCallback(() => {
     setIsFocused(false)
-    const setPatch: PatchOperations = {
-      set: {
-        [`${path}.columnHeaders[_key=="${columnHeader._key}"].title`]: title,
-      },
+    if (readOnly) return
+    // Only send a patch when the title actually changed
+    if (title !== columnHeader.title) {
+      const setPatch: PatchOperations = {
+        set: {
+          [`${path}.columnHeaders[_key=="${columnHeader._key}"].title`]: title,
+        },
+      }
+      patch.execute([setPatch])
     }
-    patch.execute([setPatch])
-  }, [title, patch, path, columnHeader._key])
-  // TODO ADD KEY WITH OPEN DIALOG TO FORCE REMOUNT
-  const newColumnTitle = getLetterBasedOnIndex(columnIndex)
+  }, [title, patch, path, columnHeader._key, columnHeader.title, readOnly])
+
   return (
     <StyledCard
       shadow={isFocused ? 1 : undefined}
@@ -61,6 +70,8 @@ export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = 
       <Flex justify={'space-between'} align={'center'} gap={1}>
         <Box flex={1}>
           <TextInput
+            id={id}
+            key={remountKey}
             onChange={handleChange}
             onBlur={handleBlur}
             onKeyDown={(e) => {
@@ -69,7 +80,7 @@ export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = 
               }
             }}
             value={title}
-            aria-label="Column Header Title"
+            aria-label={`Column ${columnIndex + 1} title`}
             weight={'semibold'}
             onFocus={() => setIsFocused(true)}
             style={{
@@ -77,23 +88,12 @@ export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = 
               textOverflow: 'ellipsis',
               color: 'var(--card-muted-fg-color)',
               width: '100%',
+              whiteSpace: 'nowrap',
             }}
             title={title}
             padding={0}
             placeholder={newColumnTitle}
             disabled={readOnly}
-            /*          suffix={
-              <ColumnContextMenu
-                patch={patch}
-                path={path}
-                value={value}
-                columnHeaderKey={columnHeader._key}
-                columnIndex={columnIndex}
-                rowCount={rowCount}
-                columnCount={columnCount}
-                readOnly={readOnly}
-              />
-            }*/
           />
         </Box>
         <ColumnContextMenu

@@ -27,6 +27,7 @@ interface ColumnMenuButtonProps {
   columnCount: number
   iconHorizontal?: boolean
   readOnly: boolean | undefined
+  tableId?: string
 }
 const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
   const {
@@ -39,8 +40,11 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
     value,
     iconHorizontal,
     readOnly,
+    tableId
   } = props
   const columnHeaderPathString = `${path}.columnHeaders[_key=="${columnHeaderKey}"]`
+  const menuId = `column-menu-${columnHeaderKey}`
+  const buttonId = `${menuId}-button`
 
   const handleDeleteColumn = useCallback(() => {
     const headerUnsetPatch: PatchOperations = {
@@ -149,7 +153,6 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
     [columnCount, rowCount, columnIndex, path, columnHeaderPathString, patch],
   )
 
-  // TODO: fix issue with cell index not being updated correctly when moving columns multiple times
   const handleMoveColumn = useCallback(
     (direction: 'left' | 'right') => {
       // First we store the current column header and cells (with their values) to temporary variables
@@ -255,25 +258,33 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
     <MenuButton
       button={
         <Button
+          id={buttonId}
           icon={iconHorizontal ? EllipsisHorizontalIcon : EllipsisVerticalIcon}
           mode={'bleed'}
           padding={2}
+          aria-label={`Column options ${columnIndex + 1}`}
+          aria-haspopup="menu"
+          aria-controls={menuId}
         />
       }
-      id="column-menu-button"
+      id={buttonId}
       menu={
-        <Menu>
+        <Menu id={menuId}>
           <MenuItem
             text="Add column (left)"
             onClick={() => handleAddColumn('left')}
             disabled={readOnly}
             icon={TbColumnInsertLeft}
+            aria-label={'Add column to the left of column ' + (columnIndex + 1)}
+            as={'button'}
           />
           <MenuItem
             text="Add column (right)"
             onClick={() => handleAddColumn('right')}
             disabled={readOnly}
             icon={TbColumnInsertRight}
+            aria-label={'Add column to the right of column ' + (columnIndex + 1)}
+            as={'button'}
           />
           <MenuDivider />
           <MenuItem
@@ -281,12 +292,16 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
             onClick={() => handleMoveColumn('left')}
             disabled={readOnly || columnIndex === 0}
             icon={TbArrowBarLeft}
+            as={'button'}
+            aria-label={'Move column ' + (columnIndex + 1) + ' to the left'}
           />
           <MenuItem
             text="Move column (right)" // "Move column ->"
             onClick={() => handleMoveColumn('right')}
             disabled={readOnly || columnIndex - columnCount === -1}
             icon={TbArrowBarRight}
+            as={'button'}
+            aria-label={'Move column ' + (columnIndex + 1) + ' to the right'}
           />
           <MenuDivider />
           <MenuItem
@@ -294,6 +309,8 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
             onClick={handleDeleteColumn}
             disabled={readOnly}
             icon={TbColumnRemove}
+            aria-label={'Remove column ' + (columnIndex + 1)}
+            as={'button'}
           />
         </Menu>
       }

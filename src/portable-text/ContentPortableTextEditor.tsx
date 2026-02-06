@@ -50,6 +50,7 @@ const ContentPortableTextInput: ComponentType<ContentPortableTextInputProps> = (
   const _type = useFormValue(['_type']) as string
   // STATES
   const [focused, setFocused] = useState<boolean>(false)
+
   const handleFocus = useCallback((state: boolean) => setFocused(state), [])
   // * INITIAL CONFIG FOR EDITOR PROVIDER
   const initialConfig = useRef<EditorConfig>({

@@ -239,7 +239,11 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
   const handlePopoverClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement | null
     if (!target || !popoverRef.current) return
-    const clickedFocusable = target.closest('button, [role="button"], a, input, select, textarea')
+    const clickedFocusable = target.closest('button, [role="button"], a, input, select, textarea ')
+
+    // Ignore clicks on the style selector button (id="style-select")
+    if (clickedFocusable?.id === 'style-selection') return
+
     if (clickedFocusable && popoverRef.current.contains(clickedFocusable)) {
       // allow activation to proceed, then close & refocus
       setTimeout(() => closePopover(true), 0)

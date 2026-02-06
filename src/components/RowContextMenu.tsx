@@ -43,6 +43,7 @@ const RowContextMenu: ComponentType<RowContextMenuProps> = ({
   rowCount,
   readOnly,
 }) => {
+  const menuId = `row-menu-${rowIndex}`
   // * Handle delete row
   const handleDeleteRow = useCallback(() => {
     const rowUnsetPatch = {
@@ -129,10 +130,19 @@ const RowContextMenu: ComponentType<RowContextMenuProps> = ({
   )
   return (
     <MenuButton
-      button={<Button icon={EllipsisVerticalIcon} mode={'bleed'} padding={2} />}
-      id="row-menu-button"
+      button={
+        <Button
+          icon={EllipsisVerticalIcon}
+          mode={'bleed'}
+          padding={2}
+          aria-label={`Row options ${rowIndex + 1}`}
+          aria-haspopup="menu"
+          aria-controls={menuId}
+        />
+      }
+      id={menuId+'-button'}
       menu={
-        <Menu>
+        <Menu id={menuId}>
           <MenuItem
             text="Add row (above)"
             onClick={() => handleAddRow('above')}

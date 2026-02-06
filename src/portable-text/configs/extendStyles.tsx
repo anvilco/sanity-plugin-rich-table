@@ -13,42 +13,42 @@ const extendStyle: ExtendStyleSchemaType = (style) => {
   if (style.name === 'h1') {
     return {
       ...style,
-      title: 'H1',
+      title: 'Heading 1',
       icon: H1Icon,
     }
   }
   if (style.name === 'h2') {
     return {
       ...style,
-      title: 'H2',
+      title: 'Heading 2',
       icon: H2Icon,
     }
   }
   if (style.name === 'h3') {
     return {
       ...style,
-      title: 'H3',
+      title: 'Heading 3',
       icon: H3Icon,
     }
   }
   if (style.name === 'h4') {
     return {
       ...style,
-      title: 'H4',
+      title: 'Heading 4',
       icon: H4Icon,
     }
   }
   if (style.name === 'h5') {
     return {
       ...style,
-      title: 'H5',
+      title: 'Heading 5',
       icon: H5Icon,
     }
   }
   if (style.name === 'h6') {
     return {
       ...style,
-      title: 'H6',
+      title: 'Heading 6',
       icon: H6Icon,
     }
   }

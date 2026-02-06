@@ -28,6 +28,7 @@ const RowHeaderWithInput: ComponentType<RowHeaderWithInputProps> = ({
   const [title, setTitle] = useState(row.title || '')
   const [isFocused, setIsFocused] = useState(false)
 
+  const inputId = `row-header-input-${row._key}`
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const newTitle = event.target.value
     setTitle(newTitle)
@@ -52,6 +53,7 @@ const RowHeaderWithInput: ComponentType<RowHeaderWithInputProps> = ({
         paddingLeft={1}
       >
         <TextInput
+          id={inputId}
           onChange={handleChange}
           onBlur={handleBlur}
           onKeyDown={(e) => {
@@ -97,6 +99,7 @@ const StyledCard = styled(Card)<{$isFocused?: boolean}>`
 
   overflow-y: scroll;
   text-overflow: 'ellipsis';
+  white-space: nowrap;
 `
 
 export default RowHeaderWithInput
