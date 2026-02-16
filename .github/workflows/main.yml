@@ -106,8 +106,8 @@ jobs:
       pull-requests: write # to be able to comment on released pull requests
       id-token: write # to enable use of OIDC for npm provenance
     needs: [build, test]
-    # only run if opt-in during workflow_dispatch
-    if: always() && github.event.inputs.release == 'true' && needs.build.result != 'failure' && needs.test.result != 'failure' && needs.test.result != 'cancelled'
+    # Run on push to main (after successful build/test) or when manually triggered with release option
+    if: always() && needs.build.result != 'failure' && needs.test.result != 'failure' && needs.test.result != 'cancelled' && (github.event_name == 'push' || github.event.inputs.release == 'true')
     runs-on: ubuntu-latest
     name: Semantic release
     steps:
