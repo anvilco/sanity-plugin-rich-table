@@ -22,24 +22,24 @@ const CustomListenerPlugin: ComponentType<{
         }
         if (event.type === 'mutation') {
           // * HANDLE MUTATION EVENTS
-          const preparedPatches = event.patches.map((patch) => {
-            if (patch.type === 'unset') {
+          const preparedPatches = event.patches.map((eventPatch) => {
+            if (eventPatch.type === 'unset') {
               return {
-                unset: [pathToString([...props.path, ...patch.path])],
+                unset: [pathToString([...props.path, ...eventPatch.path])],
               }
             }
 
-            if (patch.type === 'insert') {
+            if (eventPatch.type === 'insert') {
               return {
                 insert: {
-                  [patch.position]: pathToString([...props.path, ...patch.path]),
-                  items: patch.items,
+                  [eventPatch.position]: pathToString([...props.path, ...eventPatch.path]),
+                  items: eventPatch.items,
                 },
               }
             }
             return {
-              [patch.type]: {
-                [pathToString([...props.path, ...patch.path])]: patch.value,
+              [eventPatch.type]: {
+                [pathToString([...props.path, ...eventPatch.path])]: eventPatch.value,
               },
             }
           })

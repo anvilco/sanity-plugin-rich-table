@@ -15,7 +15,7 @@ const ConfirmClearTableDialog: ComponentType<ConfirmClearTableDialogProps> = ({
   path,
   onClose,
   open,
-  readOnly
+  readOnly,
 }) => {
   const [isProcessing, setIsProcessing] = useState(false)
 
@@ -42,7 +42,7 @@ const ConfirmClearTableDialog: ComponentType<ConfirmClearTableDialogProps> = ({
       onClose={onClose}
       open={open}
       aria-describedby={descriptionId}
-      aria-modal={true}
+      aria-modal
       role="alertdialog"
       aria-busy={isProcessing}
     >

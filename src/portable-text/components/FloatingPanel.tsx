@@ -6,10 +6,10 @@ import {
   shift,
   useFloating,
 } from '@floating-ui/react-dom'
+import {Card} from '@sanity/ui'
 import type {ReactNode} from 'react'
 import {createPortal} from 'react-dom'
 import styled from 'styled-components'
-import {Card} from '@sanity/ui'
 
 interface FloatingPanelProps {
   getAnchorRect: () => DOMRect | null

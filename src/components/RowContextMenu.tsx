@@ -10,6 +10,7 @@ import {
   TbRowRemove,
 } from 'react-icons/tb'
 import {OperationsAPI, PortableTextBlock} from 'sanity'
+
 import {RichTableCellType} from '../schemas/cell.object'
 import {RichTableRowType} from '../schemas/row.object'
 import {generateKey} from '../utils/generateKey'
@@ -141,7 +142,7 @@ const RowContextMenu: ComponentType<RowContextMenuProps> = ({
           aria-controls={menuId}
         />
       }
-      id={menuId + '-button'}
+      id={`${menuId}-button`}
       menu={
         <Menu id={menuId}>
           <MenuItem

@@ -35,7 +35,7 @@ const AnnotationDialog: ComponentType<{
   return (
     <Dialog
       id={'edit-annotation-dialog'}
-      header={'Edit ' + props.annotation.schemaType.title}
+      header={`Edit ${props.annotation.schemaType.title}`}
       onClose={props.onClose}
     >
       <Stack padding={4}>

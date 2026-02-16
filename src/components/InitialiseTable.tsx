@@ -92,7 +92,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
         }
       })
       // New rows
-      const rows: RichTableRowType[] = Array.from({length: rowCount ?? 1}, (_, i) => ({
+      const rows: RichTableRowType[] = Array.from({length: rowCount ?? 1}, () => ({
         _type: 'row',
         cells: cells,
         _key: generateKey(),
@@ -148,7 +148,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
         ]),
       )*/
     },
-    [path, patch, isInPortableText, onChange],
+    [path, patch, isInPortableText, onChange, schemaTypeName],
   )
   // * COMMIT SELECTION
   const effectiveRows = selected.rows || hover.rows

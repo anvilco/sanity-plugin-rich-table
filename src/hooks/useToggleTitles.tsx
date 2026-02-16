@@ -19,7 +19,11 @@ export const useToggleTitles = (
       const unsetPatch = {
         unset: [hasColumnTitlePath],
       }
-      newValue ? patch.execute([setPatch]) : patch.execute([unsetPatch])
+      if (newValue) {
+        patch.execute([setPatch])
+      } else {
+        patch.execute([unsetPatch])
+      }
     },
     [patch, path],
   )
@@ -33,7 +37,11 @@ export const useToggleTitles = (
       const unsetPatch = {
         unset: [hasRowTitlePath],
       }
-      newValue ? patch.execute([setPatch]) : patch.execute([unsetPatch])
+      if (newValue) {
+        patch.execute([setPatch])
+      } else {
+        patch.execute([unsetPatch])
+      }
     },
     [patch, path],
   )

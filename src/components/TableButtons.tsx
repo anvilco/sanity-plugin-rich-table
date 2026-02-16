@@ -22,7 +22,13 @@ interface TableButtonsProps {
  */
 const TableButtons: ComponentType<TableButtonsProps> = (props) => {
   const {value, path, patch, readOnly, tableId} = props
+
+  // Hooks must be called unconditionally at the top level
+  const handleAddColumn = useAddColumn({path, value, patch})
+  const handleAddRow = useAddRow({path, value, patch})
+
   if (readOnly) return props.children
+
   return (
     <Stack space={4} aria-label="Table controls">
       <Flex gap={4}>
@@ -37,13 +43,8 @@ const TableButtons: ComponentType<TableButtonsProps> = (props) => {
           portal
         >
           <Button
-            // text={'Add column'}
             icon={AddIcon}
-            onClick={useAddColumn({
-              path,
-              value,
-              patch,
-            })}
+            onClick={handleAddColumn}
             mode={'ghost'}
             disabled={readOnly}
             aria-label={'Add column'}
@@ -60,13 +61,8 @@ const TableButtons: ComponentType<TableButtonsProps> = (props) => {
         portal
       >
         <Button
-          // text={'Add row'}
           icon={AddIcon}
-          onClick={useAddRow({
-            path,
-            value,
-            patch,
-          })}
+          onClick={handleAddRow}
           mode={'ghost'}
           disabled={readOnly}
           aria-label={'Add row'}

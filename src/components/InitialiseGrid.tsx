@@ -10,7 +10,7 @@ export default styled(Box)<{
   $gap: number
 }>`
   display: grid !important;
-  gap: ${(props) => props.$gap + 'px' || '5px'};
+  gap: ${(props) => (props.$gap ? `${props.$gap}px` : '5px')};
 
   grid-template-columns: ${(props) =>
     props.$maxCols && props.$cellSize

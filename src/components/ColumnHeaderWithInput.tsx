@@ -1,14 +1,22 @@
+import {PatchOperations} from '@sanity/types'
 import {Box, Card, Flex, TextInput} from '@sanity/ui'
 import {ChangeEvent, ComponentType, useCallback, useState} from 'react'
 import {ObjectItem, OperationsAPI} from 'sanity'
-import {ColumnHeader} from '../schemas/columnHeader.object'
-
-import {PatchOperations} from '@sanity/types'
 import styled from 'styled-components'
-import ColumnContextMenu from './ColumnContextMenu'
 
+import {ColumnHeader} from '../schemas/columnHeader.object'
 import {RichTableType} from '../schemas/richTable.object'
 import {getLetterBasedOnIndex} from '../utils/getLetterBasedOnIndex'
+import ColumnContextMenu from './ColumnContextMenu'
+
+const StyledCard = styled(Card)<{$isFocused?: boolean}>`
+  max-height: 50px;
+
+  //border: unset;
+  [data-border] {
+    box-shadow: unset;
+  }
+`
 
 interface ColumnHeaderWithInputProps {
   columnHeader: ColumnHeader & ObjectItem
@@ -20,7 +28,7 @@ interface ColumnHeaderWithInputProps {
   rowCount: number
   columnCount: number
   readOnly: boolean | undefined
-  role: string
+  role?: string
 }
 
 export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = ({
@@ -110,13 +118,5 @@ export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = 
     </StyledCard>
   )
 }
-const StyledCard = styled(Card)<{$isFocused?: boolean}>`
-  max-height: 50px;
-
-  //border: unset;
-  [data-border] {
-    box-shadow: unset;
-  }
-`
 
 export default ColumnHeaderWithInput

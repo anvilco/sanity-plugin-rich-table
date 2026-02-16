@@ -14,19 +14,25 @@ export default styled(Card)<{
 }>`
   display: grid !important;
 
-  grid-template-columns: ${(props) =>
-    props.$columnCount
-      ? props.$columnCount <= 1
-        ? `${ROW_TITLE_COLUMN_WIDTH}rem`
-        : `${props.$hasRowTitles ? ROW_TITLE_COLUMN_WIDTH : ROW_COLUMN_WIDTH}rem repeat(${props.$columnCount - 1}, 1fr)`
-      : `${props.$hasRowTitles ? ROW_TITLE_COLUMN_WIDTH : ROW_COLUMN_WIDTH}rem repeat(4, 1fr)`};
+  grid-template-columns: ${(props) => {
+    if (!props.$columnCount) {
+      return `${props.$hasRowTitles ? ROW_TITLE_COLUMN_WIDTH : ROW_COLUMN_WIDTH}rem repeat(4, 1fr)`
+    }
+    if (props.$columnCount <= 1) {
+      return `${ROW_TITLE_COLUMN_WIDTH}rem`
+    }
+    return `${props.$hasRowTitles ? ROW_TITLE_COLUMN_WIDTH : ROW_COLUMN_WIDTH}rem repeat(${props.$columnCount - 1}, 1fr)`
+  }};
 
-  grid-template-rows: ${(props) =>
-    props.$rowCount
-      ? props.$rowCount <= 1
-        ? `minmax(0, ${MINMAX_HEADER_ROW_HEIGHT}px)`
-        : `minmax(0, ${MINMAX_HEADER_ROW_HEIGHT}px) repeat(${props.$rowCount - 1}, auto)`
-      : `minmax(0, ${MINMAX_HEADER_ROW_HEIGHT}px) repeat(1, auto)`};
+  grid-template-rows: ${(props) => {
+    if (!props.$rowCount) {
+      return `minmax(0, ${MINMAX_HEADER_ROW_HEIGHT}px) repeat(1, auto)`
+    }
+    if (props.$rowCount <= 1) {
+      return `minmax(0, ${MINMAX_HEADER_ROW_HEIGHT}px)`
+    }
+    return `minmax(0, ${MINMAX_HEADER_ROW_HEIGHT}px) repeat(${props.$rowCount - 1}, auto)`
+  }};
   min-width: 60vw;
   min-height: ${(props) => (props.$isInDialog ? '50vh' : 'auto')};
 `

@@ -57,8 +57,7 @@ const ContentPortableTextInput: ComponentType<ContentPortableTextInputProps> = (
     initialValue: props.value,
     readOnly: props.readOnly ?? false,
 
-    // @ts-ignore
-    schema: props.schemaType // TODO verify where the TS error is coming from here
+    schema: props.schemaType
       ? props.schemaType
       : // Backup so that undefined schemaType doesn't break the component
         content,

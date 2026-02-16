@@ -1,7 +1,8 @@
-import {RichTableType} from '../schemas/richTable.object'
-import {OperationsAPI, PortableTextBlock} from 'sanity'
 import {useCallback} from 'react'
+import {OperationsAPI, PortableTextBlock} from 'sanity'
+
 import {RichTableCellType} from '../schemas/cell.object'
+import {RichTableType} from '../schemas/richTable.object'
 import {RichTableRowType} from '../schemas/row.object'
 import {generateKey} from '../utils/generateKey'
 
@@ -44,7 +45,7 @@ export default function useAddRow({path, value, patch}: UseAddRowProps) {
     patch.execute([
       {
         insert: {
-          after: path + `.rows[-1]`,
+          after: `${path}.rows[-1]`,
           items: [newRow],
         },
       },

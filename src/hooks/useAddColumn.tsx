@@ -1,11 +1,11 @@
-import {OperationsAPI, PortableTextBlock} from 'sanity'
 import {PatchOperations} from '@sanity/types'
 import {useCallback} from 'react'
+import {OperationsAPI, PortableTextBlock} from 'sanity'
 
-import {generateKey} from '../utils/generateKey'
 import {RichTableCellType} from '../schemas/cell.object'
 import {ColumnHeader} from '../schemas/columnHeader.object'
 import {RichTableType} from '../schemas/richTable.object'
+import {generateKey} from '../utils/generateKey'
 
 interface UseAddColumnParams {
   /** Patch function from Sanity document operations for optimistic changes */
@@ -43,7 +43,7 @@ export function useAddColumn({path, value, patch}: UseAddColumnParams) {
     // Patches based on `patch` function
     const rowPatchEvents: PatchOperations[] =
       value.rows?.map((_, rowIndex) => {
-        const rowCellPath = path + `.rows[${rowIndex}].cells[-1]`
+        const rowCellPath = `${path}.rows[${rowIndex}].cells[-1]`
         return {
           insert: {
             after: rowCellPath,
@@ -53,7 +53,7 @@ export function useAddColumn({path, value, patch}: UseAddColumnParams) {
       }) ?? []
     const headerPatchEvent: PatchOperations = {
       insert: {
-        after: path + `.columnHeaders[-1]`,
+        after: `${path}.columnHeaders[-1]`,
         items: [newColumnHeaderItem],
       },
     }

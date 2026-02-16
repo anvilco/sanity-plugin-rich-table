@@ -1,7 +1,7 @@
+import {Box, Dialog, Flex, Text} from '@sanity/ui'
 import {ComponentType} from 'react'
 import {ObjectInputProps, OperationsAPI, pathToString} from 'sanity'
 
-import {Box, Dialog, Flex, Text} from '@sanity/ui'
 import {RichTableType} from '../schemas/richTable.object'
 import Table from './Table'
 
@@ -12,7 +12,7 @@ const ExpandedTableDialog: ComponentType<
     /** Patch function from Sanity document operations for optimistic changes */
     patch: OperationsAPI['patch']
   }
-> = ({isInDialog = true, patch, value, onChange, ...props}) => {
+> = ({patch, value, onChange, ...props}) => {
   const pathString = pathToString(props.path)
   const dialogId = `expanded-table-dialog-${pathString}`
   const descriptionId = `${dialogId}-description`
@@ -23,7 +23,7 @@ const ExpandedTableDialog: ComponentType<
       header="Expanded table editor"
       onClose={props.handleClose}
       aria-describedby={descriptionId}
-      aria-modal={true}
+      aria-modal
       role="dialog"
     >
       {/* Hidden description referenced by aria-describedby for screen readers */}
@@ -44,7 +44,7 @@ const ExpandedTableDialog: ComponentType<
         </Text>
       </Box>
       <Flex padding={3} justify={'center'}>
-        <Table {...props} isInDialog={true} patch={patch} value={value} onChange={onChange} />
+        <Table {...props} isInDialog patch={patch} value={value} onChange={onChange} />
       </Flex>
     </Dialog>
   )

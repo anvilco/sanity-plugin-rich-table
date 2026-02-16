@@ -1,4 +1,5 @@
 import {ExtendStyleSchemaType} from '@portabletext/toolbar'
+
 import {H1Icon, H2Icon, H3Icon, H4Icon, H5Icon, H6Icon, QuoteIcon, TextIcon} from '../icons'
 
 const extendStyle: ExtendStyleSchemaType = (style) => {

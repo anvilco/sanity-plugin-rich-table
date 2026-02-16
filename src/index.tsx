@@ -7,9 +7,8 @@ import richTableBlock from './schemas/richTable.block'
 import richTableObject from './schemas/richTable.object'
 import rowObject from './schemas/row.object'
 
-interface RichTablePluginOptions {
-  // config options coming soon!
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type -- config options coming soon
+interface RichTablePluginOptions {}
 /** # Rich Table Plugin for Sanity by Saskia Bobinska
  *
  * This plugin adds a rich table object type and block type to your schemas.
@@ -69,7 +68,7 @@ interface RichTablePluginOptions {
  *  - Enhanced accessibility features
  *  - Integration with other Sanity plugins and tools
  */
-export const richTablePlugin = definePlugin<RichTablePluginOptions>(({}) => ({
+export const richTablePlugin = definePlugin<RichTablePluginOptions>(() => ({
   name: 'rich-table',
   title: 'Rich Table Plugin',
 

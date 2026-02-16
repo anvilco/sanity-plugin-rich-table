@@ -1,9 +1,7 @@
 import {EllipsisHorizontalIcon, EllipsisVerticalIcon} from '@sanity/icons'
+import {PatchOperations} from '@sanity/types'
 import {Button, Menu, MenuButton, MenuDivider, MenuItem} from '@sanity/ui'
 import {ComponentType, useCallback} from 'react'
-import {ObjectItem, OperationsAPI, PortableTextBlock} from 'sanity'
-
-import {PatchOperations} from '@sanity/types'
 import {
   TbArrowBarLeft,
   TbArrowBarRight,
@@ -11,6 +9,8 @@ import {
   TbColumnInsertRight,
   TbColumnRemove,
 } from 'react-icons/tb'
+import {ObjectItem, OperationsAPI, PortableTextBlock} from 'sanity'
+
 import {RichTableCellType} from '../schemas/cell.object'
 import {ColumnHeader} from '../schemas/columnHeader.object'
 import {RichTableType} from '../schemas/richTable.object'
@@ -28,7 +28,7 @@ interface ColumnMenuButtonProps {
   iconHorizontal?: boolean
   readOnly: boolean | undefined
   tableId?: string
-  role: string
+  role?: string
 }
 const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
   const {
@@ -41,7 +41,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
     value,
     iconHorizontal,
     readOnly,
-    tableId,
+    // tableId is available for future use
   } = props
   const columnHeaderPathString = `${path}.columnHeaders[_key=="${columnHeaderKey}"]`
   const menuId = `column-menu-${columnHeaderKey}`
@@ -73,7 +73,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
     })
 
     return patch.execute([headerUnsetPatch, cellUnsetPatch, ...cellIndexPatches])
-  }, [rowCount, columnIndex, path, columnHeaderPathString, patch])
+  }, [rowCount, columnIndex, columnCount, path, columnHeaderPathString, patch])
 
   const handleAddColumn = useCallback(
     (side: 'left' | 'right') => {
@@ -276,7 +276,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
             onClick={() => handleAddColumn('left')}
             disabled={readOnly}
             icon={TbColumnInsertLeft}
-            aria-label={'Add column to the left of column ' + (columnIndex + 1)}
+            aria-label={`Add column to the left of column ${columnIndex + 1}`}
             as={'button'}
           />
           <MenuItem
@@ -284,7 +284,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
             onClick={() => handleAddColumn('right')}
             disabled={readOnly}
             icon={TbColumnInsertRight}
-            aria-label={'Add column to the right of column ' + (columnIndex + 1)}
+            aria-label={`Add column to the right of column ${columnIndex + 1}`}
             as={'button'}
           />
           <MenuDivider />
@@ -294,7 +294,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
             disabled={readOnly || columnIndex === 0}
             icon={TbArrowBarLeft}
             as={'button'}
-            aria-label={'Move column ' + (columnIndex + 1) + ' to the left'}
+            aria-label={`Move column ${columnIndex + 1} to the left`}
           />
           <MenuItem
             text="Move column (right)" // "Move column ->"
@@ -302,7 +302,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
             disabled={readOnly || columnIndex - columnCount === -1}
             icon={TbArrowBarRight}
             as={'button'}
-            aria-label={'Move column ' + (columnIndex + 1) + ' to the right'}
+            aria-label={`Move column ${columnIndex + 1} to the right`}
           />
           <MenuDivider />
           <MenuItem
@@ -310,7 +310,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
             onClick={handleDeleteColumn}
             disabled={readOnly}
             icon={TbColumnRemove}
-            aria-label={'Remove column ' + (columnIndex + 1)}
+            aria-label={`Remove column ${columnIndex + 1}`}
             as={'button'}
           />
         </Menu>

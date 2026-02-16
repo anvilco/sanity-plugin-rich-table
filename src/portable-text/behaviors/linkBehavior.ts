@@ -1,6 +1,7 @@
 import type {EditorSchema} from '@portabletext/editor'
 import {defineBehavior, execute} from '@portabletext/editor/behaviors'
 import * as selectors from '@portabletext/editor/selectors'
+
 import {looksLikeUrl} from './looks-like-url'
 
 export type LinkBehaviorsConfig = {
@@ -17,16 +18,18 @@ export function createLinkBehaviors(config: LinkBehaviorsConfig) {
       const selectionCollapsed = selectors.isSelectionCollapsed(snapshot)
       const text = event.originEvent.dataTransfer.getData('text/plain')
       const url = looksLikeUrl(text) ? text : undefined
-      const annotation =
-        url !== undefined
-          ? config.linkAnnotation?.({url, schema: snapshot.context.schema})
-          : undefined
 
-      if (annotation && !selectionCollapsed) {
-        return {annotation}
+      if (url === undefined) {
+        return false
       }
 
-      return false
+      const annotation = config.linkAnnotation?.({url, schema: snapshot.context.schema})
+
+      if (!annotation || selectionCollapsed) {
+        return false
+      }
+
+      return {annotation}
     },
     actions: [
       (_, {annotation}) => [
@@ -49,16 +52,18 @@ export function createLinkBehaviors(config: LinkBehaviorsConfig) {
 
       const text = event.originEvent.dataTransfer.getData('text/plain')
       const url = looksLikeUrl(text) ? text : undefined
-      const annotation =
-        url !== undefined
-          ? config.linkAnnotation?.({url, schema: snapshot.context.schema})
-          : undefined
 
-      if (url && annotation && selectionCollapsed) {
-        return {focusSpan, annotation, url}
+      if (url === undefined) {
+        return false
       }
 
-      return false
+      const annotation = config.linkAnnotation?.({url, schema: snapshot.context.schema})
+
+      if (!annotation) {
+        return false
+      }
+
+      return {focusSpan, annotation, url}
     },
     actions: [
       (_, {annotation, url}) => [

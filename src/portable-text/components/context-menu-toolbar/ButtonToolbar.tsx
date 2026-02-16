@@ -3,7 +3,17 @@ import {EditorConfig} from '@portabletext/editor'
 import {useToolbarSchema} from '@portabletext/toolbar'
 import {BlockContentIcon} from '@sanity/icons'
 import {Box, Card, Flex, Popover, Text} from '@sanity/ui'
-import {ComponentType, RefObject, useCallback, useEffect, useRef, useState} from 'react'
+import {
+  ComponentType,
+  KeyboardEvent as ReactKeyboardEvent,
+  MouseEvent as ReactMouseEvent,
+  Ref,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import styled from 'styled-components'
 
 import {extendAnnotation} from '../../configs/extendAnnotation'
@@ -18,6 +28,13 @@ import AnnotationButton from './AnnotationButton'
 import DecoratorButton from './DecoratorButton'
 import FloatingButton from './FloatingButton'
 import ListButton from './ListButton'
+
+const StyledFloatingButton = styled(FloatingButton)<{
+  $isFocused: boolean
+}>`
+  display: inline-block;
+  opacity: ${(props) => (props.$isFocused ? 1 : 0.2)};
+`
 
 const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<EditorConfig>}> = ({
   focused,
@@ -61,6 +78,7 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
         // Defer focus so any click/activation handlers run first
         setTimeout(() => {
           try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ;(editorRef?.current as any)?.focus?.()
           } catch {
             // noop
@@ -78,6 +96,7 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
       // when closing via the trigger, return focus to editor
       if (!next) {
         setTimeout(() => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ;(editorRef?.current as any)?.focus?.()
         }, 0)
       }
@@ -90,6 +109,7 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
     const handleClickOutside = (event: MouseEvent) => {
       if (!open) return
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const composedPath = (event as any).composedPath?.() || (event as any).path || []
       if (composedPath && composedPath.length) {
         if (triggerRef.current && composedPath.includes(triggerRef.current)) return
@@ -133,7 +153,7 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
 
   // When opening, focus first focusable element inside the popover
   useEffect(() => {
-    if (!open) return
+    if (!open) return undefined
     const t = setTimeout(() => {
       const first = getFocusableElements(popoverRef.current)[0]
       if (first) {
@@ -148,13 +168,14 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
   // * Key navigation within popover
   // Use boolean to avoid TS literal comparison issues
   const isVertical = false
-  const handlePopoverKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handlePopoverKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     const root = popoverRef.current
     if (!root) return
     const focusables = getFocusableElements(root)
     if (!focusables.length) return
 
     const active = document.activeElement as HTMLElement | null
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const currentIndex = focusables.indexOf(active ?? (null as any))
     const len = focusables.length
 
@@ -169,40 +190,32 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
         if (isVertical) {
           if (currentIndex === -1) focusAt(0)
           else focusAt(currentIndex + 1)
-        } else {
-          if (currentIndex === -1) focusAt(0)
-          else focusAt(currentIndex + 1)
-        }
+        } else if (currentIndex === -1) focusAt(0)
+        else focusAt(currentIndex + 1)
         break
       case 'ArrowDown':
         event.preventDefault()
         if (isVertical) {
           if (currentIndex === -1) focusAt(0)
           else focusAt(currentIndex + 1)
-        } else {
-          if (currentIndex === -1) focusAt(0)
-          else focusAt(currentIndex + 1)
-        }
+        } else if (currentIndex === -1) focusAt(0)
+        else focusAt(currentIndex + 1)
         break
       case 'ArrowLeft':
         event.preventDefault()
         if (isVertical) {
           if (currentIndex === -1) focusAt(0)
           else focusAt(currentIndex - 1)
-        } else {
-          if (currentIndex === -1) focusAt(0)
-          else focusAt(currentIndex - 1)
-        }
+        } else if (currentIndex === -1) focusAt(0)
+        else focusAt(currentIndex - 1)
         break
       case 'ArrowUp':
         event.preventDefault()
         if (isVertical) {
           if (currentIndex === -1) focusAt(0)
           else focusAt(currentIndex - 1)
-        } else {
-          if (currentIndex === -1) focusAt(0)
-          else focusAt(currentIndex - 1)
-        }
+        } else if (currentIndex === -1) focusAt(0)
+        else focusAt(currentIndex - 1)
         break
       case 'Home':
         event.preventDefault()
@@ -236,7 +249,7 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
 
   // If an internal button is clicked (or any focusable inside the popover),
   // close and return focus to the editor after the click handlers run.
-  const handlePopoverClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handlePopoverClick = (e: ReactMouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement | null
     if (!target || !popoverRef.current) return
     const clickedFocusable = target.closest('button, [role="button"], a, input, select, textarea ')
@@ -299,7 +312,7 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
           icon={BlockContentIcon}
           onClick={handleOpenClick}
           padding={2}
-          ref={triggerRef as unknown as React.Ref<HTMLButtonElement>}
+          ref={triggerRef as unknown as Ref<HTMLButtonElement>}
           title="Open text formatting toolbar (⇧⌘O)"
           $isFocused={focused}
           aria-label="Open text formatting toolbar (⇧⌘O)"
@@ -312,12 +325,5 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
     </>
   )
 }
-
-const StyledFloatingButton = styled(FloatingButton)<{
-  $isFocused: boolean
-}>`
-  display: inline-block;
-  opacity: ${(props) => (props.$isFocused ? 1 : 0.2)};
-`
 
 export default ButtonToolbar

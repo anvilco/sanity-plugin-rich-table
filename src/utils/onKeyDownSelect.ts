@@ -1,4 +1,5 @@
 import type {Dispatch, KeyboardEvent, SetStateAction} from 'react'
+
 import {TableSize} from '../components/InitialiseTable'
 
 /** Handle keyboard navigation for table size selection */
@@ -16,7 +17,7 @@ export const onKeyDownSelectCells = ({
   maxCols: number
   maxRows: number
   onChange: () => void
-}) => {
+}): void => {
   // change selection with arrow keys, commit with Enter
   let {rows, cols} = selected
   if (e.key === 'ArrowUp') {
@@ -36,8 +37,9 @@ export const onKeyDownSelectCells = ({
     setSelected({rows, cols})
     e.preventDefault()
   } else if (e.key === 'Enter') {
-    // onChange(rows, cols)
+    if (rows > 0 && cols > 0) {
+      onChange()
+    }
     e.preventDefault()
   }
-  e.preventDefault()
 }

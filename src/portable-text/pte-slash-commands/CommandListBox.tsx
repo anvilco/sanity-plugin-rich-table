@@ -18,7 +18,7 @@ const CommandListBox: ComponentType<CommandListBoxProps> = (props) => {
     return (
       <Flex padding={2} align={'center'}>
         <Box>
-          <Text size={1}>No commands matching "{props.keyword}"</Text>
+          <Text size={1}>No commands matching &quot;{props.keyword}&quot;</Text>
         </Box>
         <Button onClick={props.onDismiss}>Dismiss</Button>
       </Flex>

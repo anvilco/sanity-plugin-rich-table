@@ -185,7 +185,7 @@ const Table: ComponentType<
                       value={cellValue}
                       key={cellItem.id}
                       readOnly={props.readOnly}
-                      //@ts-ignore
+                      // @ts-expect-error role prop not in type but needed for accessibility
                       role="cell"
                     />
                   </Fragment>

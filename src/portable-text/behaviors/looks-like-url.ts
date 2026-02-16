@@ -1,5 +1,7 @@
-export function looksLikeUrl(text: string) {
-  let looksLikeUrl = false
+const sensibleProtocols = ['http:', 'https:', 'mailto:', 'tel:']
+
+export function looksLikeUrl(text: string): boolean {
+  let isUrl = false
   try {
     const url = new URL(text)
 
@@ -7,9 +9,9 @@ export function looksLikeUrl(text: string) {
       return false
     }
 
-    looksLikeUrl = true
-  } catch {}
-  return looksLikeUrl
+    isUrl = true
+  } catch {
+    // Invalid URL, return false
+  }
+  return isUrl
 }
-
-const sensibleProtocols = ['http:', 'https:', 'mailto:', 'tel:']

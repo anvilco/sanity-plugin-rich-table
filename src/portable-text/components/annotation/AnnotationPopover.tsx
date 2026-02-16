@@ -1,9 +1,10 @@
-import {ComponentType, useState} from 'react'
-import {ToolbarAnnotationSchemaType, useAnnotationPopover} from '@portabletext/toolbar'
-import {Box, Button, Flex, Popover, Stack, Text} from '@sanity/ui'
-import {EditIcon, TrashIcon} from '@sanity/icons'
-import AnnotationDialog from './AnnotationDialog'
 import {AnnotationPath, PortableTextObject} from '@portabletext/editor'
+import {ToolbarAnnotationSchemaType, useAnnotationPopover} from '@portabletext/toolbar'
+import {EditIcon, TrashIcon} from '@sanity/icons'
+import {Box, Button, Flex, Popover, Stack, Text} from '@sanity/ui'
+import {ComponentType, useState} from 'react'
+
+import AnnotationDialog from './AnnotationDialog'
 
 /** Popover component that shows the list of active annotations for the current selection.
  *
@@ -41,7 +42,7 @@ const AnnotationPopover: ComponentType<{
     <Popover
       content={
         <Stack space={3} padding={3}>
-          {annotationPopover.snapshot.context.annotations.map((annotation, index) => (
+          {annotationPopover.snapshot.context.annotations.map((annotation) => (
             <Box key={annotation.value._key}>
               <Stack>
                 <Flex justify={'space-between'} align={'center'} gap={3}>

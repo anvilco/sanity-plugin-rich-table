@@ -3,8 +3,22 @@ import {Card, Flex, TextInput} from '@sanity/ui'
 import {ChangeEvent, ComponentType, useCallback, useState} from 'react'
 import {OperationsAPI} from 'sanity'
 import styled from 'styled-components'
+
 import {RichTableRowType} from '../schemas/row.object'
 import RowContextMenu from './RowContextMenu'
+
+const StyledCard = styled(Card)<{$isFocused?: boolean}>`
+  max-height: 50px;
+  border: unset;
+
+  [data-border] {
+    box-shadow: unset;
+  }
+
+  overflow-y: scroll;
+  text-overflow: 'ellipsis';
+  white-space: nowrap;
+`
 
 interface RowHeaderWithInputProps {
   row: RichTableRowType
@@ -14,7 +28,7 @@ interface RowHeaderWithInputProps {
   rowCount: number
   readOnly: boolean | undefined
   path: string
-  role: string
+  role?: string
 }
 
 /** Row header component with input field for editing the row title */
@@ -89,18 +103,5 @@ const RowHeaderWithInput: ComponentType<RowHeaderWithInputProps> = ({
     </Flex>
   )
 }
-
-const StyledCard = styled(Card)<{$isFocused?: boolean}>`
-  max-height: 50px;
-  border: unset;
-
-  [data-border] {
-    box-shadow: unset;
-  }
-
-  overflow-y: scroll;
-  text-overflow: 'ellipsis';
-  white-space: nowrap;
-`
 
 export default RowHeaderWithInput

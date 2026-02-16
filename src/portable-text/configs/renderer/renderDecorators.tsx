@@ -11,7 +11,6 @@ const renderDecorator: RenderDecoratorFunction = (props) => {
     return <u>{props.children}</u>
   }
   if (props.value === 'code') {
-
     return (
       <code
         style={{
@@ -23,7 +22,7 @@ const renderDecorator: RenderDecoratorFunction = (props) => {
           borderRadius: '1px',
           mixBlendMode: 'screen',
         }}
-        aria-label={'Code: '+ props.children}
+        aria-label={`Code: ${props.children}`}
       >
         {props.children}
       </code>

@@ -28,7 +28,7 @@ const RichTableInput: ComponentType<
 
   const pathString = pathToString(props.path)
   // table ID
-  const tableId = 'table-' + props.id
+  const tableId = `table-${props.id}`
 
   // * Debug mode
   const [debug, setDebug] = useState(false)
@@ -135,12 +135,7 @@ const RichTableInput: ComponentType<
               />
             </Box>
             {openDialog && (
-              <ExpandedTableDialog
-                {...props}
-                isInDialog={true}
-                handleClose={handleClose}
-                patch={patch}
-              />
+              <ExpandedTableDialog {...props} isInDialog handleClose={handleClose} patch={patch} />
             )}
           </>
         )}
