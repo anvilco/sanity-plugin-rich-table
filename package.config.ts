@@ -5,6 +5,22 @@ export default defineConfig({
   tsconfig: 'tsconfig.dist.json',
 
   dts: 'rolldown',
+
+  // Externalize @portabletext packages to use the host's versions
+  // This prevents version conflicts between the plugin and the host studio
+  external: [
+    '@portabletext/editor',
+    '@portabletext/editor/behaviors',
+    '@portabletext/editor/plugins',
+    '@portabletext/editor/selectors',
+    '@portabletext/editor/utils',
+    '@portabletext/keyboard-shortcuts',
+    '@portabletext/plugin-emoji-picker',
+    '@portabletext/plugin-markdown-shortcuts',
+    '@portabletext/plugin-typeahead-picker',
+    '@portabletext/toolbar',
+  ],
+
   // Remove this block to enable strict export validation
   extract: {
     rules: {

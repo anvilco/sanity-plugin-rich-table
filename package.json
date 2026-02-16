@@ -74,7 +74,7 @@
     "@sanity/eslint-config-studio": "^6.0.0",
     "@sanity/pkg-utils": "^10.4.4",
     "@sanity/semantic-release-preset": "^6.0.0",
-    "@sanity/types": "^5.8.0",
+    "@sanity/types": "^5.9.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/react": "^19.2.13",
@@ -102,12 +102,12 @@
     "vitest": "^4.0.18"
   },
   "peerDependencies": {
-    "@portabletext/editor": ">=4",
-    "@portabletext/keyboard-shortcuts": ">=2",
+    "@portabletext/editor": ">=3",
+    "@portabletext/keyboard-shortcuts": ">=1",
     "@portabletext/plugin-emoji-picker": ">=4",
-    "@portabletext/plugin-markdown-shortcuts": ">=6",
-    "@portabletext/plugin-typeahead-picker": ">=3",
-    "@portabletext/toolbar": ">=5",
+    "@portabletext/plugin-markdown-shortcuts": ">=4",
+    "@portabletext/plugin-typeahead-picker": ">=2",
+    "@portabletext/toolbar": ">=4",
     "react": ">=18",
     "sanity": ">=3"
   },
