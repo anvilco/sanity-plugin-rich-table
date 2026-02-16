@@ -85,6 +85,7 @@ And get a suggestion on how to [merge cells when rendering](./docs/README.md#mer
 - Additional cell types and content options
 - Improved performance for large tables
 - Enhanced accessibility features
+- Default option to merge cells in the table input
 
 ## License
 
