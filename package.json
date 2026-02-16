@@ -121,5 +121,8 @@
       ".": "./dist/index.js",
       "./package.json": "./package.json"
     }
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
