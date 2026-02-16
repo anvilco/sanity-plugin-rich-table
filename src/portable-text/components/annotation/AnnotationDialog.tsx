@@ -1,9 +1,8 @@
-import {ComponentType, useState} from 'react'
+import {AnnotationPath, PortableTextObject} from '@portabletext/editor'
 import {ToolbarAnnotationSchemaType} from '@portabletext/toolbar'
 import {Button, Card, Dialog, Flex, Stack, Text, TextInput} from '@sanity/ui'
-import {AnnotationPath, PortableTextObject} from '@portabletext/editor'
+import {ComponentType, useState} from 'react'
 
-// TODO: Ask Bjørge for his input on rendering out the annotation inputs here
 /** Dialog component for editing an annotation's properties.
  *
  * @param annotation - `annotation`: {@link PortableTextObject} The annotation value to edit.
@@ -18,6 +17,8 @@ import {AnnotationPath, PortableTextObject} from '@portabletext/editor'
  *  onClose={() => handleClose()}
  *  />
  *  ```
+ *
+ * # Will be removed in the future - instead the rich table will open the default modals via useDocumentPane
  */
 const AnnotationDialog: ComponentType<{
   annotation: {
