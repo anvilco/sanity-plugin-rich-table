@@ -52,12 +52,6 @@
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.7",
-    "@portabletext/editor": "^5.0.0",
-    "@portabletext/keyboard-shortcuts": "^2.1.2",
-    "@portabletext/plugin-emoji-picker": "^5.0.0",
-    "@portabletext/plugin-markdown-shortcuts": "^6.0.0",
-    "@portabletext/plugin-typeahead-picker": "^3.0.2",
-    "@portabletext/toolbar": "^6.0.0",
     "@sanity/icons": "^3.7.4",
     "@sanity/ui": "^3.1.11",
     "emojilib": "^4.0.2",
@@ -71,6 +65,12 @@
     "@eslint/compat": "^2.0.2",
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
+    "@portabletext/editor": "^5.0.0",
+    "@portabletext/keyboard-shortcuts": "^2.1.2",
+    "@portabletext/plugin-emoji-picker": "^5.0.0",
+    "@portabletext/plugin-markdown-shortcuts": "^6.0.0",
+    "@portabletext/plugin-typeahead-picker": "^4.0.0",
+    "@portabletext/toolbar": "^6.0.0",
     "@sanity/eslint-config-studio": "^6.0.0",
     "@sanity/pkg-utils": "^10.4.4",
     "@sanity/semantic-release-preset": "^6.0.0",
@@ -102,10 +102,34 @@
     "vitest": "^4.0.18"
   },
   "peerDependencies": {
+    "@portabletext/editor": ">=4",
+    "@portabletext/keyboard-shortcuts": ">=2",
+    "@portabletext/plugin-emoji-picker": ">=4",
+    "@portabletext/plugin-markdown-shortcuts": ">=6",
+    "@portabletext/plugin-typeahead-picker": ">=3",
+    "@portabletext/toolbar": ">=5",
     "react": ">=18",
     "sanity": ">=3"
   },
   "peerDependenciesMeta": {
+    "@portabletext/editor": {
+      "optional": false
+    },
+    "@portabletext/keyboard-shortcuts": {
+      "optional": false
+    },
+    "@portabletext/plugin-emoji-picker": {
+      "optional": false
+    },
+    "@portabletext/plugin-markdown-shortcuts": {
+      "optional": false
+    },
+    "@portabletext/plugin-typeahead-picker": {
+      "optional": false
+    },
+    "@portabletext/toolbar": {
+      "optional": false
+    },
     "react": {
       "optional": false
     },

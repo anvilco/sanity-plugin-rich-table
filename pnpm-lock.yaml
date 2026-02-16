@@ -11,24 +11,6 @@ importers:
       '@floating-ui/react-dom':
         specifier: ^2.1.7
         version: 2.1.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@portabletext/editor':
-        specifier: ^5.0.0
-        version: 5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2)
-      '@portabletext/keyboard-shortcuts':
-        specifier: ^2.1.2
-        version: 2.1.2
-      '@portabletext/plugin-emoji-picker':
-        specifier: ^5.0.0
-        version: 5.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
-      '@portabletext/plugin-markdown-shortcuts':
-        specifier: ^6.0.0
-        version: 6.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
-      '@portabletext/plugin-typeahead-picker':
-        specifier: ^3.0.2
-        version: 3.0.2(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
-      '@portabletext/toolbar':
-        specifier: ^6.0.0
-        version: 6.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
       '@sanity/icons':
         specifier: ^3.7.4
         version: 3.7.4(react@19.2.4)
@@ -63,6 +45,24 @@ importers:
       '@eslint/js':
         specifier: ^9.39.2
         version: 9.39.2
+      '@portabletext/editor':
+        specifier: ^5.0.0
+        version: 5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2)
+      '@portabletext/keyboard-shortcuts':
+        specifier: ^2.1.2
+        version: 2.1.2
+      '@portabletext/plugin-emoji-picker':
+        specifier: ^5.0.0
+        version: 5.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
+      '@portabletext/plugin-markdown-shortcuts':
+        specifier: ^6.0.0
+        version: 6.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
+      '@portabletext/plugin-typeahead-picker':
+        specifier: ^4.0.0
+        version: 4.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
+      '@portabletext/toolbar':
+        specifier: ^6.0.0
+        version: 6.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
       '@sanity/eslint-config-studio':
         specifier: ^6.0.0
         version: 6.0.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
@@ -2079,11 +2079,11 @@ packages:
       '@portabletext/editor': ^4.3.10
       react: ^19.2
 
-  '@portabletext/plugin-typeahead-picker@3.0.2':
-    resolution: {integrity: sha512-SRValVViohRWoFFFBIbyKSRxGencphkZe2fLSUwZ+c7c8SWz6e6r0FFb0hkjAyNux9bTLsE5F1s6UHDdYu9FVA==}
+  '@portabletext/plugin-typeahead-picker@4.0.0':
+    resolution: {integrity: sha512-t3KOwy5lqhUY6HTSbk3lbEVcXrhpnytb2iRIkUUssa8FCFUEkYck0TVyoI886KTLxZhTQJS/y++Iey6KNXpkGg==}
     engines: {node: '>=20.19 <22 || >=22.12'}
     peerDependencies:
-      '@portabletext/editor': ^4.3.7
+      '@portabletext/editor': ^5.0.0
       react: ^19.2
 
   '@portabletext/plugin-typography@5.0.22':
@@ -10356,15 +10356,6 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@portabletext/plugin-input-rule@2.0.22(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)':
-    dependencies:
-      '@portabletext/editor': 5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2)
-      '@xstate/react': 6.0.0(@types/react@19.2.13)(react@19.2.4)(xstate@5.26.0)
-      react: 19.2.4
-      xstate: 5.26.0
-    transitivePeerDependencies:
-      - '@types/react'
-
   '@portabletext/plugin-input-rule@2.0.25(@portabletext/editor@4.3.10(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13)(debug@4.4.3))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)':
     dependencies:
       '@portabletext/editor': 4.3.10(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13)(debug@4.4.3))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2)
@@ -10421,14 +10412,14 @@ snapshots:
       '@portabletext/editor': 4.3.10(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13)(debug@4.4.3))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2)
       react: 19.2.4
 
-  '@portabletext/plugin-typeahead-picker@3.0.2(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)':
+  '@portabletext/plugin-typeahead-picker@4.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)':
     dependencies:
       '@portabletext/editor': 5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2)
       '@portabletext/keyboard-shortcuts': 2.1.2
-      '@portabletext/plugin-input-rule': 2.0.22(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
-      '@xstate/react': 6.0.0(@types/react@19.2.13)(react@19.2.4)(xstate@5.26.0)
+      '@portabletext/plugin-input-rule': 3.0.0(@portabletext/editor@5.0.0(@portabletext/sanity-bridge@2.0.0(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.13)(react@19.2.4)
+      '@xstate/react': 6.0.0(@types/react@19.2.13)(react@19.2.4)(xstate@5.28.0)
       react: 19.2.4
-      xstate: 5.26.0
+      xstate: 5.28.0
     transitivePeerDependencies:
       - '@types/react'
 
