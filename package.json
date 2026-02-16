@@ -11,6 +11,14 @@
     "cms",
     "content-management"
   ],
+  "homepage": "https://github.com/bobinska-dev/sanity-plugin-rich-table#readme",
+  "bugs": {
+    "url": "https://github.com/bobinska-dev/sanity-plugin-rich-table/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobinska-dev/sanity-plugin-rich-table.git"
+  },
   "license": "MIT",
   "author": "Saskia Bobinska <bobinska.dev@gmail.com>",
   "sideEffects": false,
