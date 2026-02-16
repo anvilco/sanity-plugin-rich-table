@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/bobinska-dev/sanity-plugin-rich-table/compare/v1.0.0...v1.0.1) (2026-02-16)
+
+### Bug Fixes
+
+- relax peer dependency version requirements ([ceea825](https://github.com/bobinska-dev/sanity-plugin-rich-table/commit/ceea8254b3ed1802775792bd3b42f22cc752ae1c))
+- update @portabletext/\* dependencies to latest versions ([040f6f8](https://github.com/bobinska-dev/sanity-plugin-rich-table/commit/040f6f8863329736de5a14490ff58289325ca187))
+
 ## 1.0.0 (2026-02-16)
 
 ### Features
