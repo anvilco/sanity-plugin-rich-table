@@ -104,7 +104,7 @@ jobs:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
+      id-token: write # Required for OIDC trusted publishing to npm
     needs: [build, test]
     # Run on push to main (after successful build/test) or when manually triggered with release option
     if: always() && needs.build.result != 'failure' && needs.test.result != 'failure' && needs.test.result != 'cancelled' && (github.event_name == 'push' || github.event.inputs.release == 'true')
@@ -122,13 +122,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
-          node-version: lts/*
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
       - run: pnpm install --frozen-lockfile
         # Branches that will release new versions are defined in .releaserc.json
+        # Uses OIDC trusted publishing - no NPM_TOKEN needed
       - run: pnpm dlx semantic-release
         # Don't allow interrupting the release step if the job is cancelled, as it can lead to an inconsistent state
         # e.g. git tags were pushed but it exited before `npm publish`
         if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
