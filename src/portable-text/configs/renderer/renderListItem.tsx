@@ -2,34 +2,49 @@ import {RenderListItemFunction} from '@portabletext/editor'
 import styled from 'styled-components'
 
 const StyledLi = styled.li<{$level: number; $listType: 'bullet' | 'number'}>`
-  display: list-item;
-  list-style-type: ${(props) => (props.$listType === 'number' ? 'decimal' : 'disc')};
+  display: flex;
+  align-items: baseline;
+  margin-left: ${(props) => (props.$level ? `${props.$level * 0.35}rem` : '0rem')};
+  padding: 0;
+  list-style: none;
 
-  margin-left: ${(props) => (props.$level ? `${props.$level}rem` : '0rem')};
-  list-style-position: outside;
-  // no padding top, small padding bottom
-  padding: 0.1rem 0 0.25rem 0;
+  /* Use CSS counters for numbered lists */
+  counter-increment: ${(props) =>
+    props.$listType === 'number' ? `list-counter-${props.$level}` : 'none'};
 
-  // This is needed, so that the text and marker are aligned
-
-  > div > div {
-    transform: none !important;
+  &::before {
+    content: ${(props) =>
+      props.$listType === 'number' ? `counter(list-counter-${props.$level}) "."` : '"\\2022"'};
+    flex-shrink: 0;
+    min-width: 1.2em;
+    font-size: 0.8125rem;
+    text-align: right;
+    margin-right: 0.3em;
   }
 
-  &::marker {
-    font-size: 0.8125rem;
+  /* Reset margin on the p element (Sanity Box) */
+  > p {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Remove any transforms that might affect alignment */
+  > p > div {
+    transform: none !important;
   }
 `
 
-// TODO: reduce space between list items and levels
 export const renderListItem: RenderListItemFunction = (props) => {
   const listType = props.schemaType.value
+  const isNumber = listType === 'number'
 
   return (
     <StyledLi
       $level={props.level}
-      $listType={listType === 'number' ? 'number' : 'bullet'}
-      role={'listitem'}
+      $listType={isNumber ? 'number' : 'bullet'}
+      role="listitem"
+      data-list-item={isNumber ? 'number' : 'bullet'}
+      data-list-level={props.level}
     >
       {props.children}
     </StyledLi>

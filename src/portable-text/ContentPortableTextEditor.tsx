@@ -21,6 +21,8 @@ import {renderBlock} from './configs/renderer/renderBlock'
 import renderDecorator from './configs/renderer/renderDecorators'
 import {renderListItem} from './configs/renderer/renderListItem'
 import renderStyle from './configs/renderer/renderStyle'
+
+import {MarkdownShortcutsPlugin} from '@portabletext/plugin-markdown-shortcuts'
 import {EmojiPickerPlugin} from './emoji-picker/EmojiPicker'
 import {SlashCommandPickerPlugin} from './pte-slash-commands/SlashCommandPicker'
 
@@ -85,6 +87,49 @@ const ContentPortableTextInput: ComponentType<ContentPortableTextInputProps> = (
           <SlashCommandPickerPlugin />
           <LinkPlugin />
           <EmojiPickerPlugin />
+          <MarkdownShortcutsPlugin
+            boldDecorator={({schema}) => schema.decorators.find((d) => d.name === 'strong')?.name}
+            codeDecorator={({schema}) => schema.decorators.find((d) => d.name === 'code')?.name}
+            italicDecorator={({schema}) => schema.decorators.find((d) => d.name === 'em')?.name}
+            strikeThroughDecorator={({schema}) =>
+              schema.decorators.find((d) => d.name === 'strike-through')?.name
+            }
+            defaultStyle={({schema}) => schema.styles.find((s) => s.name === 'normal')?.name}
+            headingStyle={({schema, level}) =>
+              schema.styles.find((s) => s.name === `h${level}`)?.name
+            }
+            blockquoteStyle={({schema}) => schema.styles.find((s) => s.name === 'blockquote')?.name}
+            orderedList={({schema}) => schema.lists.find((s) => s.name === 'number')?.name}
+            unorderedList={({schema}) => schema.lists.find((s) => s.name === 'bullet')?.name}
+            horizontalRuleObject={({context}) => {
+              const schemaType = context.schema.blockObjects.find(
+                (object) => object.name === 'break',
+              )
+
+              if (!schemaType) {
+                return undefined
+              }
+
+              return {_type: schemaType.name}
+            }}
+            linkObject={({context, props: linkProps}) => {
+              const schemaType = context.schema.annotations.find(
+                (annotation) => annotation.name === 'link',
+              )
+              const hrefField = schemaType?.fields.find(
+                (field) => field.name === 'href' && field.type === 'string',
+              )
+
+              if (!schemaType || !hrefField) {
+                return undefined
+              }
+
+              return {
+                _type: schemaType.name,
+                [hrefField.name]: linkProps.href,
+              }
+            }}
+          />
 
           <StyledPortableTextEditable
             renderStyle={renderStyle}
