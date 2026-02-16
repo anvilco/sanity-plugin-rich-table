@@ -6,7 +6,14 @@ const RichTableBock: ComponentType<BlockProps> = (props) => {
   const [openTable, setOpenTable] = useState<boolean>(true)
   const handleToggleOpen = useCallback(() => setOpenTable(!openTable), [openTable])
   return (
-    <Card shadow={1} radius={2} padding={2} tone={props.focused ? 'primary' : 'default'}>
+    <Card
+      shadow={1}
+      radius={2}
+      padding={2}
+      tone={props.focused ? 'primary' : 'default'}
+      title="Double Click to edit table"
+      style={{cursor: 'pointer'}}
+    >
       <Stack space={3}>
         <Box onClick={handleToggleOpen}>
           {props.renderDefault({
