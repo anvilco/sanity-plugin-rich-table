@@ -31,6 +31,7 @@
     "lint": "eslint .",
     "dev": "pnpm --filter studio dev",
     "prepublishOnly": "npm run build",
+    "test": "echo \"No tests configured yet\"",
     "watch": "pkg-utils watch --strict",
     "prepare": "husky"
   },
