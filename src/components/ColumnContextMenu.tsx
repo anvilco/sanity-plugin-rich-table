@@ -1,13 +1,9 @@
-import {ComponentType, useCallback} from 'react'
-import {Button, Menu, MenuButton, MenuDivider, MenuItem} from '@sanity/ui'
 import {EllipsisHorizontalIcon, EllipsisVerticalIcon} from '@sanity/icons'
+import {Button, Menu, MenuButton, MenuDivider, MenuItem} from '@sanity/ui'
+import {ComponentType, useCallback} from 'react'
 import {ObjectItem, OperationsAPI, PortableTextBlock} from 'sanity'
 
-import {generateKey} from '../utils/generateKey'
 import {PatchOperations} from '@sanity/types'
-import {RichTableType} from '../schemas/richTable.object'
-import {ColumnHeader} from '../schemas/columnHeader.object'
-import {RichTableCellType} from '../schemas/cell.object'
 import {
   TbArrowBarLeft,
   TbArrowBarRight,
@@ -15,6 +11,10 @@ import {
   TbColumnInsertRight,
   TbColumnRemove,
 } from 'react-icons/tb'
+import {RichTableCellType} from '../schemas/cell.object'
+import {ColumnHeader} from '../schemas/columnHeader.object'
+import {RichTableType} from '../schemas/richTable.object'
+import {generateKey} from '../utils/generateKey'
 
 interface ColumnMenuButtonProps {
   columnIndex: number
@@ -28,6 +28,7 @@ interface ColumnMenuButtonProps {
   iconHorizontal?: boolean
   readOnly: boolean | undefined
   tableId?: string
+  role: string
 }
 const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
   const {
@@ -40,7 +41,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
     value,
     iconHorizontal,
     readOnly,
-    tableId
+    tableId,
   } = props
   const columnHeaderPathString = `${path}.columnHeaders[_key=="${columnHeaderKey}"]`
   const menuId = `column-menu-${columnHeaderKey}`
@@ -63,7 +64,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
         : Array.from({length: columnCount - columnIndex - 1}, (_, i) => i + columnIndex + 1)
 
     const cellIndexPatches = columnHeaderIndexesToUpdate.map((colHeaderIndex) => {
-      const colHeaderPath = `${path}.columnHeaders[${colHeaderIndex-1}]`
+      const colHeaderPath = `${path}.columnHeaders[${colHeaderIndex - 1}]`
       return {
         dec: {
           [`${colHeaderPath}.cellIndex`]: 1,
@@ -71,7 +72,7 @@ const ColumnContextMenu: ComponentType<ColumnMenuButtonProps> = (props) => {
       }
     })
 
-    return patch.execute([headerUnsetPatch, cellUnsetPatch, ...cellIndexPatches ])
+    return patch.execute([headerUnsetPatch, cellUnsetPatch, ...cellIndexPatches])
   }, [rowCount, columnIndex, path, columnHeaderPathString, patch])
 
   const handleAddColumn = useCallback(

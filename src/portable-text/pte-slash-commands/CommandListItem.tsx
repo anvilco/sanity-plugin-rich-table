@@ -29,7 +29,9 @@ const CommandListItem: ComponentType<CommandListItemProps> = (props) => {
       mode={'bleed'}
       icon={props.match.icon}
       title={props.match.label}
-      // text={props.match.label}
+      role="option"
+      aria-selected={props.selected}
+      aria-label={props.match.label}
     />
   )
 }

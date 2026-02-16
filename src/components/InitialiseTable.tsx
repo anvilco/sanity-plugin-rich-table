@@ -1,5 +1,5 @@
 import {Box, Button, Card, Flex, Text} from '@sanity/ui'
-import React, {ComponentType, useCallback, useEffect, useState} from 'react'
+import {ComponentType, useCallback, useEffect, useState} from 'react'
 import {
   FormPatch,
   OperationsAPI,
@@ -198,6 +198,17 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
         userSelect: 'none',
       }}
     >
+      {/* Screen reader announcements */}
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only" // visually hidden
+      >
+        {hover.rows > 0 && hover.cols > 0
+          ? `Selected: ${hover.rows} rows by ${hover.cols} columns`
+          : 'No selection'}
+      </div>
       <Flex justify={'center'}>
         <InitialiseGrid
           padding={4}
@@ -242,6 +253,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
                   }}
                   role="button"
                   aria-pressed={isSelected}
+                  aria-label={`Select ${rowCount} rows by ${colCount} columns`}
                   tone={highlighted ? 'primary' : 'default'}
                   mode={highlighted ? 'default' : 'ghost'}
                   style={{

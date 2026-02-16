@@ -1,11 +1,7 @@
-import {ComponentType, useCallback} from 'react'
-import {Button, Menu, MenuButton, MenuDivider, MenuItem} from '@sanity/ui'
 import {EllipsisVerticalIcon} from '@sanity/icons'
-import {OperationsAPI, PortableTextBlock} from 'sanity'
-import {RichTableRowType} from '../schemas/row.object'
-import {generateKey} from '../utils/generateKey'
 import {PatchOperations} from '@sanity/types'
-import {RichTableCellType} from '../schemas/cell.object'
+import {Button, Menu, MenuButton, MenuDivider, MenuItem} from '@sanity/ui'
+import {ComponentType, useCallback} from 'react'
 import {
   TbArrowBarDown,
   TbArrowBarUp,
@@ -13,6 +9,10 @@ import {
   TbRowInsertTop,
   TbRowRemove,
 } from 'react-icons/tb'
+import {OperationsAPI, PortableTextBlock} from 'sanity'
+import {RichTableCellType} from '../schemas/cell.object'
+import {RichTableRowType} from '../schemas/row.object'
+import {generateKey} from '../utils/generateKey'
 
 interface RowContextMenuProps {
   rowIndex: number
@@ -22,6 +22,7 @@ interface RowContextMenuProps {
   patch: OperationsAPI['patch']
   path: string
   readOnly: boolean | undefined
+  role?: string
 }
 
 /** # Menu button for each row in the table
@@ -140,7 +141,7 @@ const RowContextMenu: ComponentType<RowContextMenuProps> = ({
           aria-controls={menuId}
         />
       }
-      id={menuId+'-button'}
+      id={menuId + '-button'}
       menu={
         <Menu id={menuId}>
           <MenuItem

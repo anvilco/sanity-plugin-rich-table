@@ -2,8 +2,8 @@ import {ComponentType} from 'react'
 import {ObjectInputProps, OperationsAPI, pathToString} from 'sanity'
 
 import {Box, Dialog, Flex, Text} from '@sanity/ui'
-import Table from './Table'
 import {RichTableType} from '../schemas/richTable.object'
+import Table from './Table'
 
 const ExpandedTableDialog: ComponentType<
   ObjectInputProps<RichTableType> & {
@@ -17,7 +17,15 @@ const ExpandedTableDialog: ComponentType<
   const dialogId = `expanded-table-dialog-${pathString}`
   const descriptionId = `${dialogId}-description`
   return (
-    <Dialog id={dialogId} width={4} header="Expanded table editor" onClose={props.handleClose}>
+    <Dialog
+      id={dialogId}
+      width={4}
+      header="Expanded table editor"
+      onClose={props.handleClose}
+      aria-describedby={descriptionId}
+      aria-modal={true}
+      role="dialog"
+    >
       {/* Hidden description referenced by aria-describedby for screen readers */}
       <Box
         id={descriptionId}
@@ -31,7 +39,8 @@ const ExpandedTableDialog: ComponentType<
         }}
       >
         <Text size={1}>
-          Edit table contents in an expanded view. Use the table controls to add, remove or reorder columns and rows.
+          Edit table contents in an expanded view. Use the table controls to add, remove or reorder
+          columns and rows.
         </Text>
       </Box>
       <Flex padding={3} justify={'center'}>

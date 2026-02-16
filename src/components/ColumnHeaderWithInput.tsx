@@ -1,14 +1,14 @@
-import {ColumnHeader} from '../schemas/columnHeader.object'
-import {ObjectItem, OperationsAPI} from 'sanity'
-import {ChangeEvent, ComponentType, useCallback, useState} from 'react'
 import {Box, Card, Flex, TextInput} from '@sanity/ui'
+import {ChangeEvent, ComponentType, useCallback, useState} from 'react'
+import {ObjectItem, OperationsAPI} from 'sanity'
+import {ColumnHeader} from '../schemas/columnHeader.object'
 
+import {PatchOperations} from '@sanity/types'
 import styled from 'styled-components'
 import ColumnContextMenu from './ColumnContextMenu'
-import {PatchOperations} from '@sanity/types'
 
-import {getLetterBasedOnIndex} from '../utils/getLetterBasedOnIndex'
 import {RichTableType} from '../schemas/richTable.object'
+import {getLetterBasedOnIndex} from '../utils/getLetterBasedOnIndex'
 
 interface ColumnHeaderWithInputProps {
   columnHeader: ColumnHeader & ObjectItem
@@ -20,6 +20,7 @@ interface ColumnHeaderWithInputProps {
   rowCount: number
   columnCount: number
   readOnly: boolean | undefined
+  role: string
 }
 
 export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = ({
@@ -39,7 +40,6 @@ export const ColumnHeaderWithInput: ComponentType<ColumnHeaderWithInputProps> = 
   const id = `column-header-input-${path}-${columnHeader._key}`
   // key that includes the external title will force remount when that title changes elsewhere
   const remountKey = `${columnHeader._key}-${(columnHeader.title ?? '').replace(/[^a-zA-Z0-9-_:.]/g, '-')}`
-
 
   const handleChange = useCallback(async (event: ChangeEvent<HTMLInputElement>) => {
     const newTitle = event.target.value

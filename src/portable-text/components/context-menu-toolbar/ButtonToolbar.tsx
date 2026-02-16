@@ -260,6 +260,7 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
           <Box
             ref={popoverRef}
             role="toolbar"
+            aria-label="Text formatting options"
             tabIndex={-1}
             data-orientation={isVertical ? 'vertical' : 'horizontal'}
             onKeyDown={handlePopoverKeyDown}
@@ -301,6 +302,10 @@ const ButtonToolbar: ComponentType<{focused: boolean; editorRef: RefObject<Edito
           ref={triggerRef as unknown as React.Ref<HTMLButtonElement>}
           title="Open text formatting toolbar (⇧⌘O)"
           $isFocused={focused}
+          aria-label="Open text formatting toolbar (⇧⌘O)"
+          aria-expanded={open}
+          aria-haspopup="true"
+          aria-controls={popoverId}
         />
       </Popover>
       {toolbarSchema.annotations && <AnnotationPopover schemaTypes={toolbarSchema.annotations} />}

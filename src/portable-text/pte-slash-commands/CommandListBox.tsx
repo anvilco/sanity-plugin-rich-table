@@ -32,6 +32,8 @@ const CommandListBox: ComponentType<CommandListBoxProps> = (props) => {
       padding={1}
       style={{maxHeight: 300, overflowY: 'auto', listStyle: 'none'}}
       aria-orientation={'horizontal'}
+      role="listbox"
+      aria-label="Available commands"
     >
       {props.matches.map((match, index) => (
         <CommandListItem

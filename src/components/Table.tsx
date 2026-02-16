@@ -87,7 +87,13 @@ const Table: ComponentType<
       as="section"
       aria-label="Rich table"
     >
-      <TableButtons path={path} value={value!} patch={patch} readOnly={props.readOnly} tableId={tableId}>
+      <TableButtons
+        path={path}
+        value={value!}
+        patch={patch}
+        readOnly={props.readOnly}
+        tableId={tableId}
+      >
         <TableScrollWrapper>
           <TableGrid
             id={tableId}
@@ -118,6 +124,7 @@ const Table: ComponentType<
                       rowCount={value?.rows?.length || 0}
                       columnCount={value?.columnHeaders?.length || 0}
                       readOnly={props.readOnly}
+                      role="columnheader"
                     />
                   )}
                   {!hasColumnTitles && (
@@ -132,6 +139,7 @@ const Table: ComponentType<
                       columnCount={value?.columnHeaders?.length || 0}
                       iconHorizontal
                       readOnly={props.readOnly}
+                      role="columnheader"
                     />
                   )}
                 </Fragment>
@@ -156,6 +164,7 @@ const Table: ComponentType<
                         rowCount={value?.rows?.length || 0}
                         path={path}
                         readOnly={props.readOnly}
+                        role="rowheader"
                       />
                     )}
                     {cellIndex === 0 && !hasRowTitles && (
@@ -166,6 +175,7 @@ const Table: ComponentType<
                         patch={patch}
                         path={path}
                         readOnly={props.readOnly}
+                        role="rowheader"
                       />
                     )}
                     {/* PTE CELL CONTENT */}
@@ -175,6 +185,8 @@ const Table: ComponentType<
                       value={cellValue}
                       key={cellItem.id}
                       readOnly={props.readOnly}
+                      //@ts-ignore
+                      role="cell"
                     />
                   </Fragment>
                 )
@@ -195,7 +207,6 @@ const Table: ComponentType<
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 toggleRowTitles(e.currentTarget.checked)
               }
-              label={'Show row titles'}
               id={'row-title-toggle'}
               aria-controls={tableId}
             />
@@ -209,7 +220,6 @@ const Table: ComponentType<
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 toggleColumnTitles(e.currentTarget.checked)
               }
-              label={'Show column titles'}
               id={'column-title-toggle'}
               aria-controls={tableId}
             />
