@@ -1,12 +1,12 @@
 # Rich table plugin for Sanity
 
-_**THIS PACKAGE IS NOT YET RELEASED! YOU CANNOT INSTALL IT YET!**_
-
-The last rich table plugin for Saniyt you will need!
+The last rich table plugin for Sanity you will need!
 
 <img width="1051" height="387" alt="Screenshot 2026-01-30 at 20 17 38" src="https://github.com/user-attachments/assets/447bbd97-2edd-442a-aca2-6d53c330ad91" />
 
 ## Features
+
+Please be aware, that this plugin is still growing - so while this first version is doing the job, there will be [more features coming soon](README.md#features-coming)!
 
 - 100% Typescript
 - Initialise a table with intuitive table selection by click or drag
