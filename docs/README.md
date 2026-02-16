@@ -5,9 +5,10 @@
 1. [Overview](#overview)
 2. [Installation](#installation)
 3. [Usage in Sanity Studio](#usage-in-sanity-studio)
-4. [Data Structure](#data-structure) 4. [Debugging data issues](#debugging-data-issues)
-5. [Render tables](#render-tables)
-6. [Merging cells](#merging-cells)
+4. [Data Structure](#data-structure)
+5. [Debugging data issues](#debugging-data-issues)
+6. [Render tables](#render-tables)
+7. [Merging cells](#merging-cells)
 
 ## Overview
 

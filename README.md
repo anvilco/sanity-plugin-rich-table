@@ -30,10 +30,12 @@ Please be aware, that this plugin is still growing - so while this first version
 
 ## Installation
 
-_**THIS PACKAGE IS NOT YET RELEASED! YOU CANNOT INSTALL IT YET!**_
-
 ```sh
 npm install sanity-plugin-rich-table
+# or
+pnpm add sanity-plugin-rich-table
+# or
+yarn add sanity-plugin-rich-table
 ```
 
 ## Usage
@@ -87,6 +89,16 @@ And get a suggestion on how to [merge cells when rendering](./docs/README.md#mer
 - Enhanced accessibility features
 - Default option to merge cells in the table input
 
+## TypeScript Support
+
+This plugin is written in TypeScript and exports types for consumers:
+
+```ts
+import type {RichTableType, RichTableRowType, RichTableCellType} from 'sanity-plugin-rich-table'
+```
+
+See the [data structure documentation](./docs/data-structure.md) for detailed type information.
+
 ## License
 
 [MIT](LICENSE) © Saskia Bobinska
@@ -100,9 +112,17 @@ See [Testing a plugin in Sanity Studio](https://github.com/sanity-io/plugin-kit#
 on how to run this plugin with hotreload in the studio.
 
 
+### Running tests
+
+```sh
+pnpm test          # Run tests once
+pnpm test:watch    # Run tests in watch mode
+pnpm test:coverage # Run tests with coverage report
+```
+
 ### Release new version
 
-Run ["CI & Release" workflow](TODO/actions/workflows/main.yml).
+Run the "CI & Release" workflow from GitHub Actions.
 Make sure to select the main branch and check "Release new version".
 
 Semantic release will only release on configured branches, so it is safe to run release on any branch.
