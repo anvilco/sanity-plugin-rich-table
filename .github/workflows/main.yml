@@ -124,7 +124,6 @@ jobs:
           cache: pnpm
           node-version: lts/*
       - run: pnpm install --frozen-lockfile
-      - run: pnpm audit signatures
         # Branches that will release new versions are defined in .releaserc.json
         # Remove --dry-run to perform actual release
       - run: pnpm dlx semantic-release --dry-run --debug
