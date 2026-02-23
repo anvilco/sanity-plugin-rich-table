@@ -9,146 +9,146 @@ importers:
   .:
     dependencies:
       '@floating-ui/react-dom':
-        specifier: '>=2.1.7'
+        specifier: ^2.1.7
         version: 2.1.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@portabletext/editor':
+        specifier: ^5.1.1
+        version: 5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2)
+      '@portabletext/keyboard-shortcuts':
+        specifier: ^2.1.2
+        version: 2.1.2
+      '@portabletext/plugin-emoji-picker':
+        specifier: ^5.0.6
+        version: 5.0.6(@portabletext/editor@5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.14)(react@19.2.4)
+      '@portabletext/plugin-markdown-shortcuts':
+        specifier: ^6.0.6
+        version: 6.0.6(@portabletext/editor@5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.14)(react@19.2.4)
+      '@portabletext/plugin-typeahead-picker':
+        specifier: ^4.0.6
+        version: 4.0.6(@portabletext/editor@5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.14)(react@19.2.4)
+      '@portabletext/toolbar':
+        specifier: ^6.0.6
+        version: 6.0.6(@portabletext/editor@5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.14)(react@19.2.4)
       '@sanity/icons':
-        specifier: '>=2'
+        specifier: ^3.7.4
         version: 3.7.4(react@19.2.4)
       '@sanity/ui':
-        specifier: '>=2'
+        specifier: ^3.1.11
         version: 3.1.11(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       emojilib:
-        specifier: '>=4.0.2'
+        specifier: ^4.0.2
         version: 4.0.2
       fuse.js:
-        specifier: '>=7.1.0'
+        specifier: ^7.1.0
         version: 7.1.0
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
       react-icons:
-        specifier: '>=5.5.0'
+        specifier: ^5.5.0
         version: 5.5.0(react@19.2.4)
+      sanity:
+        specifier: ^5.11.0
+        version: 5.11.0(@emotion/is-prop-valid@1.4.0)(@noble/hashes@2.0.1)(@types/node@25.3.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(babel-plugin-react-compiler@1.0.0)(jiti@2.6.1)(lightningcss@1.31.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(terser@5.46.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
+      styled-components:
+        specifier: ^6.3.11
+        version: 6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
       '@commitlint/cli':
-        specifier: '>=20.4.2'
+        specifier: ^20.4.2
         version: 20.4.2(@types/node@25.3.0)(typescript@5.9.3)
       '@commitlint/config-conventional':
-        specifier: '>=20.4.2'
+        specifier: ^20.4.2
         version: 20.4.2
       '@eslint/compat':
-        specifier: '>=2.0.2'
+        specifier: ^2.0.2
         version: 2.0.2(eslint@9.39.3(jiti@2.6.1))
       '@eslint/eslintrc':
-        specifier: '>=3.3.4'
+        specifier: ^3.3.4
         version: 3.3.4
       '@eslint/js':
         specifier: ^9.0.0
         version: 9.39.3
-      '@portabletext/editor':
-        specifier: '>=5.1.1'
-        version: 5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2)
-      '@portabletext/keyboard-shortcuts':
-        specifier: '>=2.1.2'
-        version: 2.1.2
-      '@portabletext/plugin-emoji-picker':
-        specifier: '>=5.0.6'
-        version: 5.0.6(@portabletext/editor@5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.14)(react@19.2.4)
-      '@portabletext/plugin-markdown-shortcuts':
-        specifier: '>=6.0.6'
-        version: 6.0.6(@portabletext/editor@5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.14)(react@19.2.4)
-      '@portabletext/plugin-typeahead-picker':
-        specifier: '>=4.0.6'
-        version: 4.0.6(@portabletext/editor@5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.14)(react@19.2.4)
-      '@portabletext/toolbar':
-        specifier: '>=6.0.6'
-        version: 6.0.6(@portabletext/editor@5.1.1(@portabletext/sanity-bridge@2.0.2(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2))(@types/react@19.2.14)(react@19.2.4)
       '@sanity/eslint-config-studio':
-        specifier: '>=6.0.0'
+        specifier: ^6.0.0
         version: 6.0.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
       '@sanity/pkg-utils':
-        specifier: '>=10.4.4'
+        specifier: ^10.4.4
         version: 10.4.4(@types/babel__core@7.20.5)(@types/node@25.3.0)(babel-plugin-react-compiler@1.0.0)(typescript@5.9.3)
       '@sanity/semantic-release-preset':
-        specifier: '>=6.0.0'
+        specifier: ^6.0.0
         version: 6.0.0(semantic-release@25.0.3(typescript@5.9.3))
       '@sanity/types':
-        specifier: '>=5.11.0'
+        specifier: ^5.11.0
         version: 5.11.0(@types/react@19.2.14)(debug@4.4.3)
       '@testing-library/jest-dom':
-        specifier: '>=6.9.1'
+        specifier: ^6.9.1
         version: 6.9.1
       '@testing-library/react':
-        specifier: '>=16.3.2'
+        specifier: ^16.3.2
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@types/react':
-        specifier: '>=19.2.14'
+        specifier: ^19.2.14
         version: 19.2.14
       '@types/react-dom':
-        specifier: '>=19.2.3'
+        specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.14)
       '@typescript-eslint/eslint-plugin':
-        specifier: '>=8.56.1'
+        specifier: ^8.56.1
         version: 8.56.1(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/parser':
-        specifier: '>=8.56.1'
+        specifier: ^8.56.1
         version: 8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
       '@vitejs/plugin-react':
-        specifier: '>=5.1.4'
+        specifier: ^5.1.4
         version: 5.1.4(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
       babel-plugin-styled-components:
-        specifier: '>=2.0.0'
+        specifier: ^2.0.0
         version: 2.1.4(@babel/core@7.29.0)(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       eslint:
         specifier: ^9.0.0
         version: 9.39.3(jiti@2.6.1)
       eslint-config-prettier:
-        specifier: '>=10.1.8'
+        specifier: ^10.1.8
         version: 10.1.8(eslint@9.39.3(jiti@2.6.1))
       eslint-config-sanity:
-        specifier: '>=7.1.4'
+        specifier: ^7.1.4
         version: 7.1.4(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint-plugin-react-hooks@7.0.1(eslint@9.39.3(jiti@2.6.1)))(eslint-plugin-react@7.37.5(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))
       eslint-plugin-prettier:
-        specifier: '>=5.5.5'
+        specifier: ^5.5.5
         version: 5.5.5(eslint-config-prettier@10.1.8(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))(prettier@3.8.1)
       eslint-plugin-react:
-        specifier: '>=7.37.5'
+        specifier: ^7.37.5
         version: 7.37.5(eslint@9.39.3(jiti@2.6.1))
       eslint-plugin-react-hooks:
-        specifier: '>=7.0.1'
+        specifier: ^7.0.1
         version: 7.0.1(eslint@9.39.3(jiti@2.6.1))
       globals:
-        specifier: '>=17.3.0'
+        specifier: ^17.3.0
         version: 17.3.0
       husky:
-        specifier: '>=9.1.7'
+        specifier: ^9.1.7
         version: 9.1.7
       jsdom:
-        specifier: '>=28.1.0'
+        specifier: ^28.1.0
         version: 28.1.0(@noble/hashes@2.0.1)
       lint-staged:
-        specifier: '>=16.2.7'
+        specifier: ^16.2.7
         version: 16.2.7
       prettier:
-        specifier: '>=3.8.1'
+        specifier: ^3.8.1
         version: 3.8.1
       prettier-plugin-packagejson:
-        specifier: '>=3.0.0'
+        specifier: ^3.0.0
         version: 3.0.0(prettier@3.8.1)
-      react:
-        specifier: '>=19.2.4'
-        version: 19.2.4
-      react-dom:
-        specifier: '>=19.2.4'
-        version: 19.2.4(react@19.2.4)
-      sanity:
-        specifier: '>=5.11.0'
-        version: 5.11.0(@emotion/is-prop-valid@1.4.0)(@noble/hashes@2.0.1)(@types/node@25.3.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(babel-plugin-react-compiler@1.0.0)(jiti@2.6.1)(lightningcss@1.31.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(terser@5.46.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
-      styled-components:
-        specifier: '>=6.3.8'
-        version: 6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       typescript:
-        specifier: '>=5.9.3'
+        specifier: ^5.9.3
         version: 5.9.3
       vitest:
-        specifier: '>=4.0.18'
+        specifier: ^4.0.18
         version: 4.0.18(@types/node@25.3.0)(jiti@2.6.1)(jsdom@28.1.0(@noble/hashes@2.0.1))(lightningcss@1.31.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
 
   studio:
