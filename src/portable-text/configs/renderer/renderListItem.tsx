@@ -1,5 +1,5 @@
 import {RenderListItemFunction} from '@portabletext/editor'
-import styled from 'styled-components'
+import {styled} from 'styled-components'
 
 const StyledLi = styled.li<{$level: number; $listType: 'bullet' | 'number'}>`
   display: flex;

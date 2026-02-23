@@ -14,7 +14,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import styled from 'styled-components'
+import {styled} from 'styled-components'
 
 import {extendAnnotation} from '../../configs/extendAnnotation'
 import {extendBlockObject} from '../../configs/extendBlockObject'
