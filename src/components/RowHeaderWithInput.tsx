@@ -2,7 +2,7 @@ import {PatchOperations} from '@sanity/types'
 import {Card, Flex, TextInput} from '@sanity/ui'
 import {ChangeEvent, ComponentType, useCallback, useState} from 'react'
 import {OperationsAPI} from 'sanity'
-import styled from 'styled-components'
+import {styled} from 'styled-components'
 
 import {RichTableRowType} from '../schemas/row.object'
 import RowContextMenu from './RowContextMenu'
