@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/bobinska-dev/sanity-plugin-rich-table/compare/v1.0.5...v1.1.0) (2026-03-04)
+
+### Features
+
+- upgrade @portabletext/\* dependencies for Sanity 5.x compatibility ([4bc7b79](https://github.com/bobinska-dev/sanity-plugin-rich-table/commit/4bc7b7999e8a8d909690665795e4d6c9e97cd46a))
+
+### Bug Fixes
+
+- use JSON import assertion for emojilib to fix ERR_IMPORT_ASSERTION_TYPE_MISSING ([d45f033](https://github.com/bobinska-dev/sanity-plugin-rich-table/commit/d45f033dfd698faecba74c5056bda402ef6bbf68))
+
 ## [1.0.1](https://github.com/bobinska-dev/sanity-plugin-rich-table/compare/v1.0.0...v1.0.1) (2026-02-16)
 
 ### Bug Fixes
