@@ -10,7 +10,26 @@ export default defineConfig({
   projectId: 'xonzamf8',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool(), richTablePlugin({})],
+  plugins: [
+    structureTool(),
+    visionTool(),
+    richTablePlugin({
+      cellContentSchema: {
+        type: 'array',
+        of: [
+          defineArrayMember({
+            type: 'block',
+          }),
+          defineArrayMember({
+            type: 'image',
+            name: 'image',
+            title: 'Image',
+            options: {hotspot: true},
+          }),
+        ],
+      },
+    }),
+  ],
 
   schema: {
     types: [
@@ -38,6 +57,16 @@ export default defineConfig({
                 name: 'richTableBlock',
                 title: 'Rich Table Block',
                 type: 'richTableBlock',
+              }),
+            ],
+          }),
+          defineField({
+            name: 'richTableArray',
+            title: 'Rich Table Array',
+            type: 'array',
+            of: [
+              defineArrayMember({
+                type: 'richTable',
               }),
             ],
           }),

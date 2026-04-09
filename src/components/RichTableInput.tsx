@@ -1,16 +1,18 @@
 import {ExpandIcon, ResetIcon} from '@sanity/icons'
 import {Box, Button, Flex, Inline, Stack, Switch, Text, Tooltip} from '@sanity/ui'
-import {ChangeEvent, ComponentType, Suspense, useCallback, useState} from 'react'
+import {ChangeEvent, ComponentType, Suspense, useCallback, useMemo, useState} from 'react'
 import {
   getPublishedId,
   ObjectInputProps,
   pathToString,
   useDocumentOperation,
   useFormValue,
+  useSchema,
 } from 'sanity'
 
 import {useToggleTitles} from '../hooks/useToggleTitles'
 import {RichTableType} from '../schemas/richTable.object'
+import {isRichTableArrayMemberContext} from '../utils/isRichTableArrayMemberContext'
 import ConfirmClearTableDialog from './ConfirmClearTableDialog'
 import ExpandedTableDialog from './ExpandedTableDialog'
 import InitialiseTable from './InitialiseTable'
@@ -22,11 +24,24 @@ const RichTableInput: ComponentType<
 > = (props) => {
   const _id = useFormValue(['_id']) as string
   const _type = useFormValue(['_type']) as string
+  const schema = useSchema()
 
   // Document operations -> with optimistic changes
   const {patch} = useDocumentOperation(getPublishedId(_id), _type)
 
   const pathString = pathToString(props.path)
+
+  const isInArray = useMemo(
+    () =>
+      isRichTableArrayMemberContext({
+        schema,
+        documentTypeName: _type,
+        path: props.path,
+        objectSchemaTypeName: props.schemaType.name,
+        isInPortableText: props.isInPortableText,
+      }),
+    [_type, props.isInPortableText, props.path, props.schemaType.name, schema],
+  )
   // table ID
   const tableId = `table-${props.id}`
 
@@ -58,6 +73,7 @@ const RichTableInput: ComponentType<
             patch={patch}
             path={pathString}
             isInPortableText={props.isInPortableText}
+            isInArray={isInArray}
             readOnly={props.readOnly}
             onChange={props.onChange}
             schemaTypeName={props.schemaType.name}
