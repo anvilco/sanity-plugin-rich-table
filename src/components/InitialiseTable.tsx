@@ -112,8 +112,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
       const initialTableValue = {
         columnHeaders: columnHeaders,
         rows: rows,
-        hasColumnTitles: true,
-        hasRowTitles: true,
+        headersInFirstColumn: false,
       }
       const portableBlockInitialValue = {
         ...initialTableValue,

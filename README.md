@@ -40,17 +40,17 @@ Please be aware, that this plugin is still growing - so while this first version
 > If you are on **Sanity 3 or 4** (React 18), pin the plugin to the last compatible release:
 >
 > ```sh
-> npm install sanity-plugin-rich-table@1.0.5
+> npm install @anvilco-pkg/sanity-plugin-rich-table@1.0.5
 > ```
 
 ## Installation
 
 ```sh
-npm install sanity-plugin-rich-table
+npm install @anvilco-pkg/sanity-plugin-rich-table
 # or
-pnpm add sanity-plugin-rich-table
+pnpm add @anvilco-pkg/sanity-plugin-rich-table
 # or
-yarn add sanity-plugin-rich-table
+yarn add @anvilco-pkg/sanity-plugin-rich-table
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ Add it as a plugin in `sanity.config.ts` (or .js):
 
 ```ts
 import {defineConfig} from 'sanity'
-import {richTablePlugin} from 'sanity-plugin-rich-table'
+import {richTablePlugin} from '@anvilco-pkg/sanity-plugin-rich-table'
 
 export default defineConfig({
   //...
@@ -109,7 +109,7 @@ And get a suggestion on how to [merge cells when rendering](./docs/README.md#mer
 This plugin is written in TypeScript and exports types for consumers:
 
 ```ts
-import type {RichTableType, RichTableRowType, RichTableCellType} from 'sanity-plugin-rich-table'
+import type {RichTableType, RichTableRowType, RichTableCellType} from '@anvilco-pkg/sanity-plugin-rich-table'
 ```
 
 See the [data structure documentation](./docs/data-structure.md) for detailed type information.

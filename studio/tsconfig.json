@@ -4,7 +4,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "paths": {
-      "sanity-plugin-rich-table": ["../src"]
+      "@anvilco-pkg/sanity-plugin-rich-table": ["../src"]
     }
   }
 }

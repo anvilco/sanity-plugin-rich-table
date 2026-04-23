@@ -31,7 +31,7 @@ interface RichTablePluginOptions {}
  * Installation:
  * ```ts
  * import {defineConfig} from 'sanity'
- * import {richTablePlugin} from 'sanity-plugin-rich-table'
+ * import {richTablePlugin} from '@anvilco-pkg/sanity-plugin-rich-table'
  *
  * export default defineConfig({
  *   // ...
