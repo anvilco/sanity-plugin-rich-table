@@ -19,7 +19,7 @@ This documentation provides an overview of the rich table plugin for Sanity Stud
 To install the rich table plugin, run the following command in your Sanity Studio project directory:
 
 ```sh
-npm install sanity-plugin-rich-table
+npm install @anvilco-pkg/sanity-plugin-rich-table
 ```
 
 ## Usage in Sanity Studio
@@ -28,7 +28,7 @@ Add it as a plugin in `sanity.config.ts` (or .js):
 
 ```ts
 import {defineConfig} from 'sanity'
-import {richTablePlugin} from 'sanity-plugin-rich-table'
+import {richTablePlugin} from '@anvilco-pkg/sanity-plugin-rich-table'
 
 export default defineConfig({
   //...
@@ -108,7 +108,7 @@ Other frameworks as well as libraries (like Tanstack Table) will be able to use 
 
 ```tsx
 import React from 'react'
-import {RichTableType} from 'sanity-plugin-rich-table'
+import {RichTableType} from '@anvilco-pkg/sanity-plugin-rich-table'
 import {PortableText} from '@portabletext/react'
 
 interface RichTableProps {
@@ -154,7 +154,7 @@ The grid layout can be a flexible alternative to traditional tables:
 ```tsx
 import React from 'react'
 import styled from 'styled-components'
-import {RichTableType} from 'sanity-plugin-rich-table'
+import {RichTableType} from '@anvilco-pkg/sanity-plugin-rich-table'
 import {PortableText} from '@portabletext/react'
 interface RichTableProps {
   tableData: RichTableType

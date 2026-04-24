@@ -10,7 +10,7 @@ import {
   useSchema,
 } from 'sanity'
 
-import {useToggleTitles} from '../hooks/useToggleTitles'
+import {useToggleHeadersInFirstColumn} from '../hooks/useToggleHeadersInFirstColumn'
 import {RichTableType} from '../schemas/richTable.object'
 import {isRichTableArrayMemberContext} from '../utils/isRichTableArrayMemberContext'
 import ConfirmClearTableDialog from './ConfirmClearTableDialog'
@@ -45,9 +45,6 @@ const RichTableInput: ComponentType<
   // table ID
   const tableId = `table-${props.id}`
 
-  // * Debug mode
-  const [debug, setDebug] = useState(false)
-  const handleDebugChange = useCallback(() => setDebug(!debug), [debug])
   // * Expand table dialog
   const [openDialog, setOpenDialog] = useState(false)
   const handleOpen = useCallback(() => setOpenDialog(true), [])
@@ -57,10 +54,9 @@ const RichTableInput: ComponentType<
   const handleOpenConfirmClearDialog = useCallback(() => setOpenConfirmClearDialog(true), [])
   const handleCloseConfirmClearDialog = useCallback(() => setOpenConfirmClearDialog(false), [])
 
-  const {hasColumnTitles, hasRowTitles} = props.value || {}
-  const {toggleColumnTitles, toggleRowTitles} = useToggleTitles(
-    hasColumnTitles,
-    hasRowTitles,
+  const {headersInFirstColumn} = props.value || {}
+  const toggleHeadersInFirstColumn = useToggleHeadersInFirstColumn(
+    headersInFirstColumn,
     patch,
     pathString,
   )
@@ -165,54 +161,22 @@ const RichTableInput: ComponentType<
           readOnly={props.readOnly}
         />
       )}
-      {/* DEBUG SWITCH*/}
-      <Flex justify={'space-between'} align={'center'} gap={2} key={`debug-switch-${openDialog}`}>
+      <Flex justify={'flex-start'} align={'center'} gap={2} key={`debug-switch-${openDialog}`}>
         <Inline space={2}>
-          <Switch
-            checked={debug}
-            onChange={handleDebugChange}
-            label={'Open field to debug'}
-            id={'debug-toggle'}
-          />
-          <Text as={'label'} htmlFor={'debug-toggle'} size={0} muted>
-            Debug mode
+          <Text as={'label'} htmlFor={'headers-in-first-column-toggle'} size={0} muted>
+            Has headers in first column?
           </Text>
+          <Switch
+            checked={headersInFirstColumn}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              toggleHeadersInFirstColumn(e.currentTarget.checked)
+            }
+            disabled={props.readOnly}
+            label={'Has headers in first column?'}
+            id={'headers-in-first-column-toggle'}
+          />
         </Inline>
-        <Flex gap={3} justify={'flex-end'} align={'center'}>
-          <Inline space={2}>
-            <Text as={'label'} htmlFor={'row-title-toggle'} size={0} muted>
-              Show row titles
-            </Text>
-            <Switch
-              checked={hasRowTitles}
-              role="switch"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                toggleRowTitles(e.currentTarget.checked)
-              }
-              disabled={props.readOnly}
-              label={'Show row titles'}
-              id={'row-title-toggle'}
-            />
-          </Inline>
-          <Inline space={2}>
-            <Text as={'label'} htmlFor={'column-title-toggle'} size={0} muted>
-              Show column titles
-            </Text>
-            <Switch
-              checked={hasColumnTitles}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                toggleColumnTitles(e.currentTarget.checked)
-              }
-              disabled={props.readOnly}
-              label={'Show column titles'}
-              id={'column-title-toggle'}
-            />
-          </Inline>
-        </Flex>
       </Flex>
-      {debug &&
-        // Default inputs (rows, columnHeaders)
-        props.renderDefault(props)}
     </Stack>
   )
 }

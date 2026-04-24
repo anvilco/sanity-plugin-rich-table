@@ -12,16 +12,14 @@ import {
   pathToString,
 } from 'sanity'
 
-import {useToggleTitles} from '../hooks/useToggleTitles'
+import {useToggleHeadersInFirstColumn} from '../hooks/useToggleHeadersInFirstColumn'
 import ContentPortableTextInput from '../portable-text/ContentPortableTextEditor'
 import {RichTableCellType} from '../schemas/cell.object'
 import {ColumnHeader} from '../schemas/columnHeader.object'
 import {RichTableType} from '../schemas/richTable.object'
 import {RichTableRowType} from '../schemas/row.object'
 import ColumnContextMenu from './ColumnContextMenu'
-import ColumnHeaderWithInput from './ColumnHeaderWithInput'
 import RowContextMenu from './RowContextMenu'
-import RowHeaderWithInput from './RowHeaderWithInput'
 import TableButtons from './TableButtons'
 import TableGrid from './TableGrid'
 import TableScrollWrapper from './TableScrollWrapper'
@@ -70,10 +68,9 @@ const Table: ComponentType<
     ObjectArrayFormNode<ColumnHeader & ObjectItem>
   >[]
 
-  const {hasColumnTitles, hasRowTitles} = value!
-  const {toggleColumnTitles, toggleRowTitles} = useToggleTitles(
-    hasColumnTitles,
-    hasRowTitles,
+  const {headersInFirstColumn} = value!
+  const toggleHeadersInFirstColumn = useToggleHeadersInFirstColumn(
+    headersInFirstColumn,
     patch,
     path,
   )
@@ -101,7 +98,6 @@ const Table: ComponentType<
             // we need to add one extra column for the row titles / context menu
             $columnCount={value?.columnHeaders?.length ? value?.columnHeaders?.length + 1 : 0}
             $isInDialog={false}
-            $hasRowTitles={hasRowTitles}
             role="table"
           >
             {/* Placeholder for row title column */}
@@ -113,35 +109,19 @@ const Table: ComponentType<
               // TODO: force remount when columnHeader value has changed in dialog but not in inline table input -> this is maybe caused by missing blur event in the input👇
               return (
                 <Fragment key={colHeaderItem._key}>
-                  {hasColumnTitles && (
-                    <ColumnHeaderWithInput
-                      columnHeader={colHeaderItem}
-                      patch={patch}
-                      value={value!}
-                      path={path}
-                      key={colHeaderItem._key}
-                      columnIndex={columnIndex}
-                      rowCount={value?.rows?.length || 0}
-                      columnCount={value?.columnHeaders?.length || 0}
-                      readOnly={props.readOnly}
-                      role="columnheader"
-                    />
-                  )}
-                  {!hasColumnTitles && (
-                    <ColumnContextMenu
-                      key={colHeaderItem._key}
-                      columnIndex={columnIndex}
-                      columnHeaderKey={colHeaderItem._key}
-                      patch={patch}
-                      value={value!}
-                      path={path}
-                      rowCount={value?.rows?.length || 0}
-                      columnCount={value?.columnHeaders?.length || 0}
-                      iconHorizontal
-                      readOnly={props.readOnly}
-                      role="columnheader"
-                    />
-                  )}
+                  <ColumnContextMenu
+                    key={colHeaderItem._key}
+                    columnIndex={columnIndex}
+                    columnHeaderKey={colHeaderItem._key}
+                    patch={patch}
+                    value={value!}
+                    path={path}
+                    rowCount={value?.rows?.length || 0}
+                    columnCount={value?.columnHeaders?.length || 0}
+                    iconHorizontal
+                    readOnly={props.readOnly}
+                    role="columnheader"
+                  />
                 </Fragment>
               )
             })}
@@ -155,19 +135,7 @@ const Table: ComponentType<
 
                 return (
                   <Fragment key={cellItem.id}>
-                    {/* CONTEXT MENU BUTTON */}
-                    {cellIndex === 0 && hasRowTitles && (
-                      <RowHeaderWithInput
-                        row={rowMember.item.value}
-                        patch={patch}
-                        rowIndex={rowIndex}
-                        rowCount={value?.rows?.length || 0}
-                        path={path}
-                        readOnly={props.readOnly}
-                        role="rowheader"
-                      />
-                    )}
-                    {cellIndex === 0 && !hasRowTitles && (
+                    {cellIndex === 0 && (
                       <RowContextMenu
                         rowIndex={rowIndex}
                         rowCount={value?.rows?.length || 0}
@@ -196,31 +164,18 @@ const Table: ComponentType<
         </TableScrollWrapper>
       </TableButtons>
       {isInDialog && (
-        <Flex gap={3} justify={'flex-end'} align={'center'} paddingTop={3}>
+        <Flex gap={3} justify={'flex-start'} align={'center'} paddingTop={3}>
           <Inline space={2}>
-            <Text as={'label'} htmlFor={'row-title-toggle'} size={0} muted>
-              Show row titles
+            <Text as={'label'} htmlFor={'headers-in-first-column-toggle'} size={0} muted>
+              Has headers in first column
             </Text>
             <Switch
-              checked={hasRowTitles}
+              checked={headersInFirstColumn}
               role="switch"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                toggleRowTitles(e.currentTarget.checked)
+                toggleHeadersInFirstColumn(e.currentTarget.checked)
               }
-              id={'row-title-toggle'}
-              aria-controls={tableId}
-            />
-          </Inline>
-          <Inline space={2}>
-            <Text as={'label'} htmlFor={'column-title-toggle'} size={0} muted>
-              Show column titles
-            </Text>
-            <Switch
-              checked={hasColumnTitles}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                toggleColumnTitles(e.currentTarget.checked)
-              }
-              id={'column-title-toggle'}
+              id={'headers-in-first-column-toggle'}
               aria-controls={tableId}
             />
           </Inline>

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Tests installing sanity-plugin-rich-table in minimal Studio setups
+ * Tests installing @anvilco-pkg/sanity-plugin-rich-table in minimal Studio setups
  * for Sanity 3, 4, and 5. Exits 0 if all installs succeed; prints summary.
  * Run from repo root: node scripts/test-studio-install.mjs
  */
@@ -9,6 +9,7 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import pkg from '../package.json' with {type: 'json'};
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -59,8 +60,11 @@ function main() {
   }
   fs.mkdirSync(testDir, { recursive: true });
 
-  const tarball = path.join(root, 'sanity-plugin-rich-table-1.0.2.tgz');
-  const pluginRef = fs.existsSync(tarball) ? `file:${tarball}` : 'sanity-plugin-rich-table';
+  const tarballBaseName = `${pkg.name.replace('/', '-').replace('@', '')}-${pkg.version}.tgz`;
+  const tarball = path.join(root, tarballBaseName);
+  const pluginRef = fs.existsSync(tarball)
+    ? `file:${tarball}`
+    : '@anvilco-pkg/sanity-plugin-rich-table';
 
   const results = [];
 
@@ -73,7 +77,7 @@ function main() {
       private: true,
       dependencies: {
         ...studio.deps,
-        'sanity-plugin-rich-table': pluginRef,
+        '@anvilco-pkg/sanity-plugin-rich-table': pluginRef,
       },
     };
     fs.writeFileSync(path.join(dir, 'package.json'), JSON.stringify(pkg, null, 2));

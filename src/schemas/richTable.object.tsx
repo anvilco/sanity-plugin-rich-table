@@ -20,6 +20,7 @@ export interface RichTableType {
   columnHeaders?: Array<ColumnHeader & ObjectItem>
   hasColumnTitles?: boolean
   hasRowTitles?: boolean
+  headersInFirstColumn?: boolean
 }
 
 export default defineType({
@@ -57,16 +58,10 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'hasColumnTitles',
-      title: 'Has Column Titles',
+      name: 'headersInFirstColumn',
+      title: 'Has headers in first column?',
       type: 'boolean',
-      initialValue: true,
-    }),
-    defineField({
-      name: 'hasRowTitles',
-      title: 'Has Row Titles',
-      type: 'boolean',
-      initialValue: true,
+      initialValue: false,
     }),
   ],
   preview: {

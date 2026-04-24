@@ -1,6 +1,6 @@
 import {visionTool} from '@sanity/vision'
 import {defineArrayMember, defineConfig, defineField, defineType} from 'sanity'
-import {richTablePlugin} from 'sanity-plugin-rich-table'
+import {richTablePlugin} from '@anvilco-pkg/sanity-plugin-rich-table'
 import {structureTool} from 'sanity/structure'
 
 export default defineConfig({

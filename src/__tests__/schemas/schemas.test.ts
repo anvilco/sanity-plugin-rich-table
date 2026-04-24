@@ -26,16 +26,10 @@ describe('richTableObject schema', () => {
     expect(columnHeadersField?.type).toBe('array')
   })
 
-  it('has hasColumnTitles field', () => {
-    const field = richTableObject.fields.find((f) => f.name === 'hasColumnTitles')
-    expect(field).toBeDefined()
-    expect(field?.type).toBe('boolean')
-  })
-
-  it('has hasRowTitles field', () => {
-    const field = richTableObject.fields.find((f) => f.name === 'hasRowTitles')
-    expect(field).toBeDefined()
-    expect(field?.type).toBe('boolean')
+  it('has headersInFirstColumn field', () => {
+    const rowsField = richTableObject.fields.find((f) => f.name === 'rows')
+    expect(rowsField).toBeDefined()
+    expect(rowsField?.type).toBe('array')
   })
 
   it('has icon defined', () => {
