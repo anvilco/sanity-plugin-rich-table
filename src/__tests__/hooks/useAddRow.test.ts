@@ -3,6 +3,7 @@ import {describe, expect, it, vi} from 'vitest'
 
 import useAddRow from '../../hooks/useAddRow'
 import {RichTableType} from '../../schemas/richTable.object'
+import {RICH_TABLE_ROW_TYPE} from '../../schemas/row.object'
 
 describe('useAddRow', () => {
   const createMockPatch = () => ({
@@ -11,7 +12,7 @@ describe('useAddRow', () => {
 
   const createMockValue = (colCount: number, rowCount: number = 1): RichTableType => ({
     rows: Array.from({length: rowCount}, () => ({
-      _type: 'row' as const,
+      _type: RICH_TABLE_ROW_TYPE,
       _key: 'row-key',
       cells: Array.from({length: colCount}, () => ({
         _type: 'richTableCell' as const,
@@ -145,7 +146,7 @@ describe('useAddRow', () => {
     const executeCall = mockPatch.execute.mock.calls[0][0]
     const newRow = executeCall[0].insert.items[0]
 
-    expect(newRow._type).toBe('row')
+    expect(newRow._type).toBe(RICH_TABLE_ROW_TYPE)
     expect(newRow._key).toBeDefined()
     expect(typeof newRow._key).toBe('string')
   })

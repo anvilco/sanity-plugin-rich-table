@@ -9,7 +9,9 @@ import {
   ObjectInputProps,
   ObjectItem,
   OperationsAPI,
+  Path,
   pathToString,
+  stringToPath,
 } from 'sanity'
 
 import {useToggleHeadersInFirstColumn} from '../hooks/useToggleHeadersInFirstColumn'
@@ -23,6 +25,31 @@ import RowContextMenu from './RowContextMenu'
 import TableButtons from './TableButtons'
 import TableGrid from './TableGrid'
 import TableScrollWrapper from './TableScrollWrapper'
+
+function getContentPath({
+  cellMember,
+  cellKey,
+  cellIndex,
+  path,
+  rowKey,
+  rowIndex,
+}: {
+  cellMember: ArrayOfObjectsItemMember<ObjectArrayFormNode<RichTableCellType>> | undefined
+  cellKey: string | undefined
+  cellIndex: number
+  path: string
+  rowKey: string | undefined
+  rowIndex: number
+}): Path {
+  if (cellMember) {
+    return cellMember.item.path.concat('content')
+  }
+
+  const rowSelector = rowKey ? `_key=="${rowKey}"` : rowIndex
+  const cellSelector = cellKey ? `_key=="${cellKey}"` : cellIndex
+
+  return stringToPath(`${path}.rows[${rowSelector}].cells[${cellSelector}].content`)
+}
 
 // TODO: make row title / context menu sticky to the left side when scrolling horizontally?
 const Table: ComponentType<
@@ -59,6 +86,17 @@ const Table: ComponentType<
         | undefined,
     }
   })
+
+  const rowMembersByKey = new Map(
+    rowMembersWithCellMembers
+      ?.map(({rowMember, cellMembers}) => {
+        const rowKey = rowMember.item.value?._key
+        return rowKey ? [rowKey, {rowMember, cellMembers}] : undefined
+      })
+      .filter((entry): entry is [string, NonNullable<typeof rowMembersWithCellMembers>[number]] =>
+        Boolean(entry),
+      ),
+  )
 
   const columnHeaderFieldMember = tableObjectMembers?.find(
     (member) => member.name === 'columnHeaders',
@@ -127,19 +165,48 @@ const Table: ComponentType<
             })}
 
             {/* CONTENT ROWS AND CELLS */}
-            {rowMembersWithCellMembers?.map(({rowMember, cellMembers}, rowIndex) =>
-              cellMembers?.map((cellMember, cellIndex) => {
-                const cellItem = cellMember.item
-                const cellPTEPath = cellItem.path.concat('content')
-                const cellValue = value?.rows?.[rowIndex]?.cells?.[cellIndex]?.content
+            {value?.rows?.map((rowValue, rowIndex) => {
+              const matchedRow = rowValue._key ? rowMembersByKey.get(rowValue._key) : undefined
+              const cellMembersByKey = new Map(
+                matchedRow?.cellMembers
+                  ?.map((cellMember) => {
+                    const cellKey = cellMember.item.value?._key
+                    return cellKey ? [cellKey, cellMember] : undefined
+                  })
+                  .filter(
+                    (
+                      entry,
+                    ): entry is [
+                      string,
+                      ArrayOfObjectsItemMember<ObjectArrayFormNode<RichTableCellType>>,
+                    ] => Boolean(entry),
+                  ),
+              )
+
+              return rowValue.cells?.map((cellValueObject, cellIndex) => {
+                const cellMember = cellValueObject._key
+                  ? cellMembersByKey.get(cellValueObject._key)
+                  : matchedRow?.cellMembers?.[cellIndex]
+                const cellPTEPath = getContentPath({
+                  cellMember,
+                  cellKey: cellValueObject._key,
+                  cellIndex,
+                  path,
+                  rowKey: rowValue._key,
+                  rowIndex,
+                })
+                const cellValue = cellValueObject.content
+                const cellId =
+                  cellMember?.item.id ??
+                  `${rowValue._key ?? rowIndex}-${cellValueObject._key ?? cellIndex}`
 
                 return (
-                  <Fragment key={cellItem.id}>
+                  <Fragment key={cellId}>
                     {cellIndex === 0 && (
                       <RowContextMenu
                         rowIndex={rowIndex}
                         rowCount={value?.rows?.length || 0}
-                        row={rowMember.item.value}
+                        row={matchedRow?.rowMember.item.value ?? rowValue}
                         patch={patch}
                         path={path}
                         readOnly={props.readOnly}
@@ -151,15 +218,15 @@ const Table: ComponentType<
                       onChange={onChange}
                       path={cellPTEPath}
                       value={cellValue}
-                      key={cellItem.id}
+                      key={cellId}
                       readOnly={props.readOnly}
                       // @ts-expect-error role prop not in type but needed for accessibility
                       role="cell"
                     />
                   </Fragment>
                 )
-              }),
-            )}
+              })
+            })}
           </TableGrid>
         </TableScrollWrapper>
       </TableButtons>

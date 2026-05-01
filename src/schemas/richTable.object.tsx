@@ -41,7 +41,6 @@ export default defineType({
       validation: (Rule) => Rule.min(1).error('A table must have at least one row.').required(),
       of: [
         defineArrayMember({
-          name: 'row',
           type: 'richTableRow',
         }),
       ],
@@ -52,7 +51,6 @@ export default defineType({
       type: 'array',
       of: [
         defineArrayMember({
-          name: 'columnHeader',
           type: 'columnHeader',
         }),
       ],
