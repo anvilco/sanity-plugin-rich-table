@@ -3,7 +3,7 @@ import {OperationsAPI, PortableTextBlock} from 'sanity'
 
 import {RichTableCellType} from '../schemas/cell.object'
 import {RichTableType} from '../schemas/richTable.object'
-import {RichTableRowType} from '../schemas/row.object'
+import {RICH_TABLE_ROW_TYPE, RichTableRowType} from '../schemas/row.object'
 import {generateKey} from '../utils/generateKey'
 
 interface UseAddRowProps {
@@ -37,7 +37,7 @@ export default function useAddRow({path, value, patch}: UseAddRowProps) {
     // const newRowTitle = `${value?.rows ? value.rows.length + 1 : 1}`
     // Define the new row with the generated cells.
     const newRow: RichTableRowType = {
-      _type: 'row',
+      _type: RICH_TABLE_ROW_TYPE,
       _key: generateKey(),
       cells: cells,
     }

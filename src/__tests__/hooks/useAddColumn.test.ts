@@ -3,6 +3,7 @@ import {describe, expect, it, vi} from 'vitest'
 
 import {useAddColumn} from '../../hooks/useAddColumn'
 import {RichTableType} from '../../schemas/richTable.object'
+import {RICH_TABLE_ROW_TYPE} from '../../schemas/row.object'
 
 describe('useAddColumn', () => {
   const createMockPatch = () => ({
@@ -11,7 +12,7 @@ describe('useAddColumn', () => {
 
   const createMockValue = (colCount: number, rowCount: number = 2): RichTableType => ({
     rows: Array.from({length: rowCount}, () => ({
-      _type: 'row' as const,
+      _type: RICH_TABLE_ROW_TYPE,
       _key: 'row-key',
       cells: Array.from({length: colCount}, () => ({
         _type: 'richTableCell' as const,

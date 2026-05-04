@@ -12,7 +12,7 @@ import {
 import {OperationsAPI, PortableTextBlock} from 'sanity'
 
 import {RichTableCellType} from '../schemas/cell.object'
-import {RichTableRowType} from '../schemas/row.object'
+import {RICH_TABLE_ROW_TYPE, RichTableRowType} from '../schemas/row.object'
 import {generateKey} from '../utils/generateKey'
 
 interface RowContextMenuProps {
@@ -75,7 +75,7 @@ const RowContextMenu: ComponentType<RowContextMenuProps> = ({
       })
 
       const newRow: RichTableRowType = {
-        _type: 'row',
+        _type: RICH_TABLE_ROW_TYPE,
         _key: generateKey(),
         cells: newCells,
       }

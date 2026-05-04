@@ -1,6 +1,8 @@
-import {defineField, defineType, ObjectItem} from 'sanity'
+import {defineArrayMember, defineField, defineType, ObjectItem} from 'sanity'
 
 import {RichTableCellType} from './cell.object'
+
+export const RICH_TABLE_ROW_TYPE = 'richTableRow'
 
 export type RichTableRowType = ObjectItem & {
   title?: string
@@ -8,7 +10,7 @@ export type RichTableRowType = ObjectItem & {
 }
 
 export default defineType({
-  name: 'richTableRow',
+  name: RICH_TABLE_ROW_TYPE,
   title: 'Rich Table Row',
   type: 'object',
   fields: [
@@ -23,9 +25,7 @@ export default defineType({
       title: 'Cells',
       type: 'array',
       of: [
-        defineType({
-          name: 'richTableCell',
-          title: 'Cell',
+        defineArrayMember({
           type: 'richTableCell',
         }),
       ],

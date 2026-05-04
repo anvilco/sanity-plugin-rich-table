@@ -11,7 +11,7 @@ import {
 
 import {RichTableCellType} from '../schemas/cell.object'
 import {ColumnHeader} from '../schemas/columnHeader.object'
-import {RichTableRowType} from '../schemas/row.object'
+import {RICH_TABLE_ROW_TYPE, RichTableRowType} from '../schemas/row.object'
 import {generateKey} from '../utils/generateKey'
 import {onKeyDownSelectCells} from '../utils/onKeyDownSelect'
 import InitialiseGrid from './InitialiseGrid'
@@ -95,7 +95,7 @@ const InitialiseTable: ComponentType<InitialiseTableProps> = ({
       })
       // New rows
       const rows: RichTableRowType[] = Array.from({length: rowCount ?? 1}, () => ({
-        _type: 'row',
+        _type: RICH_TABLE_ROW_TYPE,
         cells: cells,
         _key: generateKey(),
       }))
